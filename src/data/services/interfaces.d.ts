@@ -1,0 +1,3 @@
+interface IFormResponse {
+  success: boolean;
+}
