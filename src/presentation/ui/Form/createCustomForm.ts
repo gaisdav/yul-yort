@@ -1,4 +1,5 @@
 import { createForm, FormApi } from "final-form";
+import ReactGA from "react-ga";
 
 export const createCustomForm = (
   user: IUser,
@@ -16,6 +17,11 @@ export const createCustomForm = (
       comment: "",
     },
     onSubmit: (values: IForm): void => {
+      ReactGA.event({
+        category: "submit",
+        action: "submit form",
+        label: "user was submit form",
+      });
       onSubmit(values);
     },
     validate: (values: IForm) => {

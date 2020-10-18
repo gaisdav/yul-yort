@@ -9,6 +9,16 @@ import { configure } from "mobx";
 import store from "./presentation/vm/store";
 import { ThemeProvider } from "@material-ui/core";
 import { theme } from "./presentation/theme";
+import ReactGA from "react-ga";
+
+const trackingId = "";
+ReactGA.initialize(trackingId);
+
+ReactGA.event({
+  category: "visit",
+  action: "visit",
+  label: "user was visit site",
+});
 
 configure({ enforceActions: "observed" });
 
