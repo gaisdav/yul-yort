@@ -17,7 +17,7 @@ import {
   Button,
   CircularProgress,
   Grid,
-  Paper,
+  Card,
 } from "@material-ui/core";
 import { DateTimePicker } from "@material-ui/pickers";
 import { FormState } from "final-form";
@@ -38,6 +38,7 @@ const Form: FC = () => {
   };
 
   const form = useMemo(() => createCustomForm(userVM.user, handleForm), [
+    userVM.user,
     userVM.user.id,
   ]);
 
@@ -47,7 +48,7 @@ const Form: FC = () => {
       submitting: true,
       invalid: true,
     });
-  }, [form.getState]);
+  }, [form, form.getState]);
 
   if (!formState) {
     return null;
@@ -119,14 +120,16 @@ const Form: FC = () => {
     form.change("datetime", dateTime);
   };
 
+  console.log(userVM.loading || formVM.loading);
+
   return (
-    <Paper className={styles.form}>
+    <Card className={styles.form}>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2} alignItems="center" justify="center">
           <Grid item xs={12}>
             <TextField
               autoComplete="on"
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               size={"small"}
               fullWidth
               label="Имя"
@@ -139,7 +142,7 @@ const Form: FC = () => {
           <Grid item xs={12}>
             <TextField
               autoComplete="on"
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               size={"small"}
               fullWidth
               label="Фамилия"
@@ -151,7 +154,7 @@ const Form: FC = () => {
           <Grid item xs={12}>
             <TextField
               autoComplete="on"
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               size={"small"}
               fullWidth
               label="Телефон"
@@ -165,7 +168,7 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={6}>
             <FormControl
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               variant="outlined"
               fullWidth
               size={"small"}
@@ -191,7 +194,7 @@ const Form: FC = () => {
           <Grid item xs={6}>
             <DateTimePicker
               className={styles.dateTimePicker}
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               required={true}
               okLabel="Ok"
               cancelLabel="Отмена"
@@ -212,7 +215,7 @@ const Form: FC = () => {
           <Grid item xs={12}>
             <TextField
               autoComplete="on"
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               size={"small"}
               required
               fullWidth
@@ -226,7 +229,7 @@ const Form: FC = () => {
           <Grid item xs={12}>
             <TextField
               autoComplete="on"
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               size={"small"}
               label="Куда"
               variant="outlined"
@@ -240,7 +243,7 @@ const Form: FC = () => {
           <Grid item xs={12}>
             <TextField
               autoComplete="on"
-              disabled={userVM.loading}
+              disabled={userVM.loading || formVM.loading}
               rows={3}
               size={"small"}
               multiline
@@ -253,18 +256,22 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <Button
-              disabled={formState.invalid || userVM.loading}
+              disabled={formState.invalid || userVM.loading || formVM.loading}
               variant="contained"
               color="primary"
               fullWidth={true}
               type={"submit"}
             >
-              {userVM.loading ? <CircularProgress size={24} /> : "Отправить"}
+              {userVM.loading || formVM.loading ? (
+                <CircularProgress size={24} />
+              ) : (
+                "Отправить"
+              )}
             </Button>
           </Grid>
         </Grid>
       </form>
-    </Paper>
+    </Card>
   );
 };
 

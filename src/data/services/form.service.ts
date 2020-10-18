@@ -9,7 +9,9 @@ class FormService {
       body: formJSON,
     });
 
-    return response.json();
+    return {
+      success: true,
+    };
   }
 }
 

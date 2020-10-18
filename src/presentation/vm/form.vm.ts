@@ -1,7 +1,8 @@
 import FormService from "../../data/services/form.service";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction, observable, action } from "mobx";
 
 class FormVm {
+  @observable
   loading: boolean = false;
   response: boolean = false;
 
@@ -9,16 +10,21 @@ class FormVm {
     makeAutoObservable(this);
   }
 
+  @action.bound
   async sendForm(form: IForm) {
     this.loading = true;
 
-    try {
-      const response = await this.formService.sendForm(form);
+    setTimeout(async () => {
+      try {
+        const response = await this.formService.sendForm(form);
 
-      this.response = response.success;
-    } finally {
-      this.loading = false;
-    }
+        runInAction(() => {
+          this.response = response.success;
+        });
+      } finally {
+        this.loading = false;
+      }
+    }, 5000);
   }
 }
 
