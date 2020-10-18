@@ -18,6 +18,8 @@ import {
   CircularProgress,
   Grid,
   Card,
+  CardHeader,
+  CardContent,
 } from "@material-ui/core";
 import { DateTimePicker } from "@material-ui/pickers";
 import { FormState } from "final-form";
@@ -120,157 +122,157 @@ const Form: FC = () => {
     form.change("datetime", dateTime);
   };
 
-  console.log(userVM.loading || formVM.loading);
-
   return (
     <Card className={styles.form}>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2} alignItems="center" justify="center">
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="on"
-              disabled={userVM.loading || formVM.loading}
-              size={"small"}
-              fullWidth
-              label="Имя"
-              variant="outlined"
-              required={true}
-              value={formState.values.name}
-              onChange={handleNameChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="on"
-              disabled={userVM.loading || formVM.loading}
-              size={"small"}
-              fullWidth
-              label="Фамилия"
-              variant="outlined"
-              value={formState.values.lastname}
-              onChange={handleLastNameChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="on"
-              disabled={userVM.loading || formVM.loading}
-              size={"small"}
-              fullWidth
-              label="Телефон"
-              variant="outlined"
-              required={true}
-              placeholder="Введите ваш телефон"
-              value={formState.values.phone}
-              onChange={handlePhoneChange}
-              type="tel"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControl
-              disabled={userVM.loading || formVM.loading}
-              variant="outlined"
-              fullWidth
-              size={"small"}
-              required={true}
-            >
-              <InputLabel id="demo-simple-select-outlined-label">
-                Пассажиры
-              </InputLabel>
-              <Select
-                defaultValue={formState.values.peopleCount || 1}
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                label="Пассажиры"
-                onChange={handleSelectChange}
+      {userVM.user.name && (
+        <CardHeader title={"Здравствуйте, " + userVM.user.name + "!"} />
+      )}
+
+      <CardContent>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2} alignItems="center" justify="center">
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="on"
+                disabled={userVM.loading || formVM.loading}
+                size={"small"}
+                fullWidth
+                label="Имя"
+                variant="outlined"
+                required={true}
+                value={formState.values.name}
+                onChange={handleNameChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="on"
+                disabled={userVM.loading || formVM.loading}
+                size={"small"}
+                fullWidth
+                label="Фамилия"
+                variant="outlined"
+                value={formState.values.lastname}
+                onChange={handleLastNameChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="on"
+                disabled={userVM.loading || formVM.loading}
+                size={"small"}
+                fullWidth
+                label="Телефон"
+                variant="outlined"
+                required={true}
+                placeholder="Введите ваш телефон"
+                value={formState.values.phone}
+                onChange={handlePhoneChange}
+                type="tel"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl
+                disabled={userVM.loading || formVM.loading}
+                variant="outlined"
+                fullWidth
+                size={"small"}
+                required={true}
               >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
-              </Select>
-            </FormControl>
+                <InputLabel id="demo-simple-select-outlined-label">
+                  Пассажиры
+                </InputLabel>
+                <Select
+                  defaultValue={formState.values.peopleCount || 1}
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  label="Пассажиры"
+                  onChange={handleSelectChange}
+                >
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <DateTimePicker
+                className={styles.dateTimePicker}
+                disabled={userVM.loading || formVM.loading}
+                required={true}
+                okLabel="Ok"
+                cancelLabel="Отмена"
+                todayLabel="Сегодня"
+                size={"small"}
+                hideTabs={true}
+                format="dd MMM HH:mm"
+                fullWidth
+                value={new Date(formState.values.datetime * 1000)}
+                onChange={handleDateChange}
+                disablePast
+                label="Когда?"
+                showTodayButton
+                inputVariant="outlined"
+                ampm={false}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="on"
+                disabled={userVM.loading || formVM.loading}
+                size={"small"}
+                required
+                fullWidth
+                label="Откуда"
+                variant="outlined"
+                placeholder="Нас. пункт, адрес"
+                value={formState.values.origin}
+                onChange={handleOriginChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="on"
+                disabled={userVM.loading || formVM.loading}
+                size={"small"}
+                label="Куда"
+                variant="outlined"
+                required
+                fullWidth
+                placeholder="Нас. пункт, адрес"
+                value={formState.values.destination}
+                onChange={handleDestinationChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="on"
+                disabled={userVM.loading || formVM.loading}
+                rows={3}
+                size={"small"}
+                multiline
+                fullWidth
+                label="Комментарий"
+                variant="outlined"
+                value={formState.values.comment}
+                onChange={handleCommentChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                disabled={formState.invalid || userVM.loading || formVM.loading}
+                variant="contained"
+                color="primary"
+                fullWidth={true}
+                type={"submit"}
+              >
+                {formVM.loading ? <CircularProgress size={24} /> : "Отправить"}
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <DateTimePicker
-              className={styles.dateTimePicker}
-              disabled={userVM.loading || formVM.loading}
-              required={true}
-              okLabel="Ok"
-              cancelLabel="Отмена"
-              todayLabel="Сегодня"
-              size={"small"}
-              hideTabs={true}
-              format="dd.MM HH:mm"
-              fullWidth
-              value={new Date(formState.values.datetime * 1000)}
-              onChange={handleDateChange}
-              disablePast
-              label="Когда?"
-              showTodayButton
-              inputVariant="outlined"
-              ampm={false}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="on"
-              disabled={userVM.loading || formVM.loading}
-              size={"small"}
-              required
-              fullWidth
-              label="Откуда"
-              variant="outlined"
-              placeholder="Нас. пункт, адрес"
-              value={formState.values.origin}
-              onChange={handleOriginChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="on"
-              disabled={userVM.loading || formVM.loading}
-              size={"small"}
-              label="Куда"
-              variant="outlined"
-              required
-              fullWidth
-              placeholder="Нас. пункт, адрес"
-              value={formState.values.destination}
-              onChange={handleDestinationChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              autoComplete="on"
-              disabled={userVM.loading || formVM.loading}
-              rows={3}
-              size={"small"}
-              multiline
-              fullWidth
-              label="Комментарий"
-              variant="outlined"
-              value={formState.values.comment}
-              onChange={handleCommentChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              disabled={formState.invalid || userVM.loading || formVM.loading}
-              variant="contained"
-              color="primary"
-              fullWidth={true}
-              type={"submit"}
-            >
-              {userVM.loading || formVM.loading ? (
-                <CircularProgress size={24} />
-              ) : (
-                "Отправить"
-              )}
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
+        </form>
+      </CardContent>
     </Card>
   );
 };

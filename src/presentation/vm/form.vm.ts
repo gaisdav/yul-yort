@@ -14,17 +14,15 @@ class FormVm {
   async sendForm(form: IForm) {
     this.loading = true;
 
-    setTimeout(async () => {
-      try {
-        const response = await this.formService.sendForm(form);
+    try {
+      const response = await this.formService.sendForm(form);
 
-        runInAction(() => {
-          this.response = response.success;
-        });
-      } finally {
-        this.loading = false;
-      }
-    }, 5000);
+      runInAction(() => {
+        this.response = response.success;
+      });
+    } finally {
+      this.loading = false;
+    }
   }
 }
 

@@ -28,7 +28,9 @@ class UserVm {
         this.user.phone = user.phone;
       });
     } finally {
-      this.loading = false;
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   }
 }

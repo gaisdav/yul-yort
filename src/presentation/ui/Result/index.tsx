@@ -21,9 +21,10 @@ const Result: FC = () => {
       />
       <CardContent className={styles.resultCardContent}>
         <Typography variant="body2" color="textSecondary">
-          Спасибо, что воспользовались нашим сервисом, Ваша заявка появится в
-          нашей группе <Link href="https://www.google.com">ВКонтакте</Link> в
-          течении нескольких минут.
+          Спасибо, что воспользовались нашим сервисом, в ближайшее время Вам{" "}
+          <Link href="https://www.vk.com">ВКонтакте</Link> придет сообщение с
+          данными по заявке и она появится в нашей{" "}
+          <Link href="https://www.google.com">группе</Link>.
         </Typography>
       </CardContent>
     </Card>
