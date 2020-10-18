@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import App from "./presentation/ui/App";
 import * as serviceWorker from "./serviceWorker";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -9,7 +8,7 @@ import ruLocale from "date-fns/locale/ru";
 import { configure } from "mobx";
 import store from "./presentation/vm/store";
 import { ThemeProvider } from "@material-ui/core";
-import { theme } from "./theme";
+import { theme } from "./presentation/theme";
 
 configure({ enforceActions: "observed" });
 
@@ -29,6 +28,3 @@ ReactDOM.render(
 );
 
 serviceWorker.register();
-
-// secondary #f4782e
-// primary #3d4977

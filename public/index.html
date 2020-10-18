@@ -1,103 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
-    <meta
-            name="description"
-            content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Юл Йорт</title>
     <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
     />
     <style>
-        body {
-            margin: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+      body {
+        margin: 0;
+        background: #eee;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
 
-        #root {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-width: 100%;
-            min-height: 100%;
-            background: #eee;
-            box-sizing: border-box;
-            font-family: Roboto, sans-serif;
-        }
+      #root {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-width: 100%;
+        min-height: 100%;
 
-        .loading-dots {
-            text-align: center;
-            width: 100%;
-            animation-name: fadeIn;
-            animation-duration: 0.3s;
-            animation-timing-function: ease-in-out;
-        }
+        box-sizing: border-box;
+        font-family: Roboto, sans-serif;
+      }
 
-        .dot {
-            display: inline-block;
-            height: 10px;
-            width: 10px;
-            margin-right: 6px;
-            background-color: #3d4977;
-            border-radius: 50%;
-            animation-name: linearLoading;
-            animation-duration: 1500ms;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-        }
+      .loading-dots {
+        text-align: center;
+        width: 100%;
+        animation-name: fadeIn;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-in-out;
+      }
 
-        .second-dots {
-            animation-delay: 500ms
-        }
+      .dot {
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        margin-right: 6px;
+        background-color: #3d4977;
+        border-radius: 50%;
+        animation-name: linearLoading;
+        animation-duration: 1500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
 
-        .third-dots {
-            animation-delay: 1000ms
-        }
+      .second-dots {
+        animation-delay: 500ms;
+      }
 
-        @keyframes linearLoading {
-            0% {
-                opacity: 0.4;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.5)
-            }
-            100% {
-                opacity: 0.4;
-                transform: scale(1)
-            }
-        }
+      .third-dots {
+        animation-delay: 1000ms;
+      }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0
-            }
-            100% {
-                opacity: 1
-            }
+      @keyframes linearLoading {
+        0% {
+          opacity: 0.4;
+          transform: scale(1);
         }
+        50% {
+          opacity: 1;
+          transform: scale(1.5);
+        }
+        100% {
+          opacity: 0.4;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
-</head>
-<body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root">
-    <div class="loading-dots">
+  </head>
+  <body>
+    <div id="root">
+      <div class="loading-dots">
         <div class="dot first-dots"></div>
         <div class="dot second-dots"></div>
         <div class="dot third-dots"></div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

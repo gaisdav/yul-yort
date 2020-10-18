@@ -37,7 +37,9 @@ const Form: FC = () => {
     await formVM.sendForm(values);
   };
 
-  const form = useMemo(() => createCustomForm(userVM.user, handleForm), []);
+  const form = useMemo(() => createCustomForm(userVM.user, handleForm), [
+    userVM.user.id,
+  ]);
 
   useEffect(() => {
     return form.subscribe(setFormState, {
@@ -73,7 +75,7 @@ const Form: FC = () => {
   const handlePhoneChange: ChangeEventHandler<HTMLInputElement> = (
     event
   ): void => {
-    const value = event.target.value;
+    const value = event.target.value.replace(/\D/g, "");
     form.change("phone", value);
   };
 
@@ -123,10 +125,10 @@ const Form: FC = () => {
         <Grid container spacing={2} alignItems="center" justify="center">
           <Grid item xs={12}>
             <TextField
+              autoComplete="on"
               disabled={userVM.loading}
               size={"small"}
               fullWidth
-              id="outlined-basic"
               label="Имя"
               variant="outlined"
               required={true}
@@ -136,10 +138,10 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              autoComplete="on"
               disabled={userVM.loading}
               size={"small"}
               fullWidth
-              id="outlined-basic"
               label="Фамилия"
               variant="outlined"
               value={formState.values.lastname}
@@ -148,16 +150,17 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              autoComplete="on"
               disabled={userVM.loading}
               size={"small"}
               fullWidth
-              id="outlined-basic"
               label="Телефон"
               variant="outlined"
               required={true}
-              placeholder="+7(___)___-__-__"
+              placeholder="Введите ваш телефон"
               value={formState.values.phone}
               onChange={handlePhoneChange}
+              type="tel"
             />
           </Grid>
           <Grid item xs={6}>
@@ -208,6 +211,7 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              autoComplete="on"
               disabled={userVM.loading}
               size={"small"}
               required
@@ -221,6 +225,7 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              autoComplete="on"
               disabled={userVM.loading}
               size={"small"}
               label="Куда"
@@ -234,12 +239,12 @@ const Form: FC = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              autoComplete="on"
               disabled={userVM.loading}
               rows={3}
               size={"small"}
               multiline
               fullWidth
-              id="outlined-basic"
               label="Комментарий"
               variant="outlined"
               value={formState.values.comment}

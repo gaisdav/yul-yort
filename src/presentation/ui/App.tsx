@@ -1,6 +1,5 @@
 import React from "react";
-import "./App.css";
-import Form from "./presentation/ui/Form";
+import Form from "./Form";
 import { observer } from "mobx-react-lite";
 
 function App() {

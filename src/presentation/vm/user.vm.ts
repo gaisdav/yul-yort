@@ -1,6 +1,6 @@
 import UserService from "../../data/services/user.service";
 import UserModel from "../../data/models/user.model";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, action } from "mobx";
 
 class UserVm {
   loading: boolean = false;
@@ -12,6 +12,7 @@ class UserVm {
     this.init();
   }
 
+  @action
   private async init() {
     this.loading = true;
 
