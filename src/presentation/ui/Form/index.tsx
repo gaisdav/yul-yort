@@ -124,8 +124,10 @@ const Form: FC = () => {
 
   return (
     <Card className={styles.form}>
-      {userVM.user.name && (
-        <CardHeader title={"Здравствуйте, " + userVM.user.name + "!"} />
+      {userVM.user.name ? (
+        <CardHeader title={`Добрый день, ${userVM.user.name}!`} />
+      ) : (
+        <CardHeader title={"Добрый день!"} />
       )}
 
       <CardContent>
