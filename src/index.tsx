@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./UI/App";
+import App from "./view/UI/App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./mocks/browser");
+  const { worker } = require("./libs/mocks/browser");
 
   worker.start({
     onUnhandledRequest: "bypass",

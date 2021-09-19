@@ -1,5 +1,8 @@
 import { rest } from "msw";
-import { ECurrencyISO, IOrderResponseDTO } from "../domainModels/Order/types";
+import {
+  ECurrencyISO,
+  IOrderResponseDTO,
+} from "../../data/domainModels/Order/types";
 
 export const handlers = [
   rest.get("/orders", (req, res, ctx) => {

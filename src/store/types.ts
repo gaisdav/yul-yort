@@ -1,20 +1,20 @@
-import {IOrderService} from "../services/Order/types";
-import {IOrderRepository} from "../repositories/Order/types";
-import {IOrderVM} from "../viewModels/Order/types";
-import {IOrderDomain} from "../domainModels/Order/types";
+import { IOrderService } from "../data/services/Order/types";
+import { IOrderRepository } from "../data/repositories/Order/types";
+import { IOrderVM } from "../view/viewModels/Order/types";
+import { IOrderDomain } from "../data/domainModels/Order/types";
 
 export interface IStoreDomains {
-    order: IOrderDomain
+  order: IOrderDomain;
 }
 
 export interface IStoreServices {
-    order: IOrderService
+  order: IOrderService;
 }
 
 export interface IStoreRepositories {
-    order: IOrderRepository
+  order: IOrderRepository;
 }
 
 export interface IStoreViewModels {
-    order: IOrderVM
+  order: IOrderVM;
 }

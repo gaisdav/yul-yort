@@ -1,11 +1,15 @@
 import { IBaseVM } from "./types";
-import { makeAutoObservable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 
 export class BaseVM implements IBaseVM {
   loading: boolean = false;
 
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this, {
+      loading: observable,
+      setLoading: action,
+      unsetLoading: action,
+    });
   }
 
   setLoading(): void {
