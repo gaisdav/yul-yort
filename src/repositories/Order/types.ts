@@ -1,6 +1,8 @@
-import {IOrderRequestParams, IOrderResponseDTO} from "../../domainModels/Order/types";
+import {
+  IOrderRequestParams,
+  IOrderResponseDTO,
+} from "../../domainModels/Order/types";
 
 export interface IOrderRepository {
-    getOrderList: (params: IOrderRequestParams) => IOrderResponseDTO[]
+  getOrderList: (params: IOrderRequestParams) => Promise<IOrderResponseDTO[]>;
 }
-

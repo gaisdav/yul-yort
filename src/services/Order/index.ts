@@ -1,17 +1,20 @@
-import {IOrderService} from "./types";
-import {IOrderDomain, IOrderRequestParams} from "../../domainModels/Order/types";
-import {IOrderRepository} from "../../repositories/Order/types";
-import {DTOMapper} from "./mappers/DTOMapper";
+import { IOrderService } from "./types";
+import {
+  IOrderDomain,
+  IOrderRequestParams,
+} from "../../domainModels/Order/types";
+import { IOrderRepository } from "../../repositories/Order/types";
+import { DTOMapper } from "./mappers/DTOMapper";
 
 export class OrderService implements IOrderService {
-    constructor(private repository: IOrderRepository) {
-    }
+  constructor(private repository: IOrderRepository) {}
 
-    getOrderList(
-        params: IOrderRequestParams,
-        orderDomain: IOrderDomain
-    ): IOrderDomain[] {
-        return this.repository.getOrderList(params)
-            .map((orderDTO) => DTOMapper(orderDTO, orderDomain));
-    }
+  async getOrderList(
+    params: IOrderRequestParams,
+    orderDomain: IOrderDomain
+  ): Promise<IOrderDomain[]> {
+    const orders = await this.repository.getOrderList(params);
+
+    return orders.map((orderDTO) => DTOMapper(orderDTO, orderDomain));
+  }
 }
