@@ -1,0 +1,41 @@
+.input {
+  margin-bottom: 8px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.minifiedRouteWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.minifiedRouteButton {
+  margin-left: 16px;
+}
+
+.rollUpButtonIcon {
+  transform: rotate(90deg);
+}
+
+@media screen and (min-width: 767px) {
+  .wrapper {
+    flex-direction: row;
+  }
+
+  .input {
+    margin-right: 16px;
+    margin-bottom: 0;
+  }
+
+  .rollUpButtonIcon {
+    transform: rotate(0deg);
+  }
+}

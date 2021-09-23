@@ -4,6 +4,13 @@ import "./index.css";
 import App from "./view/UI/App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { viewModels } from "./store";
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  ThemeProvider,
+} from "@mui/material";
+import theme from "./view/UI/theme";
 
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("./libs/mocks/browser");
@@ -13,9 +20,16 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
+viewModels.order.getList({ origin: "origin", destination: "destination" });
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        <App />
+      </StyledEngineProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
