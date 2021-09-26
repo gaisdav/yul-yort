@@ -1,6 +1,7 @@
 import { IBaseVM } from "./types";
 import { action, makeObservable, observable } from "mobx";
 
+// переименовать в Controller?
 export class BaseVM implements IBaseVM {
   loading: boolean = false;
 

@@ -8,6 +8,7 @@ export class OrderDomain implements IOrderDomain {
   phoneNumber: string = "";
   price?: number;
   currencyISO: ECurrencyISO = ECurrencyISO.RUB;
+  // нужен ли флаг возможности перевозки посылок?
 
   get currency(): string | ECurrencyISO {
     return currenciesDictionary[this.currencyISO] || this.currencyISO;

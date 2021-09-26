@@ -1,6 +1,7 @@
 import { baseUrl, EEndpoints } from "../../constants/EEndpoints";
+import { IApi } from "./types";
 
-export class Api {
+export class Api implements IApi {
   async get<R, P = undefined>(path: EEndpoints, params?: P): Promise<R> {
     const url = new URL(path, baseUrl);
 

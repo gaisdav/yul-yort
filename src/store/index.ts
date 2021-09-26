@@ -1,4 +1,5 @@
 import {
+  ILibs,
   IStoreDomains,
   IStoreRepositories,
   IStoreServices,
@@ -10,12 +11,16 @@ import { OrderVM } from "../view/viewModels/Order";
 import { OrderDomain } from "../data/domainModels/Order";
 import { Api } from "../libs/api";
 
+const libs: ILibs = {
+  api: new Api(),
+};
+
 const domains: IStoreDomains = {
   order: new OrderDomain(),
 };
 
 const repositories: IStoreRepositories = {
-  order: new OrderRepository(new Api()),
+  order: new OrderRepository(libs.api),
 };
 
 const services: IStoreServices = {
