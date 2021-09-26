@@ -1,0 +1,40 @@
+.order {
+  display: flex;
+  padding: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.columnLeft {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 1;
+  max-width: 100%;
+  margin-right: 8px;
+}
+
+.columnRight {
+  min-width: 100px;
+  text-align: right;
+}
+
+.orderTitle {
+  margin-bottom: 8px;
+  max-width: 100%;
+  word-break: break-all;
+}
+
+.orderPhone {
+  width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  .order {
+    padding: 16px;
+  }
+}

@@ -13,6 +13,23 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: {
+    default: "gray",
+    values: [
+      {
+        name: "gray",
+        value: "#eee",
+      },
+      {
+        name: "white",
+        value: "#fff",
+      },
+      {
+        name: "black",
+        value: "#000",
+      },
+    ],
+  },
 };
 
 addDecorator((story) => (

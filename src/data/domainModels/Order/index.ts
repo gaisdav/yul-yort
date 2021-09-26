@@ -4,14 +4,28 @@ import { currenciesDictionary } from "./currenciesDictionary";
 
 export class OrderDomain implements IOrderDomain {
   id: ID = "";
-  name: string = "";
-  phoneNumber: string = "";
+  agencyName: string = "";
+  agencyPhone: string = "";
   price?: number;
   currencyISO: ECurrencyISO = ECurrencyISO.RUB;
   // нужен ли флаг возможности перевозки посылок?
 
-  get currency(): string | ECurrencyISO {
-    return currenciesDictionary[this.currencyISO] || this.currencyISO;
+  get priceValue(): string {
+    if (!this.price) {
+      return "Цена не указана";
+    }
+
+    return `${this.price} ${
+      currenciesDictionary[this.currencyISO] || this.currencyISO
+    }}`;
+  }
+
+  get phoneValue(): string {
+    if (!this.agencyPhone) {
+      return "Телефон не указан";
+    }
+
+    return `+7 ${this.agencyPhone}`;
   }
 
   constructor() {

@@ -4,17 +4,19 @@ export enum ECurrencyISO {
 
 export interface IOrderDomain {
   id: ID;
-  name: string;
-  phoneNumber: string;
+  agencyName: string;
+  agencyPhone: string;
   price?: number;
   currencyISO: ECurrencyISO;
-  currency: string;
+
+  priceValue: string;
+  phoneValue: string;
 }
 
 export interface IOrderResponseDTO
   extends Pick<
     IOrderDomain,
-    "price" | "id" | "name" | "currencyISO" | "phoneNumber"
+    "price" | "id" | "agencyName" | "currencyISO" | "agencyPhone"
   > {
   price: number;
 }

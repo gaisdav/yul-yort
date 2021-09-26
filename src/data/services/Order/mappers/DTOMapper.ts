@@ -10,9 +10,9 @@ export const DTOMapper = (
   const newDomain: IOrderDomain = { ...domain };
 
   newDomain.id = dto.id;
-  newDomain.name = dto.name;
+  newDomain.agencyName = dto.agencyName;
   newDomain.price = dto.price;
-  newDomain.phoneNumber = dto.phoneNumber;
+  newDomain.agencyPhone = dto.agencyPhone;
   newDomain.currencyISO = dto.currencyISO;
 
   return newDomain;
