@@ -5,14 +5,14 @@ import { currenciesDictionary } from "./currenciesDictionary";
 export class OrderDomain implements IOrderDomain {
   id: ID = "";
   agencyName: string = "";
-  agencyPhone: string = "";
-  price?: number;
   currencyISO: ECurrencyISO = ECurrencyISO.RUB;
+  price?: number;
+  agencyPhone?: string[];
   // нужен ли флаг возможности перевозки посылок?
 
-  get priceValue(): string {
+  get priceValue(): string | undefined {
     if (!this.price) {
-      return "Цена не указана";
+      return void 0;
     }
 
     return `${this.price} ${
@@ -20,12 +20,12 @@ export class OrderDomain implements IOrderDomain {
     }}`;
   }
 
-  get phoneValue(): string {
-    if (!this.agencyPhone) {
-      return "Телефон не указан";
+  get phoneValues(): string[] | undefined {
+    if (!this.agencyPhone || !this.agencyPhone.length) {
+      return void 0;
     }
 
-    return `+7 ${this.agencyPhone}`;
+    return this.agencyPhone.map((phone) => `+7 ${phone}`);
   }
 
   constructor() {

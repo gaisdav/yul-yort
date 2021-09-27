@@ -15,22 +15,26 @@
   flex-direction: column;
   flex: 1;
   max-width: 100%;
-  margin-right: 8px;
+  margin-right: 4px;
 }
 
 .columnRight {
-  min-width: 100px;
+  width: 112px;
   text-align: right;
 }
 
 .orderTitle {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   max-width: 100%;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .orderPhone {
-  width: 100%;
+  margin-bottom: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (min-width: 767px) {

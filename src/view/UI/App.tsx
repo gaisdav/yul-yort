@@ -9,53 +9,53 @@ function App() {
       <SearchForm minified origin="Уфа" destination="Нефтекамск" />
       <>
         <Order
+          agencyName="asdfafsasdfafs asdfafsasdfafsasdfafs"
+          phoneValues={["+7 0000000000"]}
+        />
+        <Order agencyName="asdfafs" priceValue="2000 P" />
+        <Order
           agencyName="asdfafs"
-          phoneValue="+7 0000000000"
+          phoneValues={[
+            "+7 0000000000",
+            "+7 0000650000",
+            "+7 0002000000",
+            "+7 00000098000",
+          ]}
           priceValue="2000 P"
         />
         <Order
           agencyName="asdfafs"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000"]}
           priceValue="2000 P"
         />
         <Order
           agencyName="asdfafs"
-          phoneValue="+7 0000000000"
-          priceValue="2000 P"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValue="+7 0000000000"
-          priceValue="2000 P"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000"]}
           priceValue="2000 P"
         />
         <Order
           agencyName="asdfafsa sdf asf a sdf asdf a sdf asd f as"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000"]}
           priceValue="2000 P"
         />
         <Order
           agencyName="asdfafsaasdfasdfsfdsdfasdfasdfasdfasdfasdfasdfads"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000"]}
           priceValue="200000 P"
         />
         <Order
           agencyName="asdfafs"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000"]}
           priceValue="2000 P"
         />
         <Order
           agencyName="asdfafs"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000"]}
           priceValue="2000 P"
         />
         <Order
           agencyName="asdfafs"
-          phoneValue="+7 0000000000"
+          phoneValues={["+7 0000000000", "+7 00000098000"]}
           priceValue="2000 P"
         />
       </>

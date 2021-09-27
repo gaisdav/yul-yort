@@ -5,7 +5,7 @@ import { IOrderProps } from "./types";
 
 export const Order: FC<IOrderProps> = ({
   agencyName,
-  phoneValue,
+  phoneValues,
   priceValue,
 }) => (
   <Paper elevation={3} className={css.order}>
@@ -13,19 +13,40 @@ export const Order: FC<IOrderProps> = ({
       <Typography variant="h6" align="left" className={css.orderTitle}>
         {agencyName}
       </Typography>
-      <Link
-        className={css.orderPhone}
-        href={`tel:${phoneValue}`}
-        underline="none"
-        variant="subtitle2"
-        align="left"
-      >
-        {phoneValue}
-      </Link>
+
+      {phoneValues ? (
+        phoneValues.map((phone) => (
+          <Link
+            key={phone}
+            className={css.orderPhone}
+            href={`tel:${phone}`}
+            underline="none"
+            variant="subtitle2"
+            align="left"
+          >
+            {phone}
+          </Link>
+        ))
+      ) : (
+        <Typography
+          className={css.orderPhone}
+          variant="subtitle2"
+          align="left"
+          color="text.secondary"
+        >
+          Телефон не указан
+        </Typography>
+      )}
     </div>
 
     <div className={css.columnRight}>
-      <Typography variant="h6">{priceValue}</Typography>
+      {priceValue ? (
+        <Typography variant="h6">{priceValue}</Typography>
+      ) : (
+        <Typography variant="subtitle2" color="text.secondary">
+          Цена не указана
+        </Typography>
+      )}
     </div>
   </Paper>
 );

@@ -24,12 +24,12 @@ export const OrderStory = Template.bind({});
 OrderStory.args = {
   agencyName: "Иремель",
   priceValue: "1200 ₽",
-  phoneValue: "+7 9999999999",
+  phoneValues: ["+7 9999999999"],
 };
 
 export const OrdersListStory = ListTemplate.bind({});
 OrdersListStory.args = {
   agencyName: "Иремель",
   priceValue: "1200 ₽",
-  phoneValue: "+7 9999999999",
+  phoneValues: ["+7 9999999999", "+7 9899999999"],
 };
