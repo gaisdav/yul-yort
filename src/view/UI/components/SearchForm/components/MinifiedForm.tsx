@@ -1,21 +1,33 @@
 import { FC } from "react";
 import { IForm } from "../types";
 import styles from "../styles.module.scss";
-import { Button, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 
-export const MinifiedForm: FC<IForm> = ({ origin, destination, onClick }) => {
+export const MinifiedForm: FC<IForm> = ({
+  origin,
+  destination,
+  onClick,
+  className = "",
+}) => {
   return (
-    <div className={styles.minifiedRouteWrapper}>
+    <Paper
+      elevation={3}
+      className={`${styles.minifiedRouteWrapper} ${className}`}
+    >
       {!origin || !destination ? (
         <Typography variant="h6">Маршрут не указан</Typography>
       ) : (
         <>
-          <Typography variant="h6">{origin}</Typography>
+          <Typography variant="h6" className={styles.title} align="center">
+            {origin}
+          </Typography>
 
           <ArrowRightAltOutlinedIcon />
 
-          <Typography variant="h6">{destination}</Typography>
+          <Typography variant="h6" className={styles.title} align="center">
+            {destination}
+          </Typography>
         </>
       )}
 
@@ -24,9 +36,10 @@ export const MinifiedForm: FC<IForm> = ({ origin, destination, onClick }) => {
         className={styles.minifiedRouteButton}
         color="primary"
         variant="outlined"
+        size="large"
       >
         Изменить
       </Button>
-    </div>
+    </Paper>
   );
 };

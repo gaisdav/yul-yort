@@ -1,37 +1,47 @@
+@import "../../globalStyles/globalStyles.module";
+
+$wrapperPadding: $base * 4;
+
 .input {
-  margin-bottom: 8px;
+  margin-bottom: $base * 3;
 }
 
 .wrapper {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: $wrapperPadding;
 }
 
 .minifiedRouteWrapper {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  padding: $wrapperPadding;
+
+  .title {
+    word-break: break-word;
+  }
 }
 
 .minifiedRouteButton {
-  margin-left: 16px;
+  margin-left: $base * 4;
 }
 
 .rollUpButtonIcon {
   transform: rotate(90deg);
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: $mediaQueryMobile) {
   .wrapper {
     flex-direction: row;
   }
 
   .input {
-    margin-right: 16px;
+    margin-right: $base * 4;
     margin-bottom: 0;
   }
 

@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Paper, TextField } from "@mui/material";
 import { FC } from "react";
 import { IForm } from "../types";
 import styles from "../styles.module.scss";
@@ -9,9 +9,10 @@ export const Form: FC<IForm> = ({
   destination = "",
   onClick,
   minified,
+  className = "",
 }) => {
   return (
-    <div className={styles.wrapper}>
+    <Paper elevation={3} className={`${styles.wrapper} ${className}`}>
       <TextField
         defaultValue={origin}
         className={styles.input}
@@ -38,7 +39,7 @@ export const Form: FC<IForm> = ({
       />
 
       <div>
-        <Button color="primary" variant="contained">
+        <Button color="primary" variant="contained" size="large">
           Найти
         </Button>
 
@@ -49,6 +50,7 @@ export const Form: FC<IForm> = ({
                 className={styles.rollUpButtonIcon}
               />
             }
+            size="large"
             color="primary"
             variant="text"
             onClick={onClick}
@@ -58,6 +60,6 @@ export const Form: FC<IForm> = ({
           </Button>
         )}
       </div>
-    </div>
+    </Paper>
   );
 };

@@ -14,6 +14,7 @@ export const SearchForm: FC<ISearchForm> = (props) => {
     return (
       <MinifiedForm
         origin={props.origin}
+        className={props.className}
         destination={props.destination}
         onClick={handleSetMinified}
       />
@@ -24,6 +25,7 @@ export const SearchForm: FC<ISearchForm> = (props) => {
     <Form
       minified={props.minified}
       origin={props.origin}
+      className={props.className}
       destination={props.destination}
       onClick={handleSetMinified}
     />

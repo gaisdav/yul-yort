@@ -14,7 +14,7 @@ export const Order: FC<IOrderProps> = ({
         {agencyName}
       </Typography>
 
-      {phoneValues ? (
+      {phoneValues && phoneValues.length ? (
         phoneValues.map((phone) => (
           <Link
             key={phone}

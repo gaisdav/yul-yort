@@ -1,8 +1,11 @@
+@import "../../globalStyles/globalStyles.module";
+
 .order {
   display: flex;
-  padding: 8px;
-  margin-bottom: 16px;
+  padding: $base * 4;
+  margin-bottom: $base * 4;
   flex-wrap: wrap;
+  border-radius: $base * 2;
 
   &:last-child {
     margin-bottom: 0;
@@ -15,30 +18,28 @@
   flex-direction: column;
   flex: 1;
   max-width: 100%;
-  margin-right: 4px;
+  margin-right: $base * 2;
 }
 
 .columnRight {
-  width: 112px;
+  width: $base * 23;
   text-align: right;
 }
 
 .orderTitle {
-  margin-bottom: 12px;
+  margin-bottom: $base * 3;
   max-width: 100%;
   word-break: break-word;
 }
 
 .orderPhone {
-  margin-bottom: 4px;
+  margin-bottom: $base;
 
   &:last-child {
     margin-bottom: 0;
   }
 }
 
-@media screen and (min-width: 767px) {
-  .order {
-    padding: 16px;
-  }
+.skeleton {
+  margin-bottom: $base * 4;
 }

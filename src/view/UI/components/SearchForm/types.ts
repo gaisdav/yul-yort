@@ -14,6 +14,10 @@ export interface ISearchForm {
    * Пункт назначения.
    */
   destination?: string;
+  /**
+   * Стили.
+   */
+  className?: string;
 }
 
 /**

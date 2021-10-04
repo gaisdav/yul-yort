@@ -12,13 +12,11 @@ import {
 } from "@mui/material";
 import theme from "./view/UI/theme";
 
-if (process.env.NODE_ENV === "development") {
-  const { worker } = require("./libs/mocks/browser");
+const { worker } = require("./libs/mocks/browser");
 
-  worker.start({
-    onUnhandledRequest: "bypass",
-  });
-}
+worker.start({
+  onUnhandledRequest: "bypass",
+});
 
 viewModels.order.getList({ origin: "origin", destination: "destination" });
 
