@@ -3,8 +3,13 @@ import "./App.css";
 import { SearchForm } from "./components/SearchForm";
 import { Order } from "./components/Order";
 import { OrderSkeleton } from "./components/Order/OrderSkeleton";
+import { useViewModel } from "./hooks/useViewModel";
 
 function App() {
+  const order = useViewModel("order");
+
+  order.getList({ origin: "origin", destination: "destination" });
+
   return (
     <div className="App">
       <SearchForm minified origin="УфаУфаУф" destination="Нефтекамск" />

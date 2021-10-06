@@ -1,16 +1,16 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./view/UI/App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import { viewModels } from "./store";
 import {
   CssBaseline,
   StyledEngineProvider,
   ThemeProvider,
 } from "@mui/material";
 import theme from "./view/UI/theme";
+import { StoreProvider } from "./view/UI/providers/storeContext";
 
 const { worker } = require("./libs/mocks/browser");
 
@@ -18,17 +18,17 @@ worker.start({
   onUnhandledRequest: "bypass",
 });
 
-viewModels.order.getList({ origin: "origin", destination: "destination" });
-
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        <App />
+        <StoreProvider>
+          <App />
+        </StoreProvider>
       </StyledEngineProvider>
     </ThemeProvider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById("root")
 );
 
