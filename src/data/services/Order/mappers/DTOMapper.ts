@@ -12,7 +12,7 @@ export const DTOMapper = (
   newDomain.id = dto.id;
   newDomain.agencyName = dto.agencyName;
   newDomain.price = dto.price;
-  newDomain.agencyPhone = dto.agencyPhone;
+  newDomain.agencyPhones = dto.agencyPhones;
   newDomain.currencyISO = dto.currencyISO;
 
   return newDomain;

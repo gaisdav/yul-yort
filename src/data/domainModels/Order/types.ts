@@ -5,7 +5,7 @@ export enum ECurrencyISO {
 export interface IOrderDomain {
   id: ID;
   agencyName: string;
-  agencyPhone?: string[];
+  agencyPhones?: string[];
   price?: number;
   currencyISO: ECurrencyISO;
 
@@ -16,10 +16,10 @@ export interface IOrderDomain {
 export interface IOrderResponseDTO
   extends Pick<
     IOrderDomain,
-    "price" | "id" | "agencyName" | "currencyISO" | "agencyPhone"
+    "price" | "id" | "agencyName" | "currencyISO" | "agencyPhones"
   > {}
 
 export interface IOrderRequestParams {
-  origin: string;
-  destination: string;
+  origin?: string;
+  destination?: string;
 }

@@ -1,6 +1,12 @@
 export interface IBaseVM {
-    loading: boolean;
+  loading: boolean;
+  error: Error | null;
 
-    setLoading: () => void;
-    unsetLoading: () => void;
+  setLoading: () => void;
+  unsetLoading: () => void;
+}
+
+export interface IError {
+  name: string;
+  message: string;
 }

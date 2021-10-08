@@ -10,7 +10,9 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import theme from "./view/UI/theme";
-import { StoreProvider } from "./view/UI/providers/storeContext";
+import { RouterProvider } from "react-router5";
+import createAppRouter from "./router";
+import { viewModels } from "./store";
 
 const { worker } = require("./libs/mocks/browser");
 
@@ -18,14 +20,19 @@ worker.start({
   onUnhandledRequest: "bypass",
 });
 
+export const router = createAppRouter({ store: viewModels });
+
+router.start();
+
 ReactDOM.render(
   <StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <StyledEngineProvider injectFirst>
-        <StoreProvider>
+        {/* @ts-ignore */}
+        <RouterProvider router={router}>
           <App />
-        </StoreProvider>
+        </RouterProvider>
       </StyledEngineProvider>
     </ThemeProvider>
   </StrictMode>,

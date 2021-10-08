@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { IOrderResponseDTO } from "../../data/domainModels/Order/types";
-import { orders } from "./datas/orders";
+import { orders } from "./data/orders";
 import { getTimeout } from "./utils/getTimeout";
 
 export const handlers = [

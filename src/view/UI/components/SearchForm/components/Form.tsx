@@ -7,7 +7,8 @@ import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeft
 export const Form: FC<IForm> = ({
   origin = "",
   destination = "",
-  onClick,
+  onSearch,
+  onExpand,
   minified,
   className = "",
 }) => {
@@ -39,7 +40,13 @@ export const Form: FC<IForm> = ({
       />
 
       <div>
-        <Button color="primary" variant="contained" size="large">
+        <Button
+          color="primary"
+          variant="contained"
+          size="large"
+          className={styles.formButton}
+          onClick={onSearch}
+        >
           Найти
         </Button>
 
@@ -53,8 +60,8 @@ export const Form: FC<IForm> = ({
             size="large"
             color="primary"
             variant="text"
-            onClick={onClick}
-            className={styles.minifiedRouteButton}
+            onClick={onExpand}
+            className={styles.formButton}
           >
             Свернуть
           </Button>

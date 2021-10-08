@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { computed, makeObservable, observable } from "mobx";
 import { ECurrencyISO, IOrderDomain } from "./types";
 import { currenciesDictionary } from "./currenciesDictionary";
 
@@ -7,8 +7,19 @@ export class OrderDomain implements IOrderDomain {
   agencyName: string = "";
   currencyISO: ECurrencyISO = ECurrencyISO.RUB;
   price?: number;
-  agencyPhone?: string[];
-  // нужен ли флаг возможности перевозки посылок?
+  agencyPhones?: string[];
+
+  constructor() {
+    makeObservable(this, {
+      id: observable,
+      agencyName: observable,
+      currencyISO: observable,
+      price: observable,
+      agencyPhones: observable,
+      priceValue: computed,
+      phoneValues: computed,
+    });
+  }
 
   get priceValue(): string | undefined {
     if (!this.price) {
@@ -21,14 +32,10 @@ export class OrderDomain implements IOrderDomain {
   }
 
   get phoneValues(): string[] | undefined {
-    if (!this.agencyPhone || !this.agencyPhone.length) {
+    if (!this.agencyPhones || !this.agencyPhones.length) {
       return void 0;
     }
 
-    return this.agencyPhone.map((phone) => `+7 ${phone}`);
-  }
-
-  constructor() {
-    makeAutoObservable(this);
+    return this.agencyPhones.map((phone) => `+7 ${phone}`);
   }
 }

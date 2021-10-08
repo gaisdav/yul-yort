@@ -16,7 +16,7 @@ export const SearchForm: FC<ISearchForm> = (props) => {
         origin={props.origin}
         className={props.className}
         destination={props.destination}
-        onClick={handleSetMinified}
+        onExpand={handleSetMinified}
       />
     );
   }
@@ -27,7 +27,8 @@ export const SearchForm: FC<ISearchForm> = (props) => {
       origin={props.origin}
       className={props.className}
       destination={props.destination}
-      onClick={handleSetMinified}
+      onSearch={props.onSearch}
+      onExpand={handleSetMinified}
     />
   );
 };

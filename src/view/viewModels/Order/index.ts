@@ -8,7 +8,7 @@ import { IOrderService } from "../../../data/services/Order/types";
 import { action, makeObservable, observable } from "mobx";
 
 export class OrderVM extends BaseVM implements IOrderVM {
-  orderList: IOrderDomain[] = [];
+  orderList: IOrderDomain[] | null = null;
 
   constructor(private domain: IOrderDomain, private service: IOrderService) {
     super();
@@ -20,9 +20,12 @@ export class OrderVM extends BaseVM implements IOrderVM {
 
   async getList(params: IOrderRequestParams) {
     this.setLoading();
+    this.unsetError();
 
     try {
       this.orderList = await this.service.getOrderList(params, this.domain);
+    } catch (err) {
+      this.setError(err);
     } finally {
       this.unsetLoading();
     }

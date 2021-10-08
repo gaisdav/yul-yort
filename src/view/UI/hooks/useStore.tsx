@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { IStoreViewModels } from "../../../store/types";
-import { StoreContext } from "../providers/storeContext";
+import { useRouter } from "react-router5";
 
 /**
  * Возвращает хранилище целиком.
  */
 export const useStore = (): IStoreViewModels => {
-  return useContext(StoreContext);
+  return useRouter().getDependencies().store;
 };

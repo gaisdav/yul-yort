@@ -15,9 +15,9 @@ export const Order: FC<IOrderProps> = ({
       </Typography>
 
       {phoneValues && phoneValues.length ? (
-        phoneValues.map((phone) => (
+        phoneValues.map((phone, index) => (
           <Link
-            key={phone}
+            key={phone + index}
             className={css.orderPhone}
             href={`tel:${phone}`}
             underline="none"

@@ -1,9 +1,7 @@
 @import "../../globalStyles/globalStyles.module";
 
-$wrapperPadding: $base * 4;
-
 .input {
-  margin-bottom: $base * 3;
+  margin: $base * 2;
 }
 
 .wrapper {
@@ -11,7 +9,7 @@ $wrapperPadding: $base * 4;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: $wrapperPadding;
+  padding: $base * 2;
 }
 
 .minifiedRouteWrapper {
@@ -20,15 +18,16 @@ $wrapperPadding: $base * 4;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding: $wrapperPadding;
+  padding: $base * 2;
 
-  .title {
+  .title, .icon {
     word-break: break-word;
+    margin: $base * 2;
   }
 }
 
-.minifiedRouteButton {
-  margin-left: $base * 4;
+.formButton {
+  margin: $base * 2;
 }
 
 .rollUpButtonIcon {
@@ -41,8 +40,6 @@ $wrapperPadding: $base * 4;
   }
 
   .input {
-    margin-right: $base * 4;
-    margin-bottom: 0;
   }
 
   .rollUpButtonIcon {

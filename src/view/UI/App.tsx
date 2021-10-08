@@ -1,73 +1,31 @@
-import React from "react";
+import { FC, lazy, Suspense } from "react";
 import "./App.css";
-import { SearchForm } from "./components/SearchForm";
-import { Order } from "./components/Order";
-import { OrderSkeleton } from "./components/Order/OrderSkeleton";
-import { useViewModel } from "./hooks/useViewModel";
+import { useRoute } from "react-router5";
+import { constants } from "router5";
 
-function App() {
-  const order = useViewModel("order");
+const HomePage = lazy(() => import("./pages/home"));
+const OrdersPage = lazy(() => import("./pages/orders"));
 
-  order.getList({ origin: "origin", destination: "destination" });
+export const App: FC = () => {
+  const router = useRoute();
 
-  return (
-    <div className="App">
-      <SearchForm minified origin="УфаУфаУф" destination="Нефтекамск" />
-      <>
-        <Order
-          agencyName="asdfafsasdfafs asdfafsasdfafsasdfafs"
-          phoneValues={[]}
-        />
-        <OrderSkeleton />
-        <Order agencyName="asdfafs" priceValue="2000 ₽" />
-        <Order
-          agencyName="asdfafs"
-          phoneValues={[
-            "+7 0000000000",
-            "+7 0000650000",
-            "+7 0002000000",
-            "+7 00000098000",
-          ]}
-          priceValue="2000 ₽"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValues={["+7 0000000000"]}
-          priceValue="2000 ₽"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValues={["+7 0000000000"]}
-          priceValue="2000 ₽"
-        />
-        <Order
-          agencyName="asdfafsa sdf asf a sdf asdf a sdf asd f as"
-          phoneValues={["+7 0000000000"]}
-          priceValue="2000 ₽"
-        />
-        <Order
-          agencyName="asdfafsaasdfasdfsfdsdfasdfasdfasdfasdfasdfasdfads"
-          phoneValues={["+7 0000000000"]}
-          priceValue="200000 ₽"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValues={["+7 0000000000"]}
-          priceValue="2000 ₽"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValues={["+7 0000000000"]}
-          priceValue="2000 ₽"
-        />
-        <Order
-          agencyName="asdfafs"
-          phoneValues={["+7 0000000000", "+7 00000098000"]}
-          priceValue="2000 ₽"
-        />
-      </>
-    </div>
-  );
-}
+  let page: JSX.Element;
+
+  switch (router.route.name) {
+    case "home":
+      page = <HomePage />;
+      break;
+
+    case "orders":
+      page = <OrdersPage />;
+      break;
+
+    case constants.UNKNOWN_ROUTE:
+    default:
+      page = <div>Страница не найдена</div>;
+  }
+
+  return <Suspense fallback={<div>Загрузка...</div>}>{page}</Suspense>;
+};
 
 export default App;
