@@ -1,6 +1,6 @@
 import { computed, makeObservable, observable } from "mobx";
 import { ECurrencyISO, IOrderDomain, IOrderResponseDTO } from "./types";
-import { currenciesDictionary } from "./currenciesDictionary";
+import { currenciesDictionary } from "../../../constants/CurrenciesDictionary";
 
 export class OrderDomain implements IOrderDomain {
   id: ID = "";

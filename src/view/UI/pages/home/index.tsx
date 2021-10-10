@@ -1,15 +1,14 @@
 import { FC } from "react";
-import { SearchForm } from "../../components/SearchForm";
 import { useRouter } from "react-router5";
+import { SearchForm } from "../../components/SearchForm";
+import { SubmitHandler } from "react-hook-form";
+import { IFormData } from "../../components/SearchForm/types";
 
 const Home: FC = () => {
   const { navigate } = useRouter();
 
-  const handleSearch = () => {
-    navigate("orders", {
-      destination: "destination",
-      origin: "origin",
-    });
+  const handleSearch: SubmitHandler<IFormData> = (data) => {
+    navigate("orders", data);
   };
 
   return <SearchForm onSearch={handleSearch} />;

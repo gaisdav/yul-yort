@@ -6,6 +6,8 @@ import { observer } from "mobx-react-lite";
 import Error from "./components/Error";
 import Loading from "./components/Loading/Loading";
 import List from "./components/List/List";
+import { SubmitHandler } from "react-hook-form";
+import { IFormData } from "../../components/SearchForm/types";
 
 const Orders: FC = observer(() => {
   const orderVM = useViewModel("order");
@@ -14,17 +16,15 @@ const Orders: FC = observer(() => {
     router: { navigate },
   } = useRouteNode("orders");
 
-  const handleSearch = () => {
-    navigate("orders", {
-      destination: "destination_",
-      origin: "origin",
-    });
+  const handleSearch: SubmitHandler<IFormData> = (data) => {
+    navigate("orders", data);
   };
 
   return (
     <div>
       <SearchForm
         minified
+        loading={orderVM.loading}
         destination={params.destination}
         origin={params.origin}
         onSearch={handleSearch}

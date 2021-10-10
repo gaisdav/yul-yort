@@ -1,21 +1,35 @@
 import { FC, useState } from "react";
-import { ISearchForm } from "./types";
+import { IFormData, ISearchForm } from "./types";
 import { Form } from "./components/Form";
 import { MinifiedForm } from "./components/MinifiedForm";
+import { SubmitHandler } from "react-hook-form";
 
-export const SearchForm: FC<ISearchForm> = (props) => {
-  const [minified, setMinified] = useState(!!props.minified);
+export const SearchForm: FC<ISearchForm> = ({
+  loading = false,
+  origin,
+  destination,
+  minified,
+  className,
+  onSearch,
+}) => {
+  const [isMinified, setMinified] = useState(minified);
 
   const handleSetMinified = () => {
-    setMinified(!minified);
+    setMinified(!isMinified);
   };
 
-  if (minified) {
+  const handleSearch: SubmitHandler<IFormData> = (...args) => {
+    onSearch(...args);
+    minified && setMinified(true);
+  };
+
+  if (isMinified) {
     return (
       <MinifiedForm
-        origin={props.origin}
-        className={props.className}
-        destination={props.destination}
+        loading={loading}
+        className={className}
+        origin={origin}
+        destination={destination}
         onExpand={handleSetMinified}
       />
     );
@@ -23,11 +37,12 @@ export const SearchForm: FC<ISearchForm> = (props) => {
 
   return (
     <Form
-      minified={props.minified}
-      origin={props.origin}
-      className={props.className}
-      destination={props.destination}
-      onSearch={props.onSearch}
+      loading={loading}
+      minified={minified}
+      origin={origin}
+      className={className}
+      destination={destination}
+      onSearch={handleSearch}
       onExpand={handleSetMinified}
     />
   );

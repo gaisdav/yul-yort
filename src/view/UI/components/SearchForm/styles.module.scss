@@ -4,30 +4,44 @@
   margin: $base * 2;
 }
 
+.formWrapper {
+  display: inline-flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .wrapper {
   display: inline-flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   padding: $base * 2;
 }
 
 .minifiedRouteWrapper {
   display: inline-flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
   padding: $base * 2;
 
   .title, .icon {
     word-break: break-word;
     margin: $base * 2;
   }
+
+  .route {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .formButton {
   margin: $base * 2;
+  min-width: 90px;
 }
 
 .rollUpButtonIcon {
@@ -35,7 +49,7 @@
 }
 
 @media screen and (min-width: $mediaQueryMobile) {
-  .wrapper {
+  .wrapper, .minifiedRouteWrapper {
     flex-direction: row;
   }
 

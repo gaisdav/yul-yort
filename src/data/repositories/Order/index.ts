@@ -3,7 +3,7 @@ import {
   IOrderRequestParams,
   IOrderResponseDTO,
 } from "../../domainModels/Order/types";
-import { EEndpoints } from "../../../constants/EEndpoints";
+import { EEndpoints } from "../../../constants/Endpoints";
 import { BaseRepository } from "../BaseRepository";
 
 export class OrderRepository

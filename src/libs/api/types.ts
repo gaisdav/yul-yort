@@ -1,4 +1,4 @@
-import { EEndpoints } from "../../constants/EEndpoints";
+import { EEndpoints } from "../../constants/Endpoints";
 
 export interface IApi {
   get<R, P = undefined>(path: EEndpoints, params?: P): Promise<R>;

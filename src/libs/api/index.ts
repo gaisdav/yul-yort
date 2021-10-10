@@ -1,4 +1,4 @@
-import { baseUrl, EEndpoints } from "../../constants/EEndpoints";
+import { baseUrl, EEndpoints } from "../../constants/Endpoints";
 import { IApi } from "./types";
 
 export class Api implements IApi {
