@@ -5,6 +5,10 @@ import { getTimeout } from "./utils/getTimeout";
 
 export const handlers = [
   rest.get("/orders", (req, res, ctx) => {
-    return res(ctx.json<IOrderResponseDTO[]>(orders), ctx.delay(getTimeout()));
+    return res(
+      ctx.json<IOrderResponseDTO[]>(orders),
+      ctx.delay(getTimeout()),
+      ctx.status(200)
+    );
   }),
 ];

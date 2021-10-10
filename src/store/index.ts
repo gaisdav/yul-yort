@@ -1,6 +1,5 @@
 import {
   ILibs,
-  IStoreDomains,
   IStoreRepositories,
   IStoreServices,
   IStoreViewModels,
@@ -8,15 +7,10 @@ import {
 import { OrderService } from "../data/services/Order";
 import { OrderRepository } from "../data/repositories/Order";
 import { OrderVM } from "../view/viewModels/Order";
-import { OrderDomain } from "../data/domainModels/Order";
 import { Api } from "../libs/api";
 
 const libs: ILibs = {
   api: new Api(),
-};
-
-const domains: IStoreDomains = {
-  order: new OrderDomain(),
 };
 
 const repositories: IStoreRepositories = {
@@ -28,5 +22,5 @@ const services: IStoreServices = {
 };
 
 export const viewModels: IStoreViewModels = {
-  order: new OrderVM(domains.order, services.order),
+  order: new OrderVM(services.order),
 };

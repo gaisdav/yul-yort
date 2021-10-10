@@ -1,5 +1,5 @@
 import { computed, makeObservable, observable } from "mobx";
-import { ECurrencyISO, IOrderDomain } from "./types";
+import { ECurrencyISO, IOrderDomain, IOrderResponseDTO } from "./types";
 import { currenciesDictionary } from "./currenciesDictionary";
 
 export class OrderDomain implements IOrderDomain {
@@ -9,7 +9,13 @@ export class OrderDomain implements IOrderDomain {
   price?: number;
   agencyPhones?: string[];
 
-  constructor() {
+  constructor(dto: IOrderResponseDTO) {
+    this.id = dto.id;
+    this.agencyName = dto.agencyName;
+    this.currencyISO = dto.currencyISO;
+    this.price = dto.price;
+    this.agencyPhones = dto.agencyPhones;
+
     makeObservable(this, {
       id: observable,
       agencyName: observable,
@@ -28,7 +34,7 @@ export class OrderDomain implements IOrderDomain {
 
     return `${this.price} ${
       currenciesDictionary[this.currencyISO] || this.currencyISO
-    }}`;
+    }`;
   }
 
   get phoneValues(): string[] | undefined {

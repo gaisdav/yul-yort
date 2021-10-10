@@ -9,7 +9,17 @@ import List from "./components/List/List";
 
 const Orders: FC = observer(() => {
   const orderVM = useViewModel("order");
-  const { params } = useRouteNode("orders").route;
+  const {
+    route: { params },
+    router: { navigate },
+  } = useRouteNode("orders");
+
+  const handleSearch = () => {
+    navigate("orders", {
+      destination: "destination_",
+      origin: "origin",
+    });
+  };
 
   return (
     <div>
@@ -17,6 +27,7 @@ const Orders: FC = observer(() => {
         minified
         destination={params.destination}
         origin={params.origin}
+        onSearch={handleSearch}
       />
 
       {orderVM.loading && <Loading />}

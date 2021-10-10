@@ -10,7 +10,7 @@ import { action, makeObservable, observable } from "mobx";
 export class OrderVM extends BaseVM implements IOrderVM {
   orderList: IOrderDomain[] | null = null;
 
-  constructor(private domain: IOrderDomain, private service: IOrderService) {
+  constructor(private service: IOrderService) {
     super();
     makeObservable(this, {
       orderList: observable,
@@ -23,7 +23,7 @@ export class OrderVM extends BaseVM implements IOrderVM {
     this.unsetError();
 
     try {
-      this.orderList = await this.service.getOrderList(params, this.domain);
+      this.orderList = await this.service.getOrderList(params);
     } catch (err) {
       this.setError(err);
     } finally {

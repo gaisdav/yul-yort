@@ -4,8 +4,5 @@ import {
 } from "../../domainModels/Order/types";
 
 export interface IOrderService {
-  getOrderList(
-    params: IOrderRequestParams,
-    domain: IOrderDomain
-  ): Promise<IOrderDomain[]>;
+  getOrderList(params: IOrderRequestParams): Promise<IOrderDomain[]>;
 }

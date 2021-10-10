@@ -4,17 +4,14 @@ import {
   IOrderRequestParams,
 } from "../../domainModels/Order/types";
 import { IOrderRepository } from "../../repositories/Order/types";
-import { DTOMapper } from "./mappers/DTOMapper";
+import { OrderDomain } from "../../domainModels/Order";
 
 export class OrderService implements IOrderService {
   constructor(private repository: IOrderRepository) {}
 
-  async getOrderList(
-    params: IOrderRequestParams,
-    orderDomain: IOrderDomain
-  ): Promise<IOrderDomain[]> {
+  async getOrderList(params: IOrderRequestParams): Promise<IOrderDomain[]> {
     const orders = await this.repository.getOrderList(params);
 
-    return orders.map((orderDTO) => DTOMapper(orderDTO, orderDomain));
+    return orders.map((orderDTO) => new OrderDomain(orderDTO));
   }
 }
