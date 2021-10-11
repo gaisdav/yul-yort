@@ -13,7 +13,7 @@ import { Router } from "router5/dist/types/router";
 import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
 import Body from "./components/Body";
-import { ErrorBoundary } from "./components/ErrorBoundary";
+import { ErrorBoundary } from "./pages/errorBoundaryPage";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;

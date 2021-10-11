@@ -99,7 +99,10 @@ function registerValidSW(swUrl: string, config?: Config) {
       };
     })
     .catch((error) => {
-      console.error("ErrorBoundary during service worker registration:", error);
+      console.error(
+        "errorBoundaryPage during service worker registration:",
+        error
+      );
     });
 }
 
