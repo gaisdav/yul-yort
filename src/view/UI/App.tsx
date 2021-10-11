@@ -1,6 +1,7 @@
 import { FC, lazy, Suspense } from "react";
 import { useRoute } from "react-router5";
 import { constants } from "router5";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 const HomePage = lazy(() => import("./pages/home"));
 const OrdersPage = lazy(() => import("./pages/orders"));
@@ -25,7 +26,7 @@ export const App: FC = () => {
       page = <NotFoundPage />;
   }
 
-  return <Suspense fallback={<div>Загрузка...</div>}>{page}</Suspense>;
+  return <Suspense fallback={<LoadingScreen />}>{page}</Suspense>;
 };
 
 export default App;
