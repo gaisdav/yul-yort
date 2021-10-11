@@ -11,7 +11,7 @@ export class Api implements IApi {
     const response = await fetch(fullUrl);
 
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw Error(response.status + " " + response.statusText);
     }
 
     return await response.json();
@@ -26,7 +26,7 @@ export class Api implements IApi {
     });
 
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw Error(response.status + " " + response.statusText);
     }
 
     return await response.json();
