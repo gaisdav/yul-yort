@@ -1,6 +1,5 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "../../reportWebVitals";
 import * as serviceWorkerRegistration from "../../serviceWorkerRegistration";
@@ -13,6 +12,7 @@ import { RouterProvider } from "react-router5";
 import { Router } from "router5/dist/types/router";
 import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
+import Body from "./components/Body";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;
@@ -22,12 +22,14 @@ type IAppInitConfig = {
 export const initApp = ({ router, theme }: IAppInitConfig) => {
   ReactDOM.render(
     <StrictMode>
-      <CssBaseline />
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <StyledEngineProvider injectFirst>
           {/* @ts-ignore TODO */}
           <RouterProvider router={router}>
-            <App />
+            <Body>
+              <App />
+            </Body>
           </RouterProvider>
         </StyledEngineProvider>
       </ThemeProvider>

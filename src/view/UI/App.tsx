@@ -1,5 +1,4 @@
 import { FC, lazy, Suspense } from "react";
-import "./App.css";
 import { useRoute } from "react-router5";
 import { constants } from "router5";
 

@@ -3,6 +3,7 @@ import { useRouter } from "react-router5";
 import { SearchForm } from "../../components/SearchForm";
 import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
+import css from "./styles.module.scss";
 
 const Home: FC = () => {
   const { navigate } = useRouter();
@@ -11,7 +12,11 @@ const Home: FC = () => {
     navigate("orders", data);
   };
 
-  return <SearchForm onSearch={handleSearch} />;
+  return (
+    <div className={css.page}>
+      <SearchForm onSearch={handleSearch} />
+    </div>
+  );
 };
 
 export default Home;

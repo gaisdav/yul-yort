@@ -1,0 +1,9 @@
+@import "../../globalStyles/globalStyles.module";
+
+
+.body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: $base * 4;
+}
