@@ -1,0 +1,27 @@
+@import "../../globalStyles/globalStyles.module";
+
+.wrapper {
+  display: flex;
+  justify-content: end;
+  padding: $base;
+  margin-bottom: $base * 2;
+  animation-duration: .3s;
+  animation-name: slidein;
+}
+
+.paper {
+  padding: $base * 2 $base * 3;
+  border-radius: $base;
+}
+
+@keyframes slidein {
+  from {
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
