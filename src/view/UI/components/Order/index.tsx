@@ -14,29 +14,31 @@ export const Order: FC<IOrderProps> = ({
         {agencyName}
       </Typography>
 
-      {phoneValues && phoneValues.length ? (
-        phoneValues.map((phone, index) => (
-          <Link
-            key={phone + index}
+      <div className={css.phones}>
+        {phoneValues && phoneValues.length ? (
+          phoneValues.map((phone, index) => (
+            <Link
+              key={phone + index}
+              className={css.orderPhone}
+              href={`tel:${phone}`}
+              underline="none"
+              variant="subtitle2"
+              align="left"
+            >
+              {phone}
+            </Link>
+          ))
+        ) : (
+          <Typography
             className={css.orderPhone}
-            href={`tel:${phone}`}
-            underline="none"
             variant="subtitle2"
             align="left"
+            color="text.secondary"
           >
-            {phone}
-          </Link>
-        ))
-      ) : (
-        <Typography
-          className={css.orderPhone}
-          variant="subtitle2"
-          align="left"
-          color="text.secondary"
-        >
-          Телефон не указан
-        </Typography>
-      )}
+            Телефон не указан
+          </Typography>
+        )}
+      </div>
     </div>
 
     <div className={css.columnRight}>

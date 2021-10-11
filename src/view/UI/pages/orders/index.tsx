@@ -8,6 +8,7 @@ import Loading from "./components/Loading/Loading";
 import List from "./components/List/List";
 import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
+import css from "./styles.module.scss";
 
 const Orders: FC = observer(() => {
   const orderVM = useViewModel("order");
@@ -21,22 +22,26 @@ const Orders: FC = observer(() => {
   };
 
   return (
-    <div>
-      <SearchForm
-        minified
-        loading={orderVM.loading}
-        destination={params.destination}
-        origin={params.origin}
-        onSearch={handleSearch}
-      />
+    <div className={css.page}>
+      <div className={css.searchForm}>
+        <SearchForm
+          minified
+          loading={orderVM.loading}
+          destination={params.destination}
+          origin={params.origin}
+          onSearch={handleSearch}
+        />
+      </div>
 
-      {orderVM.loading && <Loading />}
+      <div className={css.list}>
+        {orderVM.loading && <Loading />}
 
-      {orderVM.error && <Error error={orderVM.error} />}
+        {orderVM.error && <Error error={orderVM.error} />}
 
-      {!orderVM.error && !orderVM.loading && orderVM.orderList && (
-        <List list={orderVM.orderList} />
-      )}
+        {!orderVM.error && !orderVM.loading && orderVM.orderList && (
+          <List list={orderVM.orderList} />
+        )}
+      </div>
     </div>
   );
 });

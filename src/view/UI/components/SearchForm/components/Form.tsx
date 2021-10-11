@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Button, LinearProgress, Paper, TextField } from "@mui/material";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { useForm } from "react-hook-form";
@@ -18,14 +18,23 @@ export const Form: FC<IForm> = ({
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<IFormData>();
+
+  useEffect(() => {
+    if (origin) {
+      setValue("origin", origin);
+    }
+    if (destination) {
+      setValue("destination", destination);
+    }
+  }, [setValue, origin, destination]);
 
   return (
     <Paper elevation={3} className={`${styles.formWrapper} ${className}`}>
       <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
         <TextField
-          defaultValue={origin}
           className={styles.input}
           id="origin"
           label="Откуда"
@@ -45,7 +54,6 @@ export const Form: FC<IForm> = ({
         />
 
         <TextField
-          defaultValue={destination}
           className={styles.input}
           id="destination"
           label="Куда"

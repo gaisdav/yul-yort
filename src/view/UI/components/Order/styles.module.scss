@@ -43,3 +43,9 @@
 .skeleton {
   margin-bottom: $base * 4;
 }
+
+.phones {
+  display: inline-flex;
+  max-width: $base * 39;
+  flex-direction: column;
+}
