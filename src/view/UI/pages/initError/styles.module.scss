@@ -1,0 +1,12 @@
+.page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  line-height: 0;
+  font-size: 200px;
+}

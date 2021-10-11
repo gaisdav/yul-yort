@@ -4,6 +4,7 @@ import { constants } from "router5";
 
 const HomePage = lazy(() => import("./pages/home"));
 const OrdersPage = lazy(() => import("./pages/orders"));
+const NotFoundPage = lazy(() => import("./pages/notFound"));
 
 export const App: FC = () => {
   const router = useRoute();
@@ -21,7 +22,7 @@ export const App: FC = () => {
 
     case constants.UNKNOWN_ROUTE:
     default:
-      page = <div>Страница не найдена</div>;
+      page = <NotFoundPage />;
   }
 
   return <Suspense fallback={<div>Загрузка...</div>}>{page}</Suspense>;

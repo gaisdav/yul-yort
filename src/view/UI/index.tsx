@@ -13,6 +13,7 @@ import { Router } from "router5/dist/types/router";
 import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
 import Body from "./components/Body";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;
@@ -27,9 +28,11 @@ export const initApp = ({ router, theme }: IAppInitConfig) => {
         <StyledEngineProvider injectFirst>
           {/* @ts-ignore TODO */}
           <RouterProvider router={router}>
-            <Body>
-              <App />
-            </Body>
+            <ErrorBoundary>
+              <Body>
+                <App />
+              </Body>
+            </ErrorBoundary>
           </RouterProvider>
         </StyledEngineProvider>
       </ThemeProvider>

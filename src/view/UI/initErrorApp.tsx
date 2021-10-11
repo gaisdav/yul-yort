@@ -1,26 +1,18 @@
 import ReactDOM from "react-dom";
-import { StrictMode } from "react";
-import { CssBaseline, Typography } from "@mui/material";
+import { lazy, StrictMode, Suspense } from "react";
+import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
-// TODO типизация ошибки
+const InitErrorPage = lazy(() => import("./pages/initError"));
+
 export const initErrorApp = (error: any) => {
   ReactDOM.render(
     <StrictMode>
-      <CssBaseline />
-      <div>
-        <Typography variant="h6" align="center" color="error.main">
-          Произошла ошибка при инициализации приложения
-        </Typography>
-
-        <div>
-          <Typography align="center" color="error.main">
-            {error.name}
-          </Typography>
-          <Typography align="center" color="error.main">
-            {error.message}
-          </Typography>
-        </div>
-      </div>
+      <StyledEngineProvider injectFirst>
+        <CssBaseline />
+        <Suspense fallback={<div>Загрузка...</div>}>
+          <InitErrorPage error={error} />
+        </Suspense>
+      </StyledEngineProvider>
     </StrictMode>,
     document.getElementById("root")
   );
