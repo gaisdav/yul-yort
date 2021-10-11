@@ -4,7 +4,7 @@ import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeft
 import { useForm } from "react-hook-form";
 import { IForm, IFormData } from "../types";
 import styles from "../styles.module.scss";
-import { ErrorsDictionary } from "../../../../../constants/ErrorsDictionary";
+import { FormErrorsDictionary } from "../../../../../constants/FormErrorsDictionary";
 
 export const Form: FC<IForm> = ({
   loading,
@@ -37,7 +37,7 @@ export const Form: FC<IForm> = ({
           error={!!errors.origin}
           disabled={loading}
           helperText={
-            errors?.origin?.type && ErrorsDictionary[errors.origin.type]
+            errors?.origin?.type && FormErrorsDictionary[errors.origin.type]
           }
           {...register("origin", {
             required: true,
@@ -57,7 +57,7 @@ export const Form: FC<IForm> = ({
           error={!!errors.destination}
           helperText={
             errors?.destination?.type &&
-            ErrorsDictionary[errors.destination.type]
+            FormErrorsDictionary[errors.destination.type]
           }
           {...register("destination", {
             required: true,
