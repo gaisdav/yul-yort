@@ -8,7 +8,7 @@ export const handlers = [
     return res(
       ctx.json<IOrderResponseDTO[]>(orders),
       ctx.delay(getTimeout()),
-      ctx.status(200)
+      ctx.status(301)
     );
   }),
 ];
