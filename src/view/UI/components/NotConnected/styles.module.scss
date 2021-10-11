@@ -2,16 +2,11 @@
 
 .wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding: $base;
   margin-bottom: $base * 2;
   animation-duration: .3s;
   animation-name: slidein;
-}
-
-.paper {
-  padding: $base * 2 $base * 3;
-  border-radius: $base;
 }
 
 @keyframes slidein {
@@ -23,5 +18,11 @@
   to {
     transform: translate3d(0, 0, 0);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: $mediaQueryMobile) {
+  .wrapper {
+    justify-content: flex-end;
   }
 }

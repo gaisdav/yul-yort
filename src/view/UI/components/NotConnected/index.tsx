@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Paper } from "@mui/material";
-import css from "./styles.module.scss";
+import { Block } from "./Block";
 
 export const NotConnected: FC = () => {
   const [online, setOnline] = useState<boolean>(navigator.onLine);
@@ -19,18 +18,5 @@ export const NotConnected: FC = () => {
     return null;
   }
 
-  return (
-    <div className={css.wrapper}>
-      <Paper
-        elevation={0}
-        className={css.paper}
-        sx={{
-          color: "primary.contrastText",
-          bgcolor: "error.light",
-        }}
-      >
-        Отсутствует соединение с интернетом
-      </Paper>
-    </div>
-  );
+  return <Block />;
 };
