@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { IForm, IFormData } from "../types";
 import styles from "../styles.module.scss";
 import { FormErrorsDictionary } from "../../../../../constants/FormErrorsDictionary";
+import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 
 export const Form: FC<IForm> = ({
   loading,
@@ -53,6 +54,8 @@ export const Form: FC<IForm> = ({
           })}
         />
 
+        <ArrowRightAltOutlinedIcon className={styles.arrows} />
+
         <TextField
           className={styles.input}
           id="destination"
@@ -72,7 +75,7 @@ export const Form: FC<IForm> = ({
           })}
         />
 
-        <div>
+        <div className={styles.actions}>
           <Button
             type="submit"
             color="primary"

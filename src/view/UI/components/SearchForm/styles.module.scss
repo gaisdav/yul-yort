@@ -49,9 +49,23 @@
   transform: rotate(90deg);
 }
 
+.arrows {
+  transform: rotate(90deg);
+  align-self: flex-end;
+}
+
+.actions{
+   display: flex;
+}
+
 @media screen and (min-width: $mediaQueryMobile) {
   .wrapper, .minifiedRouteWrapper {
     flex-direction: row;
+  }
+
+  .arrows {
+    transform: rotate(0deg);
+    align-self: center;
   }
 
   .input {
