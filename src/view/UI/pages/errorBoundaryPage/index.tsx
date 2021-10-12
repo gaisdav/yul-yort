@@ -46,9 +46,8 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
             onClick={this.handleExpand}
             className={css.collapseTitle}
           >
-            {this.state.error && this.state.error.toString()}
-
-            <IconButton onClick={this.handleExpand}>
+            {this.state.error && this.state.error.toString()}{" "}
+            <IconButton>
               {this.state.expanded ? <ExpandLess /> : <ExpandMore />}
             </IconButton>
           </Typography>
@@ -59,12 +58,14 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
             unmountOnExit
             className={css.collapse}
           >
-            <Typography>
+            <Typography align="center">
               {this.state.error && this.state.error.toString()}
             </Typography>
 
             <br />
-            <Typography>{this.state.errorInfo.componentStack}</Typography>
+            <Typography align="center">
+              {this.state.errorInfo.componentStack}
+            </Typography>
           </Collapse>
         </div>
       );

@@ -1,12 +1,26 @@
+@import "../../globalStyles/globalStyles.module";
+
 .page {
   display: flex;
   height: 100%;
+  overflow: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  padding: $base * 6;
+}
+
+.pageContainer {
+  width: 100%;
+  overflow: auto;
+}
+
+.title {
+  cursor: pointer;
 }
 
 .icon {
   line-height: 0;
-  font-size: 200px;
+  font-size: $base * 50;
 }
