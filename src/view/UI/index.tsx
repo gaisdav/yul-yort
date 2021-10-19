@@ -14,7 +14,6 @@ import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
 import Body from "./components/Body";
 import { ErrorBoundary } from "./pages/errorBoundaryPage";
-import { NotConnected } from "./components/NotConnected";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;
@@ -31,7 +30,6 @@ export const initApp = ({ router, theme }: IAppInitConfig) => {
           <RouterProvider router={router}>
             <ErrorBoundary>
               <Body>
-                <NotConnected />
                 <App />
               </Body>
             </ErrorBoundary>
