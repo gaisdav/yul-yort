@@ -1,36 +1,7 @@
-@import "../../globalStyles/globalStyles.module";
-
-.bodyWrapper {
+.body {
   position: absolute;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-}
-
-.body {
-  height: 100%;
-  width: 100%;
-  padding: $base * 4;
+  padding: calc(var(--yy-base) * 4);
   overflow: auto;
-}
-
-.notConnectionBody {
-  padding-top: 0;
-  border: $base solid $errorColor;
-  border-top-width: 0;
-
-  .body {
-    height: calc(100% - 24px);
-  }
-}
-
-.errorText {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: $base * 6;
-  text-align: center;
-  color: $whiteColor;
-  background-color: $errorColor;
 }

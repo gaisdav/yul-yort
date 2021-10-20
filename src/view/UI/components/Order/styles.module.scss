@@ -1,11 +1,9 @@
-@import "../../globalStyles/globalStyles.module";
-
 .order {
   display: flex;
-  padding: $base * 4;
-  margin-bottom: $base * 4;
+  padding: calc(var(--yy-base) * 4);
+  margin-bottom: calc(var(--yy-base) * 4);
   flex-wrap: wrap;
-  border-radius: $base * 2;
+  border-radius: calc(var(--yy-base) * 2);
 
   &:last-child {
     margin-bottom: 0;
@@ -18,22 +16,22 @@
   flex-direction: column;
   flex: 1;
   max-width: 100%;
-  margin-right: $base * 2;
+  margin-right: calc(var(--yy-base) * 2);
 }
 
 .columnRight {
-  width: $base * 23;
+  width: calc(var(--yy-base) * 23);
   text-align: right;
 }
 
 .orderTitle {
-  margin-bottom: $base * 3;
+  margin-bottom: calc(var(--yy-base) * 3);
   max-width: 100%;
   word-break: break-word;
 }
 
 .orderPhone {
-  margin-bottom: $base;
+  margin-bottom: var(--yy-base);
 
   &:last-child {
     margin-bottom: 0;
@@ -41,11 +39,11 @@
 }
 
 .skeleton {
-  margin-bottom: $base * 4;
+  margin-bottom: calc(var(--yy-base) * 4);
 }
 
 .phones {
   display: inline-flex;
-  max-width: $base * 39;
+  max-width: calc(var(--yy-base) * 39);
   flex-direction: column;
 }

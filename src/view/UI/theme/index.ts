@@ -1,9 +1,16 @@
 import { createTheme } from "@mui/material";
+import { getCssVar } from "./getCssVar";
 
 const theme = createTheme({
   palette: {
+    common: {
+      white: getCssVar("--yy-white-color"),
+    },
+    error: {
+      main: getCssVar("--yy-error-color"),
+    },
     background: {
-      default: "#e0e0e0",
+      default: getCssVar("--yy-default-background"),
     },
   },
   components: {

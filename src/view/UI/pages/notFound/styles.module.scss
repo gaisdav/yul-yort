@@ -1,5 +1,3 @@
-@import "../../globalStyles/globalStyles.module";
-
 .page {
   display: flex;
   height: 100%;
@@ -10,9 +8,9 @@
 
 .icon {
   line-height: 0;
-  font-size: $base * 50;
+  font-size: calc(var(--yy-base) * 50);
 }
 
 .link {
-  font-size: $base * 5;
+  font-size: calc(var(--yy-base) * 5);
 }

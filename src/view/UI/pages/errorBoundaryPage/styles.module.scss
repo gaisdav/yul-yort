@@ -1,4 +1,6 @@
-@import "../../globalStyles/globalStyles.module";
+.appWrapper {
+  overflow: hidden;
+}
 
 .errorBoundary {
   display: flex;
@@ -6,12 +8,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: $base * 4;
+  padding: calc(var(--yy-base) * 4);
 }
 
 .icon {
   line-height: 0;
-  font-size: $base * 50;
+  font-size: calc(var(--yy-base) * 50);
 }
 
 .collapse {
@@ -21,4 +23,15 @@
 
 .collapseTitle {
   cursor: pointer;
+}
+
+.notConnectText {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--yy-base) * 6);
+  text-align: center;
+  color: var(--yy-white-color);
+  background-color: var(--yy-error-color);
 }

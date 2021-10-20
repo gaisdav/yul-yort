@@ -8,4 +8,6 @@ export interface IState {
   error: Error | null;
   errorInfo: ErrorInfo | null;
   expanded: boolean;
+  offline: boolean;
+  timerID: NodeJS.Timeout | null;
 }

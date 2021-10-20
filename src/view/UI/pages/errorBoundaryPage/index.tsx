@@ -6,6 +6,7 @@ import { IProps, IState } from "./types";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
+// TODO вынести компоненты
 export class ErrorBoundary extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
@@ -13,7 +14,27 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
       error: null,
       errorInfo: null,
       expanded: false,
+      offline: !navigator.onLine,
+      timerID: null,
     };
+  }
+
+  componentDidMount() {
+    const timerID = setInterval(() => {
+      if (!navigator.onLine !== this.state.offline) {
+        this.setState({
+          offline: !navigator.onLine,
+        });
+      }
+    }, 10000);
+
+    this.setState({
+      timerID,
+    });
+  }
+
+  componentWillUnmount() {
+    this.state.timerID && clearInterval(this.state.timerID);
   }
 
   componentDidCatch(error: any, errorInfo: any) {
@@ -71,6 +92,15 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
       );
     }
 
-    return this.props.children;
+    return (
+      <span className={css.appWrapper}>
+        {this.state.offline && (
+          <Typography className={css.notConnectText}>
+            Отсутствует интернет соединение
+          </Typography>
+        )}
+        {this.props.children}
+      </span>
+    );
   }
 }

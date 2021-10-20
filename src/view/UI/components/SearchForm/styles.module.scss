@@ -1,7 +1,5 @@
-@import "../../globalStyles/globalStyles.module";
-
 .input {
-  margin: $base * 2;
+  margin: calc(var(--yy-base) * 2);
   width: 100%;
 }
 
@@ -16,7 +14,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: $base * 4;
+  padding: calc(var(--yy-base) * 4);
 }
 
 .minifiedRouteWrapper {
@@ -25,11 +23,12 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: $base * 4;
+  padding: calc(var(--yy-base) * 4);
 
-  .title, .icon {
+  .title,
+  .icon {
     word-break: break-word;
-    margin: $base * 2;
+    margin: calc(var(--yy-base) * 2);
   }
 
   .route {
@@ -41,8 +40,8 @@
 }
 
 .formButton {
-  margin: $base * 2;
-  min-width: $base * 22;
+  margin: calc(var(--yy-base) * 2);
+  min-width: calc(var(--yy-base) * 22);
 }
 
 .rollUpButtonIcon {
@@ -54,12 +53,13 @@
   align-self: flex-end;
 }
 
-.actions{
-   display: flex;
+.actions {
+  display: flex;
 }
 
-@media screen and (min-width: $mediaQueryMobile) {
-  .wrapper, .minifiedRouteWrapper {
+@media screen and (min-width: var(--yy-media-query-mobile)) {
+  .wrapper,
+  .minifiedRouteWrapper {
     flex-direction: row;
   }
 
