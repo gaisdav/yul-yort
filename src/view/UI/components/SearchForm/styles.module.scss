@@ -57,7 +57,7 @@
   display: flex;
 }
 
-@media screen and (min-width: var(--yy-media-query-mobile)) {
+@media screen and (min-width: 767px) {
   .wrapper,
   .minifiedRouteWrapper {
     flex-direction: row;

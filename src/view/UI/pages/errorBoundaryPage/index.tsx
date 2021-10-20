@@ -84,6 +84,7 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
             </Typography>
 
             <br />
+
             <Typography align="center">
               {this.state.errorInfo.componentStack}
             </Typography>

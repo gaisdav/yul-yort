@@ -1,11 +1,18 @@
 import { FC, useEffect } from "react";
-import { Button, LinearProgress, Paper, TextField } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  LinearProgress,
+  Paper,
+  TextField,
+} from "@mui/material";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import { useForm } from "react-hook-form";
 import { IForm, IFormData } from "../types";
 import styles from "../styles.module.scss";
 import { FormErrorsDictionary } from "../../../../../constants/FormErrorsDictionary";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 export const Form: FC<IForm> = ({
   loading,
@@ -20,6 +27,7 @@ export const Form: FC<IForm> = ({
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm<IFormData>();
 
@@ -31,6 +39,14 @@ export const Form: FC<IForm> = ({
       setValue("destination", destination);
     }
   }, [setValue, origin, destination]);
+
+  const handleChangeRoute = () => {
+    const originValue = getValues("origin");
+    const destinationValue = getValues("destination");
+
+    setValue("origin", destinationValue);
+    setValue("destination", originValue);
+  };
 
   return (
     <Paper elevation={3} className={`${styles.formWrapper} ${className}`}>
@@ -54,7 +70,17 @@ export const Form: FC<IForm> = ({
           })}
         />
 
-        <ArrowRightAltOutlinedIcon className={styles.arrows} />
+        {origin && destination ? (
+          <IconButton
+            color="inherit"
+            disabled={loading}
+            onClick={handleChangeRoute}
+          >
+            <SwapHorizIcon fontSize="inherit" className={styles.arrows} />
+          </IconButton>
+        ) : (
+          <ArrowRightAltOutlinedIcon className={styles.arrows} />
+        )}
 
         <TextField
           className={styles.input}
