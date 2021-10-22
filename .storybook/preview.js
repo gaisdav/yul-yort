@@ -1,9 +1,10 @@
-import { muiTheme } from "storybook-addon-material-ui";
 import { addDecorator } from "@storybook/react";
-import { StyledEngineProvider, ThemeProvider } from "@mui/material";
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  ThemeProvider,
+} from "@mui/material";
 import theme from "../src/view/UI/theme";
-
-export const decorators = [muiTheme([theme])];
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -34,6 +35,7 @@ export const parameters = {
 
 addDecorator((story) => (
   <StyledEngineProvider injectFirst>
+    <CssBaseline />
     <ThemeProvider theme={theme}>{story()}</ThemeProvider>
   </StyledEngineProvider>
 ));
