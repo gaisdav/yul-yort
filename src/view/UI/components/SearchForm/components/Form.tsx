@@ -74,9 +74,10 @@ export const Form: FC<IForm> = ({
           <IconButton
             color="inherit"
             disabled={loading}
+            className={styles.arrows}
             onClick={handleChangeRoute}
           >
-            <SwapHorizIcon fontSize="inherit" className={styles.arrows} />
+            <SwapHorizIcon fontSize="inherit" />
           </IconButton>
         ) : (
           <ArrowRightAltOutlinedIcon className={styles.arrows} />
