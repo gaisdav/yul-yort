@@ -16,6 +16,7 @@ export interface IRoute<P = Record<string, string>>
 
 export interface IDependencies extends DefaultDependencies {
   store: IStoreViewModels;
+  routes: IRoutes;
 }
 
 interface IHomeRoute extends IRoute {}
