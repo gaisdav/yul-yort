@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { IOrderResponseDTO } from "../../data/domainModels/Order/types";
+import { IOrderResponseDTO } from "../../data/entities/Order/types";
 import { orders } from "./data/orders";
 import { getTimeout } from "./utils/getTimeout";
 

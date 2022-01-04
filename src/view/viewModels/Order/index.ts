@@ -3,7 +3,7 @@ import { IOrderVM } from "./types";
 import {
   IOrderDomain,
   IOrderRequestParams,
-} from "../../../data/domainModels/Order/types";
+} from "../../../data/entities/Order/types";
 import { IOrderService } from "../../../data/services/Order/types";
 import { action, makeObservable, observable } from "mobx";
 

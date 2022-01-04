@@ -2,7 +2,7 @@ import { IOrderRepository } from "./types";
 import {
   IOrderRequestParams,
   IOrderResponseDTO,
-} from "../../domainModels/Order/types";
+} from "../../entities/Order/types";
 import { EEndpoints } from "../../../constants/Endpoints";
 import { BaseRepository } from "../BaseRepository";
 

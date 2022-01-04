@@ -1,4 +1,4 @@
-import { IOrderDomain } from "../../../../../../data/domainModels/Order/types";
+import { IOrderDomain } from "../../../../../../data/entities/Order/types";
 
 export interface IListProps {
   list: IOrderDomain[];

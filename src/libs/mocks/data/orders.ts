@@ -1,7 +1,7 @@
 import {
   ECurrencyISO,
   IOrderResponseDTO,
-} from "../../../data/domainModels/Order/types";
+} from "../../../data/entities/Order/types";
 
 export const orders: IOrderResponseDTO[] = [
   {

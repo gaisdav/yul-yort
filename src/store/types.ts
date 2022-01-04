@@ -2,7 +2,7 @@ import { IOrderService } from "../data/services/Order/types";
 import { IOrderRepository } from "../data/repositories/Order/types";
 import { IOrderVM } from "../view/viewModels/Order/types";
 import { IApi } from "../libs/api/types";
-import { OrderDomain } from "../data/domainModels/Order";
+import { OrderDomain } from "../data/entities/Order";
 
 export interface ILibs {
   api: IApi;

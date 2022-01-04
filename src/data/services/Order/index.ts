@@ -2,9 +2,9 @@ import { IOrderService } from "./types";
 import {
   IOrderDomain,
   IOrderRequestParams,
-} from "../../domainModels/Order/types";
+} from "../../entities/Order/types";
 import { IOrderRepository } from "../../repositories/Order/types";
-import { OrderDomain } from "../../domainModels/Order";
+import { OrderDomain } from "../../entities/Order";
 
 export class OrderService implements IOrderService {
   constructor(private repository: IOrderRepository) {}
