@@ -1,6 +1,9 @@
 .test {
-  padding: 12px;
+  padding: 24px;
   display: flex;
+  background: #ffffff;
+  border-radius: 4px;
+
 }
 
 .points {
@@ -10,16 +13,19 @@
 }
 
 .point {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: #2f5ccb;
+  background: #2862d3;
+  border: 3px solid #95b0ea;
 }
 
 .line {
-  width: 1px;
+  // width: 1px;
   height: 40px;
-  background: rgb(146, 146, 146);
+  border: 0.5px dotted #9b9b9b;
+  
+  // background: #9b9b9b;
 }
 
 .input {
@@ -29,7 +35,7 @@
 
 .formWrapper {
   display: inline-flex;
-  flex-direction: column;
+  // flex-direction: column;
   overflow: hidden;
 }
 

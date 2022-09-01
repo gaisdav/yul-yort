@@ -50,7 +50,7 @@ export const Form: FC<IForm> = ({
   };
 
   return (
-    <Paper elevation={3} className={`${styles.formWrapper} ${className} ${styles.test}`}>
+    <div  className={`${styles.formWrapper} ${className} ${styles.test}`}>
       <div className={styles.points}>
         <div className={styles.point}></div>
         <div className={styles.line}></div>
@@ -72,7 +72,7 @@ export const Form: FC<IForm> = ({
           }}
         />
 
-        <div className={styles.actions}>
+        {/* <div className={styles.actions}>
           <Button
             type="submit"
             color="primary"
@@ -100,10 +100,10 @@ export const Form: FC<IForm> = ({
               Свернуть
             </Button>
           )}
-        </div>
+        </div> */}
       </form>
 
       {loading && <LinearProgress />}
-    </Paper>
+    </div>
   );
 };
