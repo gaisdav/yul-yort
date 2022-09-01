@@ -2,6 +2,7 @@ import { FC, useEffect } from "react";
 import {
   Button,
   IconButton,
+  Input,
   LinearProgress,
   Paper,
   TextField,
@@ -49,57 +50,26 @@ export const Form: FC<IForm> = ({
   };
 
   return (
-    <Paper elevation={3} className={`${styles.formWrapper} ${className}`}>
+    <Paper elevation={3} className={`${styles.formWrapper} ${className} ${styles.test}`}>
+      <div className={styles.points}>
+        <div className={styles.point}></div>
+        <div className={styles.line}></div>
+        <div className={styles.point}></div>
+      </div>
+      
       <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
-        <TextField
-          className={styles.input}
-          id="origin"
-          label="Откуда"
+        <Input
           placeholder="Откуда"
-          variant="outlined"
-          autoFocus
-          size="small"
-          type="search"
-          error={!!errors.origin}
-          disabled={loading}
-          helperText={
-            errors?.origin?.type && FormErrorsDictionary[errors.origin.type]
-          }
-          {...register("origin", {
-            required: true,
-          })}
+          inputProps={{
+            "aria-label": "Description",
+          }}
         />
 
-        {origin && destination ? (
-          <IconButton
-            color="inherit"
-            disabled={loading}
-            className={styles.arrows}
-            onClick={handleChangeRoute}
-          >
-            <SwapHorizIcon fontSize="inherit" />
-          </IconButton>
-        ) : (
-          <ArrowRightAltOutlinedIcon className={styles.arrows} />
-        )}
-
-        <TextField
-          className={styles.input}
-          id="destination"
-          label="Куда"
+        <Input
           placeholder="Куда"
-          variant="outlined"
-          size="small"
-          type="search"
-          disabled={loading}
-          error={!!errors.destination}
-          helperText={
-            errors?.destination?.type &&
-            FormErrorsDictionary[errors.destination.type]
-          }
-          {...register("destination", {
-            required: true,
-          })}
+          inputProps={{
+            "aria-label": "Description",
+          }}
         />
 
         <div className={styles.actions}>
