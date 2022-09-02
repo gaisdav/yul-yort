@@ -1,18 +1,15 @@
 import { FC, useEffect } from "react";
 import {
-  Button,
-  IconButton,
-  LinearProgress,
+  Autocomplete,
   Paper,
   TextField,
 } from "@mui/material";
-import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+
 import { useForm } from "react-hook-form";
 import { IForm, IFormData } from "../types";
 import styles from "../styles.module.scss";
-import { FormErrorsDictionary } from "../../../../../constants/FormErrorsDictionary";
-import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+
+import { Point } from "./Point";
 
 export const Form: FC<IForm> = ({
   loading,
@@ -48,92 +45,57 @@ export const Form: FC<IForm> = ({
     setValue("destination", originValue);
   };
 
+  const defaultProps = {
+    options: top100Films,
+    getOptionLabel: (option: FilmOptionType) => option.title,
+  };
+
+
   return (
     <Paper elevation={3} className={`${styles.formWrapper} ${className}`}>
+      <Point/>
       <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
-        <TextField
-          className={styles.input}
-          id="origin"
-          label="Откуда"
-          placeholder="Откуда"
-          variant="outlined"
-          autoFocus
-          size="small"
-          type="search"
-          error={!!errors.origin}
-          disabled={loading}
-          helperText={
-            errors?.origin?.type && FormErrorsDictionary[errors.origin.type]
-          }
-          {...register("origin", {
-            required: true,
-          })}
-        />
-
-        {origin && destination ? (
-          <IconButton
-            color="inherit"
-            disabled={loading}
-            className={styles.arrows}
-            onClick={handleChangeRoute}
-          >
-            <SwapHorizIcon fontSize="inherit" />
-          </IconButton>
-        ) : (
-          <ArrowRightAltOutlinedIcon className={styles.arrows} />
-        )}
-
-        <TextField
-          className={styles.input}
-          id="destination"
-          label="Куда"
-          placeholder="Куда"
-          variant="outlined"
-          size="small"
-          type="search"
-          disabled={loading}
-          error={!!errors.destination}
-          helperText={
-            errors?.destination?.type &&
-            FormErrorsDictionary[errors.destination.type]
-          }
-          {...register("destination", {
-            required: true,
-          })}
-        />
-
-        <div className={styles.actions}>
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            size="large"
-            className={styles.formButton}
-            disabled={loading}
-          >
-            Найти
-          </Button>
-
-          {minified && (
-            <Button
-              startIcon={
-                <KeyboardArrowLeftOutlinedIcon
-                  className={styles.rollUpButtonIcon}
-                />
-              }
-              size="large"
-              color="primary"
-              variant="text"
-              onClick={onExpand}
-              className={styles.formButton}
-            >
-              Свернуть
-            </Button>
+        <div className={styles.autocompleteWrapper}>
+        <Autocomplete
+          {...defaultProps}
+          id="clear-on-escape"
+          sx={{ width: '100%' }}
+          clearOnEscape
+          renderInput={(params) => (
+            <TextField {...params} label="Откуда" variant="standard" />
           )}
+        />
+
+        </div>
+        <div className={styles.autocompleteWrapper}>
+          <Autocomplete
+            {...defaultProps}
+            id="clear-on-escape"
+            sx={{ width: '100%' }}
+            clearOnEscape
+            renderInput={(params) => (
+              <TextField {...params} label="Куда" variant="standard" />
+            )}
+          />
         </div>
       </form>
 
-      {loading && <LinearProgress />}
+      
     </Paper>
   );
 };
+
+const top100Films = [
+  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Godfather', year: 1972 },
+  { title: 'The Godfather: Part II', year: 1974 },
+  { title: 'The Dark Knight', year: 2008 },
+  { title: '12 Angry Men', year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: 'Pulp Fiction', year: 1994 },
+]
+
+interface FilmOptionType {
+  title: string;
+  year: number;
+}

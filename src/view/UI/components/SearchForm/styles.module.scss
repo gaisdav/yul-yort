@@ -1,3 +1,35 @@
+.points {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 12px;
+  margin-top: 20px;
+}
+
+.point {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2862d3;
+  border: 3px solid #95b0ea;
+}
+
+.line {
+  height: 35px;
+  border: 0.5px dotted #9b9b9b;
+}
+/////
+/// 
+
+.autocompleteWrapper {
+  width: 100%;
+  
+
+  &:first-child {
+    margin-bottom: 8px;
+  }
+}
+
 .input {
   margin: calc(var(--yy-base) * 2);
   width: 100%;
@@ -5,16 +37,21 @@
 
 .formWrapper {
   display: inline-flex;
-  flex-direction: column;
+  align-items: center;
+  // flex-direction: column;
   overflow: hidden;
+  width: 100%;
+  max-width: 414px;
+  padding: 12px 24px 24px;
 }
 
 .wrapper {
+  width: 100%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: calc(var(--yy-base) * 4);
+  // padding: calc(var(--yy-base) * 4);
 }
 
 .minifiedRouteWrapper {
@@ -58,10 +95,10 @@
 }
 
 @media screen and (min-width: 767px) {
-  .wrapper,
-  .minifiedRouteWrapper {
-    flex-direction: row;
-  }
+  // .wrapper,
+  // .minifiedRouteWrapper {
+  //   flex-direction: row;
+  // }
 
   .arrows {
     transform: rotate(0deg);
