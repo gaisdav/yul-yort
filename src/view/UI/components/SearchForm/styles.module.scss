@@ -10,13 +10,13 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #2862d3;
-  border: 3px solid #95b0ea;
+  background: var(--yy-default-background);
+  border: 3px solid var(--yy-border-color);
 }
 
 .line {
   height: 35px;
-  border: 0.5px dotted #9b9b9b;
+  border: 0.5px dotted var(--yy-line-color);
 }
 /////
 /// 
@@ -41,6 +41,7 @@
   // flex-direction: column;
   overflow: hidden;
   width: 100%;
+  
   max-width: 414px;
   padding: 12px 24px 24px;
 }

@@ -1,9 +1,17 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   Autocomplete,
   Paper,
   TextField,
 } from "@mui/material";
+import dayjs, { Dayjs } from 'dayjs';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import {ru} from 'date-fns/locale'
+import Stack from '@mui/material/Stack';
+
 
 import { useForm } from "react-hook-form";
 import { IForm, IFormData } from "../types";
@@ -49,9 +57,15 @@ export const Form: FC<IForm> = ({
     options: top100Films,
     getOptionLabel: (option: FilmOptionType) => option.title,
   };
+  const [valueTime, setValueTime] = useState(new Date())
+  
 
+  const handleChange = (newValue: any | null) => {
+    setValueTime(newValue)
+  };
 
   return (
+    <>
     <Paper elevation={3} className={`${styles.formWrapper} ${className}`}>
       <Point/>
       <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
@@ -82,6 +96,18 @@ export const Form: FC<IForm> = ({
 
       
     </Paper>
+    <LocalizationProvider locale={ru} dateAdapter={AdapterDateFns}>
+      <Stack spacing={3}>
+        <MobileDatePicker
+          label="Date mobile"
+          inputFormat="dd-MMMM-yyyy"
+          value={valueTime}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </Stack>
+    </LocalizationProvider>
+    </>
   );
 };
 
