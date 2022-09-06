@@ -3,9 +3,11 @@
 
   --yy-media-query-mobile: 767px;
 
-  --yy-default-background: #2862d3;
+  --yy-default-background: #f2f6f6;
+  --yy-main-color: #0db2b2;
+  --yy-border-color: #8ad6d6;
+
   --yy-error-color: #ff0000;
   --yy-white-color: #ffffff;
-  --yy-border-color: #95b0ea;
-  --yy-line-color: #95b0ea;
+  --yy-dark-color: #000;
 }

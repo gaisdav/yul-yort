@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+//TODO: переделать 
+.autocompleteWrapper {
+  &:first-child {
+    margin-bottom: 8px;
+  }
+}
