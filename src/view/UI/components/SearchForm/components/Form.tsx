@@ -33,19 +33,11 @@ export const Form: FC<IForm> = ({
     }
   }, [setValue, origin, destination]);
 
-  const handleChangeRoute = () => {
-    const originValue = getValues("origin");
-    const destinationValue = getValues("destination");
-
-    setValue("origin", destinationValue);
-    setValue("destination", originValue);
-  };
-
   return (
     <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
       <Paper elevation={3} className={`${styles.formWrapper}`}>
         <Point />
-        <FormInputs />
+        <FormInputs errors={errors}/>
       </Paper>
       <FormButton />
     </form>

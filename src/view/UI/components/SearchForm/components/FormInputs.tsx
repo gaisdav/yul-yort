@@ -1,18 +1,21 @@
 import { Autocomplete, TextField } from "@mui/material";
+import { FC } from "react";
 import styles from "./styles//inputs.module.scss";
+import { IFormInputs } from "./types";
 
-export const FormInputs = () => {
+export const FormInputs: FC<IFormInputs> = ({ errors }) => {
   const defaultProps = {
     options: top100Films,
     getOptionLabel: (option: FilmOptionType) => option.title,
   };
 
+
   return (
     <div className={styles.wrapper}>
-     <div className={styles.autocompleteWrapper}>
+      <div className={styles.autocompleteWrapper}>
         <Autocomplete
           {...defaultProps}
-          id="clear-on-escape"
+          id="origin"
           sx={{ width: "100%" }}
           clearOnEscape
           renderInput={(params) => (
@@ -23,7 +26,7 @@ export const FormInputs = () => {
       <div className={styles.autocompleteWrapper}>
         <Autocomplete
           {...defaultProps}
-          id="clear-on-escape"
+          id="destination"
           sx={{ width: "100%" }}
           clearOnEscape
           renderInput={(params) => (
