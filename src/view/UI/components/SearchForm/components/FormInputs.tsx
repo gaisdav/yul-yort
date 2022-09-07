@@ -4,13 +4,12 @@ import styles from "./styles//inputs.module.scss";
 import { IFormInputs } from "./types";
 
 export const FormInputs: FC<IFormInputs> = ({ errors, register }) => {
-  
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
 
   const handleOpen = async () => {
     // await getLocality();
-  }
+  };
 
   const renderOption = (
     props: HTMLAttributes<HTMLLIElement>,
@@ -80,13 +79,13 @@ export const FormInputs: FC<IFormInputs> = ({ errors, register }) => {
 
 //TEST
 const top100Films = [
-  { name: "The Shawshank Redemption", year: 1994, id: '1' },
-  { name: "The Godfather", year: 1972, id: '2' },
-  { name: "The Godfather: Part II", year: 1974, id: '3' },
-  { name: "The Dark Knight", year: 2008, id: '4' },
-  { name: "12 Angry Men", year: 1957, id: '5' },
-  { name: "Schindler's List", year: 1993, id: '6' },
-  { name: "Pulp Fiction", year: 1994,id: '7' },
+  { name: "The Shawshank Redemption", year: 1994, id: "1" },
+  { name: "The Godfather", year: 1972, id: "2" },
+  { name: "The Godfather: Part II", year: 1974, id: "3" },
+  { name: "The Dark Knight", year: 2008, id: "4" },
+  { name: "12 Angry Men", year: 1957, id: "5" },
+  { name: "Schindler's List", year: 1993, id: "6" },
+  { name: "Pulp Fiction", year: 1994, id: "7" },
 ];
 
 interface FilmOptionType {

@@ -4,9 +4,8 @@
   width: 100%;
 }
 
-//TODO: переделать 
 .autocompleteWrapper {
   &:first-child {
-    margin-bottom: 8px;
+    margin-bottom: calc(var(--yy-base) * 2);
   }
 }
