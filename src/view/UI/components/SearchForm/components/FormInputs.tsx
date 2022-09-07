@@ -1,36 +1,76 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { FC } from "react";
+import { FC, HTMLAttributes } from "react";
 import styles from "./styles//inputs.module.scss";
 import { IFormInputs } from "./types";
 
-export const FormInputs: FC<IFormInputs> = ({ errors }) => {
-  const defaultProps = {
-    options: top100Films,
-    getOptionLabel: (option: FilmOptionType) => option.title,
-  };
+export const FormInputs: FC<IFormInputs> = ({ errors, register }) => {
+  
+  const noOptionsText = "Не найдено";
+  const loadingText = "Загрузка...";
 
+  const handleOpen = async () => {
+    // await getLocality();
+  }
+
+  const renderOption = (
+    props: HTMLAttributes<HTMLLIElement>,
+    option: FilmOptionType
+  ) => (
+    <li {...props} key={option.id}>
+      {option.name}
+    </li>
+  );
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.autocompleteWrapper}>
         <Autocomplete
-          {...defaultProps}
+          options={top100Films}
+          renderOption={renderOption}
           id="origin"
-          sx={{ width: "100%" }}
+          fullWidth
+          noOptionsText={noOptionsText}
+          loadingText={loadingText}
+          getOptionLabel={(option) => option.name}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
           clearOnEscape
+          onOpen={handleOpen}
           renderInput={(params) => (
-            <TextField {...params} label="Откуда" variant="standard" />
+            <TextField
+              {...register("origin", {
+                required: true,
+              })}
+              {...params}
+              autoFocus
+              label="Откуда"
+              placeholder="Откуда"
+              variant="standard"
+            />
           )}
         />
       </div>
       <div className={styles.autocompleteWrapper}>
         <Autocomplete
-          {...defaultProps}
+          options={top100Films}
+          renderOption={renderOption}
           id="destination"
-          sx={{ width: "100%" }}
+          noOptionsText={noOptionsText}
+          loadingText={loadingText}
+          getOptionLabel={(option) => option.name}
+          isOptionEqualToValue={(option, value) => option.id === value.id}
+          fullWidth
           clearOnEscape
+          onOpen={handleOpen}
           renderInput={(params) => (
-            <TextField {...params} label="Куда" variant="standard" />
+            <TextField
+              {...register("destination", {
+                required: true,
+              })}
+              {...params}
+              label="Куда"
+              placeholder="Куда"
+              variant="standard"
+            />
           )}
         />
       </div>
@@ -40,16 +80,17 @@ export const FormInputs: FC<IFormInputs> = ({ errors }) => {
 
 //TEST
 const top100Films = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
+  { name: "The Shawshank Redemption", year: 1994, id: '1' },
+  { name: "The Godfather", year: 1972, id: '2' },
+  { name: "The Godfather: Part II", year: 1974, id: '3' },
+  { name: "The Dark Knight", year: 2008, id: '4' },
+  { name: "12 Angry Men", year: 1957, id: '5' },
+  { name: "Schindler's List", year: 1993, id: '6' },
+  { name: "Pulp Fiction", year: 1994,id: '7' },
 ];
 
 interface FilmOptionType {
-  title: string;
+  id: string;
+  name: string;
   year: number;
 }
