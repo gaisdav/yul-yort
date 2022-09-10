@@ -20,7 +20,6 @@ export const Form: FC<IForm> = ({ loading, onSearch }) => {
     <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
       <Paper elevation={3} className={styles.formWrapper}>
         <Point />
-
         <FormInputs
           errors={errors}
           register={register}
