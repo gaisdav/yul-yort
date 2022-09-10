@@ -18,9 +18,10 @@ export const SearchForm: FC<ISearchForm> = ({
     setMinified(!isMinified);
   };
 
-  const handleSearch: SubmitHandler<IFormData> = (...args) => {
-    onSearch(...args);
-    minified && setMinified(true);
+  const handleSearch: SubmitHandler<IFormData> = (args) => {
+    console.log('test', args)
+    // onSearch(...args);
+    // minified && setMinified(true);
   };
 
   if (isMinified) {

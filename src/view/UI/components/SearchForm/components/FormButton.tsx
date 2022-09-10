@@ -1,13 +1,13 @@
 import Button from "@mui/material/Button";
 import { FC } from "react";
-import styles from "./styles/button.module.scss";
-import { iFormButton } from "./types";
 
-export const FormButton: FC<iFormButton> = ({ loading }) => {
+import { IFormButton } from "./types";
+
+export const FormButton: FC<IFormButton> = ({ loading }) => {
   return (
     <Button
       disabled={loading}
-      className={styles.button}
+      fullWidth
       type="submit"
       variant="contained"
     >

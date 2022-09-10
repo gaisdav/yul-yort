@@ -1,39 +1,39 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { FC, HTMLAttributes } from "react";
+import { FC, useState } from "react";
 import styles from "./styles//inputs.module.scss";
 import { IFormInputs } from "./types";
 
-export const FormInputs: FC<IFormInputs> = ({ errors, register }) => {
+export const FormInputs: FC<IFormInputs> = ({
+  errors,
+  register,
+  clearErrors,
+}) => {
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
+  const [originID, setOriginID] = useState("");
+  const [destinationID, setDestinationID] = useState("");
 
   const handleOpen = async () => {
     // await getLocality();
   };
-
-  const renderOption = (
-    props: HTMLAttributes<HTMLLIElement>,
-    option: FilmOptionType
-  ) => (
-    <li {...props} key={option.id}>
-      {option.name}
-    </li>
-  );
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.autocompleteWrapper}>
         <Autocomplete
           options={top100Films}
-          renderOption={renderOption}
           id="origin"
           fullWidth
           noOptionsText={noOptionsText}
           loadingText={loadingText}
-          getOptionLabel={(option) => option.name}
+          getOptionLabel={(option) => option.title}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           clearOnEscape
           onOpen={handleOpen}
+          onChange={(_, newValue) => {
+            const id = newValue?.id || "";
+            setOriginID(id);
+          }}
           renderInput={(params) => (
             <TextField
               {...register("origin", {
@@ -51,21 +51,25 @@ export const FormInputs: FC<IFormInputs> = ({ errors, register }) => {
       <div className={styles.autocompleteWrapper}>
         <Autocomplete
           options={top100Films}
-          renderOption={renderOption}
           id="destination"
           noOptionsText={noOptionsText}
           loadingText={loadingText}
-          getOptionLabel={(option) => option.name}
+          getOptionLabel={(option) => option.title}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           fullWidth
           clearOnEscape
           onOpen={handleOpen}
+          onChange={(_, newValue) => {
+            const id = newValue?.id || "";
+            setDestinationID(id);
+          }}
           renderInput={(params) => (
             <TextField
+              {...params}
               {...register("destination", {
                 required: true,
+                value: destinationID,
               })}
-              {...params}
               label="Куда"
               placeholder="Куда"
               variant="standard"
@@ -79,17 +83,11 @@ export const FormInputs: FC<IFormInputs> = ({ errors, register }) => {
 
 //TEST
 const top100Films = [
-  { name: "The Shawshank Redemption", year: 1994, id: "1" },
-  { name: "The Godfather", year: 1972, id: "2" },
-  { name: "The Godfather: Part II", year: 1974, id: "3" },
-  { name: "The Dark Knight", year: 2008, id: "4" },
-  { name: "12 Angry Men", year: 1957, id: "5" },
-  { name: "Schindler's List", year: 1993, id: "6" },
-  { name: "Pulp Fiction", year: 1994, id: "7" },
+  { title: "The Shawshank Redemption", year: 1994, id: "1" },
+  { title: "The Godfather", year: 1972, id: "2" },
+  { title: "The Godfather: Part II", year: 1974, id: "3" },
+  { title: "The Dark Knight", year: 2008, id: "4" },
+  { title: "12 Angry Men", year: 1957, id: "5" },
+  { title: "Schindler's List", year: 1993, id: "6" },
+  { title: "Pulp Fiction", year: 1994, id: "7" },
 ];
-
-interface FilmOptionType {
-  id: string;
-  name: string;
-  year: number;
-}

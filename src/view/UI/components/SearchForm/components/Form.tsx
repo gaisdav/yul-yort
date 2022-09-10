@@ -11,14 +11,21 @@ export const Form: FC<IForm> = ({ loading, onSearch }) => {
   const {
     register,
     handleSubmit,
+    reset,
+    clearErrors,
     formState: { errors },
   } = useForm<IFormData>();
 
   return (
     <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
-      <Paper elevation={3} className={`${styles.formWrapper}`}>
+      <Paper elevation={3} className={styles.formWrapper}>
         <Point />
-        <FormInputs errors={errors} register={register} />
+
+        <FormInputs
+          errors={errors}
+          register={register}
+          clearErrors={clearErrors}
+        />
       </Paper>
       <FormButton loading={loading} />
     </form>

@@ -4,8 +4,9 @@ import { FieldErrors, UseFormRegister } from "react-hook-form";
 export interface IFormInputs {
   errors: FieldErrors<any>,
   register: UseFormRegister<any>
+  clearErrors: any
 }
 
-export interface iFormButton {
+export interface IFormButton {
   loading: boolean | undefined,
 }
