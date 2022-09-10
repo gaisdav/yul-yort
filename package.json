@@ -1,6 +1,7 @@
 {
   "name": "yul-yort",
   "version": "0.1.0",
+  "type": "module",
   "homepage": ".",
   "private": true,
   "dependencies": {
@@ -28,7 +29,6 @@
     "react-scripts": "4.0.3",
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1",
-    "typescript": "^4.4.3",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
@@ -50,7 +50,8 @@
     "testCoverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "get-css-vars": "rm -rf ./public/styles/mui-variables.css && node getCSSVariablesFromTheme.js && prettier --write ./public/styles/mui-variables.css"
   },
   "eslintConfig": {
     "extends": [
@@ -89,7 +90,8 @@
     "@storybook/react": "^6.3.12",
     "msw": "^0.35.0",
     "prettier": "2.4.1",
-    "storybook-addon-material-ui": "^0.9.0-alpha.24"
+    "storybook-addon-material-ui": "^0.9.0-alpha.24",
+    "typescript": "^4.8.3"
   },
   "msw": {
     "workerDirectory": "public"
