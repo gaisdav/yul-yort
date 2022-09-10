@@ -1,8 +1,8 @@
 :root {
   --yy-primary-main: #0db2b2;
   --yy-primary-light: #8ad6d6;
+  --yy-primary-contrast-text: rgba(255, 255, 255, 0.87);
   --yy-primary-dark: rgb(9, 124, 124);
-  --yy-primary-contrast-text: rgba(0, 0, 0, 0.87);
   --yy-secondary-main: #9c81e8;
   --yy-secondary-light: rgb(175, 154, 236);
   --yy-secondary-dark: rgb(109, 90, 162);

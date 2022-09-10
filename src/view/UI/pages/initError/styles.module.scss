@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: calc(var(--yy-base) * 6);
+  padding: 24px;
 }
 
 .pageContainer {
@@ -20,5 +20,5 @@
 
 .icon {
   line-height: 0;
-  font-size: calc(var(--yy-base) * 50);
+  font-size: 200px;
 }
