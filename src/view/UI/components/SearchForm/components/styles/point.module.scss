@@ -7,14 +7,14 @@
 }
 
 .point {
-  width: calc(var(--yy-base) * 6);
-  height: calc(var(--yy-base) * 6);
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: var(--yy-main-color);
-  border: 3px solid var(--yy-border-color);
+  background: var(--yy-primary-main);
+  border: 3px solid var(--yy-primary-light);
 }
 
 .line {
-  height: calc(var(--yy-base) * 8);
-  border: 0.5px dotted var(--yy-dark-color);
+  height: 32px;
+  border: 0.5px dotted var(--yy-common-black);
 }

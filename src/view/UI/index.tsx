@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { FC, StrictMode } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "../../reportWebVitals";
@@ -14,29 +14,42 @@ import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
 import Body from "./components/Body";
 import { ErrorBoundary } from "./pages/errorBoundaryPage";
+import { useViewModel } from "./hooks/useViewModel";
+import { observer } from "mobx-react-lite";
+import { IAppVM } from "../viewModels/App/types";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;
-  theme: Theme;
+  themes: [lightTheme: Theme, darkTheme: Theme];
 };
 
-export const initApp = ({ router, theme }: IAppInitConfig) => {
-  ReactDOM.render(
-    <StrictMode>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <StyledEngineProvider injectFirst>
-          {/* @ts-ignore TODO */}
-          <RouterProvider router={router}>
+const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
+  ({ themes: [lightTheme, darkTheme] }) => {
+    const appVM = useViewModel<IAppVM>("app");
+
+    return (
+      <StrictMode>
+        <ThemeProvider theme={appVM.theme === "light" ? lightTheme : darkTheme}>
+          <CssBaseline />
+          <StyledEngineProvider injectFirst>
             <ErrorBoundary>
               <Body>
                 <App />
               </Body>
             </ErrorBoundary>
-          </RouterProvider>
-        </StyledEngineProvider>
-      </ThemeProvider>
-    </StrictMode>,
+          </StyledEngineProvider>
+        </ThemeProvider>
+      </StrictMode>
+    );
+  }
+);
+
+export const initApp = ({ router, themes }: IAppInitConfig) => {
+  ReactDOM.render(
+    /* @ts-ignore TODO */
+    <RouterProvider router={router}>
+      <AppRoot themes={themes} />
+    </RouterProvider>,
     document.getElementById("root")
   );
 };

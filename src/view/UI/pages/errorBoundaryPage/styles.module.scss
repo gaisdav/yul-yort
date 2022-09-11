@@ -8,12 +8,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: calc(var(--yy-base) * 4);
+  padding: 16px;
 }
 
 .icon {
   line-height: 0;
-  font-size: calc(var(--yy-base) * 50);
+  font-size: 200px;
 }
 
 .collapse {
@@ -30,8 +30,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--yy-base) * 6);
+  height: 24px;
   text-align: center;
-  color: var(--yy-white-color);
-  background-color: var(--yy-error-color);
+  color: var(--yy-common-white);
+  background-color: var(--yy-error-main);
 }
