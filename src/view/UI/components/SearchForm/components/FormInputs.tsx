@@ -1,17 +1,12 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { FC, useState } from "react";
-import styles from "./styles//inputs.module.scss";
+import { FC } from "react";
+import { Controller } from "react-hook-form";
 import { IFormInputs } from "./types";
+import styles from "./styles//inputs.module.scss";
 
-export const FormInputs: FC<IFormInputs> = ({
-  errors,
-  register,
-  clearErrors,
-}) => {
+export const FormInputs: FC<IFormInputs> = ({ control }) => {
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
-  const [originID, setOriginID] = useState("");
-  const [destinationID, setDestinationID] = useState("");
 
   const handleOpen = async () => {
     // await getLocality();
@@ -20,68 +15,72 @@ export const FormInputs: FC<IFormInputs> = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.autocompleteWrapper}>
-        <Autocomplete
-          options={top100Films}
-          id="origin"
-          fullWidth
-          noOptionsText={noOptionsText}
-          loadingText={loadingText}
-          getOptionLabel={(option) => option.title}
-          isOptionEqualToValue={(option, value) => option.id === value.id}
-          clearOnEscape
-          onOpen={handleOpen}
-          onChange={(_, newValue) => {
-            const id = newValue?.id || "";
-            setOriginID(id);
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...register("origin", {
-                required: true,
-              })}
-              {...params}
-              autoFocus
-              label="Откуда"
-              placeholder="Откуда"
-              variant="standard"
-            />
-          )}
-        />
+      <Controller
+        control={control}
+        rules={{ required: true }}
+        name="origin"
+        render={({ field: { onChange } }) => (
+          <Autocomplete
+            options={top100Films}
+            id="origin"
+            getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
+            fullWidth
+            clearOnEscape
+            noOptionsText={noOptionsText}
+            loadingText={loadingText}
+            onOpen={handleOpen}
+            onChange={(_, data) => {
+              onChange(data?.id);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                autoFocus
+                label="Откуда"
+                placeholder="Откуда"
+                variant="standard"
+              />
+            )}
+          />
+        )}
+      />
       </div>
       <div className={styles.autocompleteWrapper}>
-        <Autocomplete
-          options={top100Films}
-          id="destination"
-          noOptionsText={noOptionsText}
-          loadingText={loadingText}
-          getOptionLabel={(option) => option.title}
-          isOptionEqualToValue={(option, value) => option.id === value.id}
-          fullWidth
-          clearOnEscape
-          onOpen={handleOpen}
-          onChange={(_, newValue) => {
-            const id = newValue?.id || "";
-            setDestinationID(id);
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              {...register("destination", {
-                required: true,
-                value: destinationID,
-              })}
-              label="Куда"
-              placeholder="Куда"
-              variant="standard"
-            />
-          )}
-        />
+      <Controller
+        control={control}
+        rules={{ required: true }}
+        name="destination"
+        render={({ field: { onChange } }) => (
+          <Autocomplete
+            options={top100Films}
+            id="destination"
+            getOptionLabel={(option) => option.title}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
+            fullWidth
+            clearOnEscape
+            noOptionsText={noOptionsText}
+            loadingText={loadingText}
+            onOpen={handleOpen}
+            onChange={(_, data) => {
+              onChange(data?.id);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Куда"
+                placeholder="Куда"
+                variant="standard"
+              />
+            )}
+          />
+        )}
+      />
       </div>
     </div>
   );
 };
 
-//TEST
 const top100Films = [
   { title: "The Shawshank Redemption", year: 1994, id: "1" },
   { title: "The Godfather", year: 1972, id: "2" },
