@@ -1,6 +1,32 @@
 import { createTheme } from "@mui/material";
 
-const theme = createTheme({
+const components = {
+  MuiPaper: {
+    styleOverrides: {
+      root: {
+        borderRadius: 8,
+      },
+    },
+  },
+  MuiFormHelperText: {
+    styleOverrides: {
+      root: {
+        position: "absolute",
+        top: 40,
+        marginLeft: 0,
+        marginTop: 0,
+      },
+    },
+  },
+};
+
+const typography = {
+  button: {
+    textTransform: "none",
+  },
+};
+
+export const lightTheme = createTheme({
   palette: {
     primary: {
       main: "#0db2b2",
@@ -14,30 +40,14 @@ const theme = createTheme({
       default: "#f2f6f6",
     },
   },
-  components: {
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-        },
-      },
-    },
-    MuiFormHelperText: {
-      styleOverrides: {
-        root: {
-          position: "absolute",
-          top: 40,
-          marginLeft: 0,
-          marginTop: 0,
-        },
-      },
-    },
-  },
-  typography: {
-    button: {
-      textTransform: "none",
-    },
-  },
+  components,
+  typography,
 });
 
-export default theme;
+export const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+  components,
+  typography,
+});
