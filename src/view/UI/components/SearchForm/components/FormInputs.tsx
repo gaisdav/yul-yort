@@ -15,67 +15,67 @@ export const FormInputs: FC<IFormInputs> = ({ control }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.autocompleteWrapper}>
-      <Controller
-        control={control}
-        rules={{ required: true }}
-        name="origin"
-        render={({ field: { onChange } }) => (
-          <Autocomplete
-            options={top100Films}
-            id="origin"
-            getOptionLabel={(option) => option.title}
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-            fullWidth
-            clearOnEscape
-            noOptionsText={noOptionsText}
-            loadingText={loadingText}
-            onOpen={handleOpen}
-            onChange={(_, data) => {
-              onChange(data?.id);
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                autoFocus
-                label="Откуда"
-                placeholder="Откуда"
-                variant="standard"
-              />
-            )}
-          />
-        )}
-      />
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          name="origin"
+          render={({ field: { onChange } }) => (
+            <Autocomplete
+              options={top100Films}
+              id="origin"
+              getOptionLabel={(option) => option.title}
+              isOptionEqualToValue={(option, value) => option.id === value.id}
+              fullWidth
+              clearOnEscape
+              noOptionsText={noOptionsText}
+              loadingText={loadingText}
+              onOpen={handleOpen}
+              onChange={(_, data) => {
+                onChange(data?.id);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  autoFocus
+                  label="Откуда"
+                  placeholder="Откуда"
+                  variant="standard"
+                />
+              )}
+            />
+          )}
+        />
       </div>
       <div className={styles.autocompleteWrapper}>
-      <Controller
-        control={control}
-        rules={{ required: true }}
-        name="destination"
-        render={({ field: { onChange } }) => (
-          <Autocomplete
-            options={top100Films}
-            id="destination"
-            getOptionLabel={(option) => option.title}
-            isOptionEqualToValue={(option, value) => option.id === value.id}
-            fullWidth
-            clearOnEscape
-            noOptionsText={noOptionsText}
-            loadingText={loadingText}
-            onOpen={handleOpen}
-            onChange={(_, data) => {
-              onChange(data?.id);
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Куда"
-                placeholder="Куда"
-                variant="standard"
-              />
-            )}
-          />
-        )}
-      />
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          name="destination"
+          render={({ field: { onChange } }) => (
+            <Autocomplete
+              options={top100Films}
+              id="destination"
+              getOptionLabel={(option) => option.title}
+              isOptionEqualToValue={(option, value) => option.id === value.id}
+              fullWidth
+              clearOnEscape
+              noOptionsText={noOptionsText}
+              loadingText={loadingText}
+              onOpen={handleOpen}
+              onChange={(_, data) => {
+                onChange(data?.id);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Куда"
+                  placeholder="Куда"
+                  variant="standard"
+                />
+              )}
+            />
+          )}
+        />
       </div>
     </div>
   );
