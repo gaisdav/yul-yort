@@ -1,6 +1,7 @@
 import { BaseVM } from "../BaseVM";
 import { IAppVM, TTheme } from "./types";
 import { makeObservable, observable } from "mobx";
+import { themeKey } from "../../../constants";
 
 export class AppVM extends BaseVM implements IAppVM {
   theme: TTheme;
@@ -11,13 +12,13 @@ export class AppVM extends BaseVM implements IAppVM {
       theme: observable,
     });
     // TODO получать через сервис?
-    this.theme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+    this.theme = localStorage.getItem(themeKey) === "dark" ? "dark" : "light";
   }
 
   setTheme(theme: TTheme) {
     try {
       // TODO сохранять через сервис?
-      localStorage.setItem("theme", theme);
+      localStorage.setItem(themeKey, theme);
       this.theme = theme;
     } catch (err) {
       throw err;
