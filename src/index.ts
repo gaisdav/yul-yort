@@ -1,7 +1,7 @@
 import createAppRouter from "./router";
 import { viewModels } from "./store";
 import { initApp } from "./view/UI";
-import theme from "./view/UI/theme";
+import { lightTheme, darkTheme } from "./view/UI/theme";
 import { initErrorApp } from "./view/UI/initErrorApp";
 import routes from "./router/routes";
 
@@ -18,7 +18,7 @@ try {
 
   initApp({
     router,
-    theme,
+    themes: [lightTheme, darkTheme],
   });
 } catch (err) {
   initErrorApp(err);

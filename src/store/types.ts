@@ -3,6 +3,7 @@ import { IOrderRepository } from "../data/repositories/Order/types";
 import { IOrderVM } from "../view/viewModels/Order/types";
 import { IApi } from "../libs/api/types";
 import { OrderDomain } from "../data/entities/Order";
+import { IAppVM } from "../view/viewModels/App/types";
 
 export interface ILibs {
   api: IApi;
@@ -22,4 +23,5 @@ export interface IStoreRepositories {
 
 export interface IStoreViewModels {
   order: IOrderVM;
+  app: IAppVM;
 }

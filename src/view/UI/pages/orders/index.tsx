@@ -9,9 +9,10 @@ import List from "./components/List/List";
 import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
+import { IOrderVM } from "../../../viewModels/Order/types";
 
 const Orders: FC = observer(() => {
-  const orderVM = useViewModel("order");
+  const orderVM = useViewModel<IOrderVM>("order");
   const {
     route: { params },
     router: { navigate },

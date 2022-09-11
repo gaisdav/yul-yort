@@ -100,6 +100,7 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
             Отсутствует интернет соединение
           </Typography>
         )}
+
         {this.props.children}
       </span>
     );
