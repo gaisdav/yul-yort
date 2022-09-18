@@ -1,5 +1,5 @@
-import { IOrderDomain } from "../../../../../../data/entities/Order/types";
+import { IOrder } from "../../../../../../data/Order";
 
 export interface IListProps {
-  list: IOrderDomain[];
+  list: IOrder[];
 }

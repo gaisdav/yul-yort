@@ -1,10 +1,7 @@
 import { IOrderRepository } from "./types";
-import {
-  IOrderRequestParams,
-  IOrderResponseDTO,
-} from "../../entities/Order/types";
-import { EEndpoints } from "../../../constants/Endpoints";
-import { BaseRepository } from "../BaseRepository";
+import { BaseRepository } from "../../BaseRepository";
+import { IOrderRequestParams, IOrderResponseDTO } from "../entity/types";
+import { EEndpoints } from "../../../constants";
 
 export class OrderRepository
   extends BaseRepository

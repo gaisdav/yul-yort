@@ -4,11 +4,10 @@ import {
   IStoreServices,
   IStoreViewModels,
 } from "./types";
-import { OrderService } from "../data/services/Order";
-import { OrderRepository } from "../data/repositories/Order";
-import { OrderVM } from "../view/viewModels/Order";
 import { Api } from "../libs/api";
 import { AppVM } from "../view/viewModels/App";
+import { OrderRepository, OrderService } from "../data/Order";
+import { OrderVM } from "../view/viewModels/Order";
 
 const libs: ILibs = {
   api: new Api(),

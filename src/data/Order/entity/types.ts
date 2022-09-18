@@ -1,13 +1,11 @@
-export enum ECurrencyISO {
-  RUB = "RUB",
-}
+import { TCurrencyISO } from "../../../constants";
 
-export interface IOrderDomain {
+export interface IOrder {
   id: ID;
   agencyName: string;
   agencyPhones?: string[];
   price?: number;
-  currencyISO: ECurrencyISO;
+  currencyISO: TCurrencyISO;
 
   priceValue?: string;
   phoneValues?: string[];
@@ -15,7 +13,7 @@ export interface IOrderDomain {
 
 export interface IOrderResponseDTO
   extends Pick<
-    IOrderDomain,
+    IOrder,
     "price" | "id" | "agencyName" | "currencyISO" | "agencyPhones"
   > {}
 

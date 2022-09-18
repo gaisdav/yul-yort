@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Order } from "./index";
 
 export default {
-  title: "components/Order",
+  title: "components/_Order",
   component: Order,
 } as ComponentMeta<typeof Order>;
 

@@ -1,14 +1,15 @@
 import { BaseVM } from "../BaseVM";
 import { IOrderVM } from "./types";
-import {
-  IOrderDomain,
-  IOrderRequestParams,
-} from "../../../data/entities/Order/types";
-import { IOrderService } from "../../../data/services/Order/types";
+
 import { action, makeObservable, observable } from "mobx";
+import {
+  IOrder,
+  IOrderRequestParams,
+  IOrderService,
+} from "../../../data/Order";
 
 export class OrderVM extends BaseVM implements IOrderVM {
-  orderList: IOrderDomain[] | null = null;
+  orderList: IOrder[] | null = null;
 
   constructor(private service: IOrderService) {
     super();

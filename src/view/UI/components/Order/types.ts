@@ -1,4 +1,4 @@
-import { IOrderDomain } from "../../../../data/entities/Order/types";
+import { IOrder } from "../../../../data/Order";
 
 export interface IOrderProps
-  extends Pick<IOrderDomain, "phoneValues" | "agencyName" | "priceValue"> {}
+  extends Pick<IOrder, "phoneValues" | "agencyName" | "priceValue"> {}

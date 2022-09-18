@@ -1,11 +1,11 @@
 import { computed, makeObservable, observable } from "mobx";
-import { ECurrencyISO, IOrderDomain, IOrderResponseDTO } from "./types";
-import { currenciesDictionary } from "../../../constants/CurrenciesDictionary";
+import { IOrder, IOrderResponseDTO } from "./types";
+import { currenciesDictionary, TCurrencyISO } from "../../../constants";
 
-export class OrderDomain implements IOrderDomain {
+export class Order implements IOrder {
   id: ID = "";
   agencyName: string = "";
-  currencyISO: ECurrencyISO = ECurrencyISO.RUB;
+  currencyISO: TCurrencyISO = "RUB";
   price?: number;
   agencyPhones?: string[];
 

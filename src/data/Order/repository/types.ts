@@ -1,7 +1,4 @@
-import {
-  IOrderRequestParams,
-  IOrderResponseDTO,
-} from "../../entities/Order/types";
+import { IOrderRequestParams, IOrderResponseDTO } from "../entity/types";
 
 export interface IOrderRepository {
   getOrderList: (params: IOrderRequestParams) => Promise<IOrderResponseDTO[]>;
