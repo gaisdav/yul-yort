@@ -1,38 +1,25 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, runInAction } from "mobx";
 import { ILocalityEntity, ILocalityService } from "../../../data/Locality";
 import { BaseVM } from "../BaseVM";
 import { ILocalityVM } from "./types";
-import { filterLocalities } from "./utils";
 
 export class LocalityVM extends BaseVM implements ILocalityVM {
   private _localities: ILocalityEntity[] | null = null;
   private localitiesErrorText = "Не найдено";
 
-  searchValue = "";
-
   get localities(): ILocalityEntity[] | null {
-    if (!this._localities) {
-      return this._localities;
-    }
-
-    return filterLocalities(this._localities, this.searchValue);
+    return this._localities;
   }
 
   constructor(private service: ILocalityService) {
     super();
 
     makeObservable(this, {
-      searchValue: observable,
       getList: action,
     });
   }
 
-  searchLocality = (value: string): void => {
-    this.searchValue = value;
-  };
-
   getList = async (): Promise<void> => {
-    console.log("list");
     this.setLoading();
     this.unsetError();
 
@@ -53,7 +40,6 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
   };
 
   destroy = (): void => {
-    this.searchValue = "";
     this._localities = null;
     this.unsetLoading();
     this.unsetError();
