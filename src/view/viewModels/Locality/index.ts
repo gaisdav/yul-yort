@@ -5,7 +5,6 @@ import { ILocalityVM } from "./types";
 
 export class LocalityVM extends BaseVM implements ILocalityVM {
   private _localities: ILocalityEntity[] | null = null;
-  private localitiesErrorText = "Не найдено";
 
   get localities(): ILocalityEntity[] | null {
     return this._localities;
