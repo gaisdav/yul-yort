@@ -25,13 +25,10 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
     try {
       const list = await this.service.getList();
 
-      console.log(list);
-
       runInAction(() => {
         this._localities = list;
       });
     } catch (err) {
-      console.log(err);
       this.setError(err);
     } finally {
       this.unsetLoading();
