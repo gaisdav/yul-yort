@@ -4,12 +4,19 @@ import { Controller } from "react-hook-form";
 import { IFormInputs } from "./types";
 import styles from "./styles//inputs.module.scss";
 
-export const FormInputs: FC<IFormInputs> = ({ control }) => {
+export const FormInputs: FC<IFormInputs> = ({
+  control,
+  onGetLocalities,
+  localities,
+  localitiesLoading,
+  origin,
+  destination,
+}) => {
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
 
   const handleOpen = async () => {
-    // await getLocality();
+    await onGetLocalities();
   };
 
   return (
@@ -21,11 +28,13 @@ export const FormInputs: FC<IFormInputs> = ({ control }) => {
           name="origin"
           render={({ field: { onChange } }) => (
             <Autocomplete
-              options={top100Films}
+              loading={localitiesLoading}
+              options={localities || []}
               id="origin"
-              getOptionLabel={(option) => option.title}
+              getOptionLabel={(option) => option.name}
               isOptionEqualToValue={(option, value) => option.id === value.id}
               fullWidth
+              defaultValue={origin}
               clearOnEscape
               noOptionsText={noOptionsText}
               loadingText={loadingText}
@@ -53,9 +62,11 @@ export const FormInputs: FC<IFormInputs> = ({ control }) => {
           name="destination"
           render={({ field: { onChange } }) => (
             <Autocomplete
-              options={top100Films}
+              defaultValue={destination}
+              loading={localitiesLoading}
+              options={localities || []}
               id="destination"
-              getOptionLabel={(option) => option.title}
+              getOptionLabel={(option) => option.name}
               isOptionEqualToValue={(option, value) => option.id === value.id}
               fullWidth
               clearOnEscape
@@ -80,13 +91,3 @@ export const FormInputs: FC<IFormInputs> = ({ control }) => {
     </div>
   );
 };
-
-const top100Films = [
-  { title: "The Shawshank Redemption", year: 1994, id: "1" },
-  { title: "The Godfather", year: 1972, id: "2" },
-  { title: "The Godfather: Part II", year: 1974, id: "3" },
-  { title: "The Dark Knight", year: 2008, id: "4" },
-  { title: "12 Angry Men", year: 1957, id: "5" },
-  { title: "Schindler's List", year: 1993, id: "6" },
-  { title: "Pulp Fiction", year: 1994, id: "7" },
-];

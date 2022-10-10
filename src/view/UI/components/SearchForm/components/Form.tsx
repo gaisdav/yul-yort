@@ -7,14 +7,30 @@ import { FormButton } from "./FormButton";
 import styles from "./styles/form.module.scss";
 import { FormInputs } from "./FormInputs";
 
-export const Form: FC<IForm> = ({ loading, onSearch }) => {
+export const Form: FC<IForm> = ({
+  loading,
+  onSearch,
+  onGetLocalities,
+  localities,
+  origin,
+  destination,
+  localitiesLoading = false,
+}) => {
   const { control, handleSubmit } = useForm<IFormData>();
 
   return (
     <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
       <Paper elevation={3} className={styles.formWrapper}>
         <Points />
-        <FormInputs control={control} />
+
+        <FormInputs
+          origin={origin}
+          destination={destination}
+          localitiesLoading={localitiesLoading}
+          control={control}
+          onGetLocalities={onGetLocalities}
+          localities={localities}
+        />
       </Paper>
       <FormButton loading={loading} />
     </form>

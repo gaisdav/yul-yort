@@ -16,18 +16,18 @@ export const MinifiedForm: FC<IMinifiedForm> = ({
       <div className={css.minifiedRouteWrapper}>
         {!origin || !destination ? (
           <Typography variant="h6" className={css.title}>
-            Маршрут не указан
+            {loading ? "Загрузка..." : "Маршрут не указан"}
           </Typography>
         ) : (
           <div className={css.route}>
             <Typography variant="h6" className={css.title} align="center">
-              {origin}
+              {origin.name}
             </Typography>
 
             <ArrowRightAltOutlinedIcon className={css.icon} />
 
             <Typography variant="h6" className={css.title} align="center">
-              {destination}
+              {destination.name}
             </Typography>
           </div>
         )}
@@ -38,6 +38,7 @@ export const MinifiedForm: FC<IMinifiedForm> = ({
           color="primary"
           variant="outlined"
           size="large"
+          disabled={loading}
         >
           Изменить
         </Button>
