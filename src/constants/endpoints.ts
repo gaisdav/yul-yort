@@ -1,5 +1,6 @@
 export const baseUrl = window.location.origin;
 
 export enum EEndpoints {
-  orders = "/orders",
+  ORDER_LIST = "/api/orders",
+  LOCALITY_LIST = "/api/locality/list",
 }

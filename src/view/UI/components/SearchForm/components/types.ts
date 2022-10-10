@@ -6,5 +6,5 @@ export interface IFormInputs {
 }
 
 export interface IFormButton {
-  loading: boolean | undefined,
+  loading: boolean | undefined;
 }
