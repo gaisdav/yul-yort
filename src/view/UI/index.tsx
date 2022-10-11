@@ -8,7 +8,7 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from "@mui/material";
-import { RouterProvider } from "react-router5";
+import { RouterProvider, useRouter } from "react-router5";
 import { Router } from "router5/dist/types/router";
 import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
@@ -17,6 +17,7 @@ import { ErrorBoundary } from "./pages/errorBoundaryPage";
 import { useViewModel } from "./hooks/useViewModel";
 import { observer } from "mobx-react-lite";
 import { IAppVM } from "../viewModels/App/types";
+import { Header } from "./components/Header";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;
@@ -26,6 +27,11 @@ type IAppInitConfig = {
 const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
   ({ themes: [lightTheme, darkTheme] }) => {
     const appVM = useViewModel<IAppVM>("app");
+    const { navigate } = useRouter();
+
+    const handleGoHome = () => {
+      navigate("home");
+    };
 
     return (
       <StrictMode>
@@ -33,6 +39,11 @@ const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
           <CssBaseline />
           <StyledEngineProvider injectFirst>
             <ErrorBoundary>
+              <Header
+                theme={appVM.theme}
+                onSetTheme={appVM.setTheme}
+                onGoHome={handleGoHome}
+              />
               <Body>
                 <App />
               </Body>
