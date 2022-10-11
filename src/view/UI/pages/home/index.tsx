@@ -21,7 +21,6 @@ const Home: FC = observer(() => {
       <SearchForm
         localitiesLoading={localityVM.loading}
         onSearch={handleSearch}
-        onGetLocalities={localityVM.getList}
         localities={localityVM.localities}
       />
     </div>

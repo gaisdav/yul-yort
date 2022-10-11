@@ -37,7 +37,6 @@ const Orders: FC = observer(() => {
       <div className={css.searchForm}>
         <SearchForm
           minified
-          onGetLocalities={localityVM.getList}
           localities={localityVM.localities}
           loading={orderVM.loading || localityVM.loading}
           localitiesLoading={localityVM.loading}

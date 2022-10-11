@@ -20,8 +20,6 @@ export interface ISearchForm {
   /** Метод поиска. */
   onSearch: SubmitHandler<IFormData>;
   /** Метод получения списка населенных пунктов. */
-  onGetLocalities: () => Promise<void>;
-  /** Метод получения списка населенных пунктов. */
   localities: ILocalityEntity[] | null;
 }
 
@@ -42,5 +40,7 @@ export interface IMinifiedForm
   onExpand: () => void;
 }
 
-export interface IFormData
-  extends Required<Pick<ISearchForm, "origin" | "destination">> {}
+export interface IFormData {
+  origin: string;
+  destination: string;
+}

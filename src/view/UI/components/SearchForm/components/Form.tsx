@@ -3,20 +3,21 @@ import { Paper } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { IForm, IFormData } from "../types";
 import { Points } from "./Points";
-import { FormButton } from "./FormButton";
+import { FormActions } from "./FormActions";
 import styles from "./styles/form.module.scss";
 import { FormInputs } from "./FormInputs";
 
 export const Form: FC<IForm> = ({
   loading,
   onSearch,
-  onGetLocalities,
   localities,
   origin,
   destination,
+  minified,
   localitiesLoading = false,
+  onExpand,
 }) => {
-  const { control, handleSubmit } = useForm<IFormData>();
+  const { control, handleSubmit, setValue } = useForm<IFormData>();
 
   return (
     <form onSubmit={handleSubmit(onSearch)} className={styles.wrapper}>
@@ -24,15 +25,16 @@ export const Form: FC<IForm> = ({
         <Points />
 
         <FormInputs
+          setValue={setValue}
           origin={origin}
           destination={destination}
           localitiesLoading={localitiesLoading}
           control={control}
-          onGetLocalities={onGetLocalities}
           localities={localities}
         />
       </Paper>
-      <FormButton loading={loading} />
+
+      <FormActions loading={loading} minified={minified} onExpand={onExpand} />
     </form>
   );
 };
