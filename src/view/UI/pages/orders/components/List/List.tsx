@@ -21,12 +21,7 @@ const List: FC<IListProps> = ({ list }) => {
       </Typography>
 
       {list.map((order) => (
-        <Order
-          key={order.id}
-          agencyName={order.agencyName}
-          phoneValues={order.phoneValues}
-          priceValue={order.priceValue}
-        />
+        <Order key={order.id} agency={order.agency} price={order.price} />
       ))}
     </>
   );

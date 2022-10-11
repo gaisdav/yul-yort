@@ -1,5 +1,5 @@
-import { IOrder } from "../../../../../../data/Order";
+import { IOrderEntity } from "../../../../../../data/Order";
 
 export interface IListProps {
-  list: IOrder[];
+  list: IOrderEntity[];
 }

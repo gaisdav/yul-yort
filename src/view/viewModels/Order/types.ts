@@ -1,8 +1,8 @@
 import { IBaseVM } from "../types";
-import { IOrder, IOrderRequestParams } from "../../../data/Order";
+import { IOrderEntity, IOrderRequestParams } from "../../../data/Order";
 
 export interface IOrderVM extends IBaseVM {
-  orderList: IOrder[] | null;
+  orderList: IOrderEntity[] | null;
 
   getList: (params: IOrderRequestParams) => Promise<void>;
 }
