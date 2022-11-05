@@ -1,21 +1,21 @@
-import { TCurrencyISO } from "../../../constants";
+import { IAgencyEntity, IAgencyResponseDTO } from "../../Agency";
+import { IRouteDTO, IRouteEntity } from "../../Route";
+import { ECurrencyISO } from "../../../constants";
 
-export interface IOrder {
+export interface IOrderEntity {
   id: ID;
-  agencyName: string;
-  agencyPhones?: string[];
-  price?: number;
-  currencyISO: TCurrencyISO;
-
-  priceValue?: string;
-  phoneValues?: string[];
+  agency: IAgencyEntity;
+  route: IRouteEntity;
+  price: number;
+  currencyISO: ECurrencyISO;
 }
 
 export interface IOrderResponseDTO
-  extends Pick<
-    IOrder,
-    "price" | "id" | "agencyName" | "currencyISO" | "agencyPhones"
-  > {}
+  extends Omit<IOrderEntity, "id" | "agency" | "route"> {
+  _id: string;
+  agency: IAgencyResponseDTO;
+  route: IRouteDTO;
+}
 
 export interface IOrderRequestParams {
   origin?: string;

@@ -11,8 +11,6 @@ const components = {
   MuiFormHelperText: {
     styleOverrides: {
       root: {
-        position: "absolute",
-        top: 40,
         marginLeft: 0,
         marginTop: 0,
       },
@@ -54,6 +52,14 @@ export const lightTheme = createTheme({
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    primary: {
+      main: "#0db2b2",
+      light: "#8ad6d6",
+      contrastText: "rgba(0, 0, 0, 0.87)",
+    },
+    secondary: {
+      main: "#a48aec",
+    },
   },
   components,
   typography,

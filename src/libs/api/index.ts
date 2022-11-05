@@ -11,7 +11,8 @@ export class Api implements IApi {
     const response = await fetch(fullUrl);
 
     if (!response.ok) {
-      throw Error(response.status + " " + response.statusText);
+      const errorText = await response.text();
+      throw Error(errorText);
     }
 
     return await response.json();

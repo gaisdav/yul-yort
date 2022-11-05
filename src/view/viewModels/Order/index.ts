@@ -3,13 +3,13 @@ import { IOrderVM } from "./types";
 
 import { action, makeObservable, observable } from "mobx";
 import {
-  IOrder,
+  IOrderEntity,
   IOrderRequestParams,
   IOrderService,
 } from "../../../data/Order";
 
 export class OrderVM extends BaseVM implements IOrderVM {
-  orderList: IOrder[] | null = null;
+  orderList: IOrderEntity[] | null = null;
 
   constructor(private service: IOrderService) {
     super();

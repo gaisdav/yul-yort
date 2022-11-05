@@ -4,9 +4,13 @@ import { SearchForm } from "../../components/SearchForm";
 import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
+import { useViewModel } from "../../hooks/useViewModel";
+import { ILocalityVM } from "../../../viewModels/Locality/types";
+import { observer } from "mobx-react-lite";
 
-const Home: FC = () => {
+const Home: FC = observer(() => {
   const { navigate } = useRouter();
+  const localityVM = useViewModel<ILocalityVM>("locality");
 
   const handleSearch: SubmitHandler<IFormData> = (data) => {
     navigate("orders", data);
@@ -14,9 +18,13 @@ const Home: FC = () => {
 
   return (
     <div className={css.page}>
-      <SearchForm onSearch={handleSearch} />
+      <SearchForm
+        localitiesLoading={localityVM.loading}
+        onSearch={handleSearch}
+        localities={localityVM.localities}
+      />
     </div>
   );
-};
+});
 
 export default Home;

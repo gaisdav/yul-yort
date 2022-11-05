@@ -117,7 +117,7 @@ export class ${className} extends BaseRepository implements ${typeName} {}
       const typeName = "I" + className;
 
       return `import { makeObservable } from "mobx";
-import { I${name}Service } from "../../../data/${name}/service/types";
+import { I${name}Service } from "../../../data/${name}";
 import { BaseVM } from "../BaseVM";
 import { ${typeName} } from "./types";
 

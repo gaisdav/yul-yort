@@ -1,15 +1,29 @@
 import { IRoutes } from "./types";
 
 const routes: IRoutes = [
-  { name: "home", path: "/" },
+  {
+    name: "home",
+    path: "/",
+    onActivate: async (store) => {
+      store.locality.getList();
+    },
+  },
   {
     name: "orders",
     path: "/orders",
-    onActivate: (store, params) => {
-      return store.order.getList({
-        origin: params?.origin,
-        destination: params?.destination,
+    onActivate: async (store, params) => {
+      if (!params) {
+        return;
+      }
+
+      const { origin, destination } = params;
+
+      store.order.getList({
+        origin,
+        destination,
       });
+
+      store.locality.getList();
     },
   },
 ];

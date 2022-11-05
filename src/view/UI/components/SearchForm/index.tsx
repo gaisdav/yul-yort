@@ -11,6 +11,8 @@ export const SearchForm: FC<ISearchForm> = ({
   minified,
   className,
   onSearch,
+  localities,
+  localitiesLoading = false,
 }) => {
   const [isMinified, setMinified] = useState(minified);
 
@@ -37,6 +39,8 @@ export const SearchForm: FC<ISearchForm> = ({
 
   return (
     <Form
+      localitiesLoading={localitiesLoading}
+      localities={localities}
       loading={loading}
       minified={minified}
       origin={origin}
