@@ -2,7 +2,8 @@ import { FC } from "react";
 import { Button, LinearProgress, Paper, Typography } from "@mui/material";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 import { IMinifiedForm } from "../types";
-import css from "../styles.module.scss";
+import css from "./styles/minifiedForm.module.scss";
+import cn from "classnames";
 
 export const MinifiedForm: FC<IMinifiedForm> = ({
   loading = false,
@@ -12,10 +13,10 @@ export const MinifiedForm: FC<IMinifiedForm> = ({
   className = "",
 }) => {
   return (
-    <Paper elevation={3} className={`${css.formWrapper} ${className}`}>
+    <Paper elevation={3} className={cn(css.minifiedWrapper, className)}>
       <div className={css.minifiedRouteWrapper}>
         {!origin || !destination ? (
-          <Typography variant="h6" className={css.title}>
+          <Typography variant="h6" className={css.loadingText}>
             {loading ? "Загрузка..." : "Маршрут не указан"}
           </Typography>
         ) : (

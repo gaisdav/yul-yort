@@ -1,7 +1,13 @@
 import { IRoutes } from "./types";
 
 const routes: IRoutes = [
-  { name: "home", path: "/" },
+  {
+    name: "home",
+    path: "/",
+    onActivate: async (store) => {
+      store.locality.getList();
+    },
+  },
   {
     name: "orders",
     path: "/orders",
