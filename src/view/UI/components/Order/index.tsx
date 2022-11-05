@@ -3,20 +3,16 @@ import { Link, Paper, Typography } from "@mui/material";
 import css from "./styles.module.scss";
 import { IOrderProps } from "./types";
 
-export const Order: FC<IOrderProps> = ({
-  agencyName,
-  phoneValues,
-  priceValue,
-}) => (
+export const Order: FC<IOrderProps> = ({ agency, price }) => (
   <Paper elevation={3} className={css.order}>
     <div className={css.columnLeft}>
       <Typography variant="h6" align="left" className={css.orderTitle}>
-        {agencyName}
+        {agency.agencyName}
       </Typography>
 
       <div className={css.phones}>
-        {phoneValues && phoneValues.length ? (
-          phoneValues.map((phone, index) => (
+        {agency.phones && agency.phones.length ? (
+          agency.phones.map((phone, index) => (
             <Link
               key={phone + index}
               className={css.orderPhone}
@@ -42,8 +38,8 @@ export const Order: FC<IOrderProps> = ({
     </div>
 
     <div className={css.columnRight}>
-      {priceValue ? (
-        <Typography variant="h6">{priceValue}</Typography>
+      {price ? (
+        <Typography variant="h6">{price} ₽</Typography>
       ) : (
         <Typography variant="subtitle2" color="text.secondary">
           Цена не указана
