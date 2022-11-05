@@ -1,5 +1,6 @@
 .appWrapper {
   overflow: hidden;
+  padding-top: var(--yy-header-height);
 }
 
 .errorBoundary {

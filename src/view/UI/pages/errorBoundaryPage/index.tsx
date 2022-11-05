@@ -94,7 +94,7 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
     }
 
     return (
-      <span className={css.appWrapper}>
+      <div className={css.appWrapper}>
         {this.state.offline && (
           <Typography className={css.notConnectText}>
             Отсутствует интернет соединение
@@ -102,7 +102,7 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
         )}
 
         {this.props.children}
-      </span>
+      </div>
     );
   }
 }

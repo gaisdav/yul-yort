@@ -16,6 +16,13 @@ const components = {
       },
     },
   },
+  MuiAppBar: {
+    styleOverrides: {
+      root: {
+        borderRadius: 0,
+      },
+    },
+  },
 };
 
 const typography = {
