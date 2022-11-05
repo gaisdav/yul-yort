@@ -11,7 +11,7 @@ export class OrderRepository
     params: IOrderRequestParams
   ): Promise<IOrderResponseDTO[]> {
     return await this.api.get<IOrderResponseDTO[], IOrderRequestParams>(
-      EEndpoints.orders,
+      EEndpoints.ORDER_LIST,
       params
     );
   }
