@@ -10,9 +10,11 @@ import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
 import { IOrderVM } from "../../../viewModels/Order/types";
+import { ILocalityVM } from "../../../viewModels/Locality/types";
 
 const Orders: FC = observer(() => {
   const orderVM = useViewModel<IOrderVM>("order");
+  const localityVM = useViewModel<ILocalityVM>("locality");
   const {
     route: { params },
     router: { navigate },
@@ -22,14 +24,25 @@ const Orders: FC = observer(() => {
     navigate("orders", data);
   };
 
+  const originEntity = localityVM.localities?.find(
+    (item) => item.id === params.origin
+  );
+
+  const destinationEntity = localityVM.localities?.find(
+    (item) => item.id === params.destination
+  );
+
   return (
     <div className={css.page}>
       <div className={css.searchForm}>
         <SearchForm
           minified
-          loading={orderVM.loading}
-          destination={params.destination}
-          origin={params.origin}
+          onGetLocalities={localityVM.getList}
+          localities={localityVM.localities}
+          loading={orderVM.loading || localityVM.loading}
+          localitiesLoading={localityVM.loading}
+          destination={destinationEntity}
+          origin={originEntity}
           onSearch={handleSearch}
         />
       </div>
