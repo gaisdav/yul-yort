@@ -13,8 +13,8 @@ export const FormInputs: FC<IFormInputs> = ({
   setValue,
 }) => {
   useEffect(() => {
-    origin && setValue("origin", origin?.id);
-    destination && setValue("destination", destination?.id);
+    origin && setValue("originId", origin?.id);
+    destination && setValue("destinationId", destination?.id);
   }, [origin, destination, setValue]);
 
   const noOptionsText = "Не найдено";
@@ -25,14 +25,14 @@ export const FormInputs: FC<IFormInputs> = ({
       <Controller
         control={control}
         rules={{ required: "Обязательное поле" }}
-        name="origin"
+        name="originId"
         render={({ field: { onChange }, fieldState }) => (
           <Autocomplete
             className={styles.autocompleteWrapper}
             defaultValue={origin}
             loading={localitiesLoading}
             options={localities || []}
-            id="origin"
+            id="originId"
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             fullWidth
@@ -41,6 +41,13 @@ export const FormInputs: FC<IFormInputs> = ({
             loadingText={loadingText}
             onChange={(_, data) => {
               onChange(data?.id);
+            }}
+            renderOption={(props, option) => {
+              return (
+                <li {...props} key={option.id}>
+                  <div>{option.name}</div>
+                </li>
+              );
             }}
             renderInput={(params) => (
               <TextField
@@ -60,14 +67,14 @@ export const FormInputs: FC<IFormInputs> = ({
       <Controller
         control={control}
         rules={{ required: "Обязательное поле" }}
-        name="destination"
+        name="destinationId"
         render={({ field: { onChange }, fieldState }) => (
           <Autocomplete
             className={styles.autocompleteWrapper}
             defaultValue={destination}
             loading={localitiesLoading}
             options={localities || []}
-            id="destination"
+            id="destinationId"
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             fullWidth
@@ -76,6 +83,13 @@ export const FormInputs: FC<IFormInputs> = ({
             loadingText={loadingText}
             onChange={(_, data) => {
               onChange(data?.id);
+            }}
+            renderOption={(props, option) => {
+              return (
+                <li {...props} key={option.id}>
+                  <div>{option.name}</div>
+                </li>
+              );
             }}
             renderInput={(params) => (
               <TextField

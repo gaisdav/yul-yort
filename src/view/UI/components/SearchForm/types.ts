@@ -41,6 +41,6 @@ export interface IMinifiedForm
 }
 
 export interface IFormData {
-  origin: string;
-  destination: string;
+  originId: ID;
+  destinationId: ID;
 }

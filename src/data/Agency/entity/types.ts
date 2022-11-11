@@ -1,12 +1,10 @@
 export interface IAgencyEntity {
   id: ID;
-  agencyName: string;
+  name: string;
   phones?: string[];
   createdAt: string;
   updatedAt: string;
   description?: string;
 }
 
-export interface IAgencyResponseDTO extends Omit<IAgencyEntity, "id"> {
-  _id: string;
-}
+export interface IAgencyResponseDTO extends IAgencyEntity {}

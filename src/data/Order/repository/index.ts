@@ -10,9 +10,9 @@ export class OrderRepository
   async getOrderList(
     params: IOrderRequestParams
   ): Promise<IOrderResponseDTO[]> {
-    return await this.api.get<IOrderResponseDTO[], IOrderRequestParams>(
-      EEndpoints.ORDER_LIST,
-      params
-    );
+    return await this.api.get<IOrderResponseDTO[], IOrderRequestParams>({
+      endpoint: EEndpoints.ORDERS,
+      query: params,
+    });
   }
 }
