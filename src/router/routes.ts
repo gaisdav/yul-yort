@@ -1,4 +1,5 @@
 import { IRoutes } from "./types";
+import { setDocumentTitle } from "../libs/utils";
 
 export enum ERouteNames {
   ORDERS = "orders",
@@ -28,7 +29,19 @@ const routes: IRoutes = [
         destinationId,
       });
 
-      store.locality.getList();
+      await store.locality.getList();
+
+      const origin = store.locality.localities?.find(
+        (locality) => locality.id === Number(originId)
+      );
+
+      const destination = store.locality.localities?.find(
+        (locality) => locality.id === Number(destinationId)
+      );
+
+      if (origin && destination) {
+        setDocumentTitle(`${origin.name} - ${destination.name}`);
+      }
     },
   },
 ];

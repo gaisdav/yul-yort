@@ -1,7 +1,7 @@
 import createRouter from "router5";
 import browserPlugin from "router5-plugin-browser";
 import routes from "./routes";
-import { onActivate } from "./middlewaries/onActivate";
+import { documentTitle, onActivate } from "./middlewaries";
 import { IDependencies } from "./types";
 import { Router } from "router5/dist/types/router";
 
@@ -21,6 +21,7 @@ export default function createAppRouter(
   router.usePlugin(browserPlugin());
 
   router.useMiddleware(onActivate);
+  router.useMiddleware(documentTitle);
 
   return router;
 }
