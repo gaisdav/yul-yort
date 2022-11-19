@@ -17,7 +17,7 @@ const List: FC<IListProps> = ({ list }) => {
   return (
     <>
       <Typography align="right" className={css.title} color="text.secondary">
-        Найдено {list.length} вариантов
+        Найденных вариантов: {list.length}
       </Typography>
 
       {list.map((order) => (
