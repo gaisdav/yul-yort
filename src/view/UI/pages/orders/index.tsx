@@ -11,6 +11,7 @@ import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
 import { IOrderVM } from "../../../viewModels/Order/types";
 import { ILocalityVM } from "../../../viewModels/Locality/types";
+import { ERouteNames } from "../../../../router/routes";
 
 const Orders: FC = observer(() => {
   const orderVM = useViewModel<IOrderVM>("order");
@@ -21,15 +22,15 @@ const Orders: FC = observer(() => {
   } = useRouteNode("orders");
 
   const handleSearch: SubmitHandler<IFormData> = (data) => {
-    navigate("orders", data);
+    navigate(ERouteNames.ORDERS, data);
   };
 
   const originEntity = localityVM.localities?.find(
-    (item) => item.id === params.origin
+    (item) => item.id === Number(params.originId)
   );
 
   const destinationEntity = localityVM.localities?.find(
-    (item) => item.id === params.destination
+    (item) => item.id === Number(params.destinationId)
   );
 
   return (

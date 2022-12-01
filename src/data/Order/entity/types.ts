@@ -1,6 +1,7 @@
 import { IAgencyEntity, IAgencyResponseDTO } from "../../Agency";
-import { IRouteDTO, IRouteEntity } from "../../Route";
+import { IRouteEntity } from "../../Route";
 import { ECurrencyISO } from "../../../constants";
+import { ILocalityDTO } from "../../Locality";
 
 export interface IOrderEntity {
   id: ID;
@@ -11,13 +12,13 @@ export interface IOrderEntity {
 }
 
 export interface IOrderResponseDTO
-  extends Omit<IOrderEntity, "id" | "agency" | "route"> {
-  _id: string;
+  extends Omit<IOrderEntity, "route" | "agency"> {
   agency: IAgencyResponseDTO;
-  route: IRouteDTO;
+  origin: ILocalityDTO;
+  destination: ILocalityDTO;
 }
 
 export interface IOrderRequestParams {
-  origin?: string;
-  destination?: string;
+  originId?: ID;
+  destinationId?: ID;
 }

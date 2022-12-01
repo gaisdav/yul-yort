@@ -12,9 +12,12 @@ export class Order implements IOrderEntity {
   price: number;
 
   constructor(dto: IOrderResponseDTO) {
-    this.id = dto._id;
+    this.id = dto.id;
     this.agency = new Agency(dto.agency);
-    this.route = new Route(dto.route);
+    this.route = new Route({
+      origin: dto.origin,
+      destination: dto.destination,
+    });
     this.currencyISO = dto.currencyISO;
     this.price = dto.price;
 

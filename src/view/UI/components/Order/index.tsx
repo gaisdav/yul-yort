@@ -7,7 +7,7 @@ export const Order: FC<IOrderProps> = ({ agency, price }) => (
   <Paper elevation={3} className={css.order}>
     <div className={css.columnLeft}>
       <Typography variant="h6" align="left" className={css.orderTitle}>
-        {agency.agencyName}
+        {agency.name}
       </Typography>
 
       <div className={css.phones}>

@@ -1,29 +1,47 @@
 import { IRoutes } from "./types";
+import { setDocumentTitle } from "../libs/utils";
+
+export enum ERouteNames {
+  ORDERS = "orders",
+  HOME = "home",
+}
 
 const routes: IRoutes = [
   {
-    name: "home",
+    name: ERouteNames.HOME,
     path: "/",
     onActivate: async (store) => {
       store.locality.getList();
     },
   },
   {
-    name: "orders",
+    name: ERouteNames.ORDERS,
     path: "/orders",
     onActivate: async (store, params) => {
       if (!params) {
         return;
       }
 
-      const { origin, destination } = params;
+      const { originId, destinationId } = params;
 
       store.order.getList({
-        origin,
-        destination,
+        originId,
+        destinationId,
       });
 
-      store.locality.getList();
+      await store.locality.getList();
+
+      const origin = store.locality.localities?.find(
+        (locality) => locality.id === Number(originId)
+      );
+
+      const destination = store.locality.localities?.find(
+        (locality) => locality.id === Number(destinationId)
+      );
+
+      if (origin && destination) {
+        setDocumentTitle(`${origin.name} - ${destination.name}`);
+      }
     },
   },
 ];

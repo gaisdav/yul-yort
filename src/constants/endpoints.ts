@@ -5,6 +5,6 @@ export const baseUrl = CONSTANTS.isDev
   : window.location.origin;
 
 export enum EEndpoints {
-  ORDER_LIST = "/api/order/list",
-  LOCALITY_LIST = "/api/locality/list",
+  ORDERS = "/api/orders",
+  LOCALITIES = "/api/localities",
 }

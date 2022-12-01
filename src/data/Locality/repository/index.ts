@@ -8,6 +8,8 @@ export class LocalityRepository
   implements ILocalityRepository
 {
   async getList(): Promise<ILocalityDTO[]> {
-    return await this.api.get<ILocalityDTO[]>(EEndpoints.LOCALITY_LIST);
+    return await this.api.get<ILocalityDTO[]>({
+      endpoint: EEndpoints.LOCALITIES,
+    });
   }
 }
