@@ -3,9 +3,10 @@ import { Link as RouterLink } from "react-router5";
 import { Link, Typography } from "@mui/material";
 import SentimentDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentDissatisfiedOutlined";
 import css from "./styles.module.scss";
+import { ERouteNames } from "../../../../router/routes";
 
 const LinkBehavior = React.forwardRef((props, ref) => {
-  return <RouterLink {...props} ref={ref} routeName="home" />;
+  return <RouterLink {...props} ref={ref} routeName={ERouteNames.HOME} />;
 });
 
 const NotFound: FC = () => {

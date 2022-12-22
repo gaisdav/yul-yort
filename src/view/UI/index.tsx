@@ -18,6 +18,7 @@ import { useViewModel } from "./hooks/useViewModel";
 import { observer } from "mobx-react-lite";
 import { IAppVM } from "../viewModels/App/types";
 import { Header } from "./components/Header";
+import { ERouteNames } from "../../router/routes";
 
 type IAppInitConfig = {
   router: Router<IDependencies>;
@@ -30,7 +31,7 @@ const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
     const { navigate } = useRouter();
 
     const handleGoHome = () => {
-      navigate("home");
+      navigate(ERouteNames.HOME);
     };
 
     return (

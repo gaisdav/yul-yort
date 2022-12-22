@@ -7,6 +7,7 @@ import css from "./styles.module.scss";
 import { useViewModel } from "../../hooks/useViewModel";
 import { ILocalityVM } from "../../../viewModels/Locality/types";
 import { observer } from "mobx-react-lite";
+import { AddAgencyChip } from "../../components/AddAgencyChip";
 
 const Home: FC = observer(() => {
   const { navigate } = useRouter();
@@ -17,13 +18,17 @@ const Home: FC = observer(() => {
   };
 
   return (
-    <div className={css.page}>
-      <SearchForm
-        localitiesLoading={localityVM.loading}
-        onSearch={handleSearch}
-        localities={localityVM.localities}
-      />
-    </div>
+    <>
+      <div className={css.page}>
+        <SearchForm
+          localitiesLoading={localityVM.loading}
+          onSearch={handleSearch}
+          localities={localityVM.localities}
+        />
+      </div>
+
+      <AddAgencyChip />
+    </>
   );
 });
 
