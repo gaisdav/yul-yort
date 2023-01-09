@@ -4,7 +4,6 @@ import { setDocumentTitle } from "../libs/utils";
 export enum ERouteNames {
   ORDERS = "orders",
   HOME = "home",
-  ADD_AGENCY = "add-agency",
 }
 
 const routes: IRoutes = [
@@ -14,10 +13,6 @@ const routes: IRoutes = [
     onActivate: async (store) => {
       store.locality.getList();
     },
-  },
-  {
-    name: ERouteNames.ADD_AGENCY,
-    path: "/add-agency",
   },
   {
     name: ERouteNames.ORDERS,
