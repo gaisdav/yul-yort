@@ -9,14 +9,12 @@ import List from "./components/List/List";
 import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
-import { IOrderVM } from "../../../viewModels/Order/types";
-import { ILocalityVM } from "../../../viewModels/Locality/types";
 import { ERouteNames } from "../../../../router/routes";
 import { AddAgencyChip } from "../../components/AddAgencyChip";
 
 const Orders: FC = observer(() => {
-  const orderVM = useViewModel<IOrderVM>("order");
-  const localityVM = useViewModel<ILocalityVM>("locality");
+  const orderVM = useViewModel("order");
+  const localityVM = useViewModel("locality");
   const {
     route: { params },
     router: { navigate },

@@ -16,7 +16,6 @@ import Body from "./components/Body";
 import { ErrorBoundary } from "./pages/errorBoundaryPage";
 import { useViewModel } from "./hooks/useViewModel";
 import { observer } from "mobx-react-lite";
-import { IAppVM } from "../viewModels/App/types";
 import { Header } from "./components/Header";
 import { ERouteNames } from "../../router/routes";
 
@@ -27,7 +26,7 @@ type IAppInitConfig = {
 
 const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
   ({ themes: [lightTheme, darkTheme] }) => {
-    const appVM = useViewModel<IAppVM>("app");
+    const appVM = useViewModel("app");
     const { navigate } = useRouter();
 
     const handleGoHome = () => {

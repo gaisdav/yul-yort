@@ -5,13 +5,12 @@ import { SubmitHandler } from "react-hook-form";
 import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
 import { useViewModel } from "../../hooks/useViewModel";
-import { ILocalityVM } from "../../../viewModels/Locality/types";
 import { observer } from "mobx-react-lite";
 import { AddAgencyChip } from "../../components/AddAgencyChip";
 
 const Home: FC = observer(() => {
   const { navigate } = useRouter();
-  const localityVM = useViewModel<ILocalityVM>("locality");
+  const localityVM = useViewModel("locality");
 
   const handleSearch: SubmitHandler<IFormData> = (data) => {
     navigate("orders", data);
