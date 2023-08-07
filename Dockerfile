@@ -1,4 +1,4 @@
-FROM node:16.13.0
+FROM node:20.5.0
 
 # ENV NODE_ENV=production
 
@@ -10,8 +10,8 @@ RUN npm install
 
 COPY . .
 
-ENV PORT 4200
+ENV PORT 3000
 
-EXPOSE $PORT
+EXPOSE $3000
 
 CMD ["npm", "start"]
