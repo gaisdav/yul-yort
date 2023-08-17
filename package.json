@@ -44,6 +44,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:dev": "docker-compose up",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "testCoverage": "npm test -- --coverage",
