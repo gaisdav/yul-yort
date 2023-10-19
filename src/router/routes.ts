@@ -6,17 +6,20 @@ export enum ERouteNames {
   HOME = "home",
 }
 
+//FIXME: path вынести в config 
+const path = process.env.PUBLIC_URL || "/";
+
 const routes: IRoutes = [
   {
     name: ERouteNames.HOME,
-    path: "/",
+    path: `${path}`,
     onActivate: async (store) => {
       store.locality.getList();
     },
   },
   {
     name: ERouteNames.ORDERS,
-    path: "/orders",
+    path: `${path}/client/orders`,
     onActivate: async (store, params) => {
       if (!params) {
         return;
