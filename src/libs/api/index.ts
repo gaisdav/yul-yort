@@ -34,7 +34,7 @@ export class Api implements IApi {
     const url = this.getUrl<Q>(args);
 
     const response = await fetch(url, {
-      credentials: "include",
+      // credentials: "include",
     });
 
     if (!response.ok) {
