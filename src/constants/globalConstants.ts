@@ -8,5 +8,5 @@ export const CONSTANTS = {
   numberPattern: /^[1-9]\d*(\d+)?$/i,
   publicUrl: process.env.PUBLIC_URL || "/",
   devBaseUrl: "http://localhost:9000/",
-  prodBaseUrl: "https://api.yul-yort",
+  prodBaseUrl: "https://api.yul-yort.ru",
 };
