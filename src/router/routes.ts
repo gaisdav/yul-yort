@@ -10,7 +10,7 @@ export enum ERouteNames {
 const routes: IRoutes = [
   {
     name: ERouteNames.HOME,
-    path: `${CONSTANTS.publicUrl}`,
+    path: CONSTANTS.publicUrl || "/",
     onActivate: async (store) => {
       store.locality.getList();
     },
