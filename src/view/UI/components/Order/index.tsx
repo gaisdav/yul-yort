@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Link, Paper, Typography } from "@mui/material";
 import css from "./styles.module.scss";
 import { IOrderProps } from "./types";
+import { formatPhoneNumberIntl } from "react-phone-number-input";
 
 export const Order: FC<IOrderProps> = ({ agency, price }) => (
   <Paper elevation={3} className={css.order}>
@@ -21,7 +22,7 @@ export const Order: FC<IOrderProps> = ({ agency, price }) => (
               variant="subtitle2"
               align="left"
             >
-              {phone}
+              {formatPhoneNumberIntl(phone)}
             </Link>
           ))
         ) : (
