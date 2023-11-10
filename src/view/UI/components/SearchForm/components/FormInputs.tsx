@@ -1,8 +1,9 @@
 import { Autocomplete, TextField } from "@mui/material";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { IFormInputs } from "./types";
 import styles from "./styles//inputs.module.scss";
+import { useViewModel } from "../../../hooks/useViewModel";
 
 export const FormInputs: FC<IFormInputs> = ({
   control,
@@ -12,6 +13,8 @@ export const FormInputs: FC<IFormInputs> = ({
   destination,
   setValue,
 }) => {
+  const localityVM = useViewModel("locality");
+  const [getIsLocalitiesLoader, setGetIsLocalitiesLoader] = useState(false);
   useEffect(() => {
     origin && setValue("originId", origin?.id);
     destination && setValue("destinationId", destination?.id);
@@ -19,6 +22,20 @@ export const FormInputs: FC<IFormInputs> = ({
 
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
+
+  const getLocalities = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = event.target.value;
+    setGetIsLocalitiesLoader(true);
+
+    if (localityVM.timerId) {
+      clearTimeout(localityVM.timerId);
+    }
+
+    localityVM.timerId = setTimeout(() => {
+      setGetIsLocalitiesLoader(false);
+      localityVM.getList(searchValue);
+    }, 1000);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -30,7 +47,7 @@ export const FormInputs: FC<IFormInputs> = ({
           <Autocomplete
             className={styles.autocompleteWrapper}
             defaultValue={origin}
-            loading={localitiesLoading}
+            loading={localitiesLoading || getIsLocalitiesLoader}
             options={localities || []}
             id="originId"
             getOptionLabel={(option) => option.name}
@@ -58,6 +75,7 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Откуда"
                 placeholder="Откуда"
                 variant="standard"
+                onChange={getLocalities}
               />
             )}
           />
@@ -72,7 +90,7 @@ export const FormInputs: FC<IFormInputs> = ({
           <Autocomplete
             className={styles.autocompleteWrapper}
             defaultValue={destination}
-            loading={localitiesLoading}
+            loading={localitiesLoading || getIsLocalitiesLoader}
             options={localities || []}
             id="destinationId"
             getOptionLabel={(option) => option.name}
@@ -99,6 +117,7 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Куда"
                 placeholder="Куда"
                 variant="standard"
+                onChange={getLocalities}
               />
             )}
           />

@@ -6,8 +6,8 @@ import { Locality } from "../entity";
 export class LocalityService implements ILocalityService {
   constructor(private repository: ILocalityRepository) {}
 
-  getList = async (): Promise<ILocalityEntity[]> => {
-    const localities = await this.repository.getList();
+  getList = async (inputValue: string): Promise<ILocalityEntity[]> => {
+    const localities = await this.repository.getList(inputValue);
 
     return localities.map((locality) => new Locality(locality));
   };

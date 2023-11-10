@@ -18,16 +18,16 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
     });
   }
 
-  getList = async (): Promise<void> => {
-    if (this.localities) {
-      return;
-    }
+  getList = async (inputValue: any): Promise<void> => {
+    // if (this.localities) {
+    //   return;
+    // }
 
     this.setLoading();
     this.unsetError();
 
     try {
-      const list = await this.service.getList();
+      const list = await this.service.getList(inputValue);
 
       runInAction(() => {
         this._localities = list;

@@ -19,7 +19,7 @@ export class Api implements IApi {
 
   private getUrl<Q>(args: IMethodArgs<Q>): string {
     const { endpoint, query, param = "" } = args;
-    const url = new URL(endpoint + "/" + param, baseUrl);
+    const url = new URL(endpoint + param, baseUrl);
 
     if (query) {
       url.search = new URLSearchParams(query).toString();

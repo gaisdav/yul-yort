@@ -7,9 +7,10 @@ export class LocalityRepository
   extends BaseRepository
   implements ILocalityRepository
 {
-  async getList(): Promise<ILocalityDTO[]> {
+  async getList(inputValue: string): Promise<ILocalityDTO[]> {
     return await this.api.get<ILocalityDTO[]>({
       endpoint: EEndpoints.LOCALITIES,
+      param: `?search=${inputValue}`,
     });
   }
 }
