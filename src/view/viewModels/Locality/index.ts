@@ -1,11 +1,12 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, runInAction } from "mobx";
 import { ILocalityEntity, ILocalityService } from "../../../data/Locality";
 import { BaseVM } from "../BaseVM";
 import { ILocalityVM } from "./types";
 
 export class LocalityVM extends BaseVM implements ILocalityVM {
   private _localities: ILocalityEntity[] | null = null;
-  timerId: NodeJS.Timeout | null = null;
+  private _timerId: NodeJS.Timeout | null = null;
+  private _timerValue: number = 1000;
 
   get localities(): ILocalityEntity[] | null {
     return this._localities;
@@ -16,7 +17,6 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
 
     makeObservable(this, {
       getList: action,
-      timerId: observable,
     });
   }
 
@@ -30,15 +30,15 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
         list = await this.service.getList(inputValue);
       };
       if (inputValue) {
-        if (this.timerId) {
-          clearTimeout(this.timerId);
+        if (this._timerId) {
+          clearTimeout(this._timerId);
         }
 
         const timeoutPromise = new Promise<void>((resolve) => {
-          this.timerId = setTimeout(async () => {
+          this._timerId = setTimeout(async () => {
             await getLocalities();
             resolve();
-          }, 1000);
+          }, this._timerValue);
         });
 
         await timeoutPromise;
