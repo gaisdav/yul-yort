@@ -24,12 +24,12 @@ export const FormInputs: FC<IFormInputs> = ({
   const loadingText = "Загрузка...";
 
   const searchLocalities = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = (event.target as HTMLInputElement).value;
+    const searchValue = event.target.value;
     localityVM.getList(searchValue);
   };
 
   const getLocalities = () => {
-    localityVM.getList("");
+    localityVM.getList();
   };
 
   return (

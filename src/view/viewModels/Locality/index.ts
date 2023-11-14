@@ -20,15 +20,16 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
     });
   }
 
-  getList = async (inputValue: string): Promise<void> => {
+  getList = async (inputValue: string = ""): Promise<void> => {
     this.setLoading();
     this.unsetError();
 
     try {
       let list: ILocalityEntity[] | null = [];
-      const getLocalities = async () => {
-        list = await this.service.getList(inputValue);
+      const getLocalities = async (search: string) => {
+        list = await this.service.getList(search);
       };
+
       if (inputValue) {
         if (this._timerId) {
           clearTimeout(this._timerId);
@@ -36,14 +37,14 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
 
         const timeoutPromise = new Promise<void>((resolve) => {
           this._timerId = setTimeout(async () => {
-            await getLocalities();
+            await getLocalities(inputValue);
             resolve();
           }, this._timerValue);
         });
 
         await timeoutPromise;
       } else {
-        await getLocalities();
+        await getLocalities(inputValue);
       }
 
       runInAction(() => {
