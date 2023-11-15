@@ -15,7 +15,8 @@ export const Header: FC<IAppBar> = ({ theme, onSetTheme, onGoHome }) => {
     <AppBar>
       <Toolbar className={css.toolbar}>
         <IconButton onClick={onGoHome} className={css.logoButton}>
-          <img height={40} width={40} src={logo} alt="logo" />
+          {/* <img height={40} width={40} src={logo} alt="logo" /> */}
+          <div className={css.test}>YUL YORT</div>
         </IconButton>
 
         <IconButton onClick={handleChangeTheme}>
