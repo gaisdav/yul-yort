@@ -13,6 +13,8 @@ export interface IFormInputs {
   /** Метод получения списка населенных пунктов. */
   localities: ILocalityEntity[] | null;
   setValue: UseFormSetValue<IFormData>;
+  handleLocalitiesSearch: (search?: string) => void;
+  clearDebounceInstance: () => void
 }
 
 export interface IFormActions {

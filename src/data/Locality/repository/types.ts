@@ -1,5 +1,9 @@
 import { ILocalityDTO } from "../entity";
 
 export interface ILocalityRepository {
-  getList: (searchValue: string) => Promise<ILocalityDTO[]>;
+  getList: (query: IQueries) => Promise<ILocalityDTO[]>;
+}
+
+export interface IQueries {
+  search: string;
 }

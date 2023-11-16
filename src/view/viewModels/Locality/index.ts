@@ -2,11 +2,12 @@ import { action, makeObservable, runInAction } from "mobx";
 import { ILocalityEntity, ILocalityService } from "../../../data/Locality";
 import { BaseVM } from "../BaseVM";
 import { ILocalityVM } from "./types";
+import debounce from "debounce";
 
 export class LocalityVM extends BaseVM implements ILocalityVM {
   private _localities: ILocalityEntity[] | null = null;
-  private _timerId: NodeJS.Timeout | null = null;
   private _timerValue: number = 1000;
+  private _debounceInstance: any;
 
   get localities(): ILocalityEntity[] | null {
     return this._localities;
@@ -20,35 +21,35 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
     });
   }
 
-  getList = async (inputValue: string): Promise<void> => {
+  getList = async (inputValue: string = ""): Promise<void> => {
     this.setLoading();
     this.unsetError();
 
     try {
-      let list: ILocalityEntity[] | null = [];
-      const getLocalities = async () => {
-        list = await this.service.getList(inputValue);
-      };
-      if (inputValue) {
-        if (this._timerId) {
-          clearTimeout(this._timerId);
-        }
-
-        const timeoutPromise = new Promise<void>((resolve) => {
-          this._timerId = setTimeout(async () => {
-            await getLocalities();
-            resolve();
-          }, this._timerValue);
-        });
-
-        await timeoutPromise;
-      } else {
-        await getLocalities();
-      }
+      const list = await this.service.getList({search: inputValue});
 
       runInAction(() => {
         this._localities = list;
       });
+      // const getLocalities = async () => {
+      //   const list = await this.service.getList({ search: inputValue });
+      //   runInAction(() => {
+      //     this._localities = list;
+      //   });
+      //   this.unsetLoading();
+      // };
+
+      // if (inputValue) {
+      //   if (this._debounceInstance) {
+      //     this._debounceInstance.clear();
+      //   }
+
+      //   this._debounceInstance = debounce(getLocalities, this._timerValue);
+
+      //   this._debounceInstance();
+      // } else {
+      //   await getLocalities();
+      // }
     } catch (err) {
       this.setError(err);
     } finally {

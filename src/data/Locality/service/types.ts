@@ -1,5 +1,6 @@
 import { ILocalityEntity } from "../entity";
+import { IQueries } from "../repository/types";
 
 export interface ILocalityService {
-  getList: (searchValue: string) => Promise<ILocalityEntity[]>;
+  getList: (query: IQueries) => Promise<ILocalityEntity[]>;
 }

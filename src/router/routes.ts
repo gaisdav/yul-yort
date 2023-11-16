@@ -12,7 +12,7 @@ const routes: IRoutes = [
     name: ERouteNames.HOME,
     path: CONSTANTS.publicUrl || "/",
     onActivate: async (store) => {
-      store.locality.getList("");
+      store.locality.getList();
     },
   },
   {
@@ -30,7 +30,7 @@ const routes: IRoutes = [
         destinationId,
       });
 
-      await store.locality.getList("");
+      await store.locality.getList();
 
       const origin = store.locality.localities?.find(
         (locality) => locality.id === Number(originId)

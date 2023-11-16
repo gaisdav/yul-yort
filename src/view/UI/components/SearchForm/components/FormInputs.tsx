@@ -1,8 +1,7 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { IFormInputs } from "./types";
-import { useViewModel } from "../../../hooks/useViewModel";
 import styles from "./styles/inputs.module.scss";
 
 export const FormInputs: FC<IFormInputs> = ({
@@ -12,9 +11,9 @@ export const FormInputs: FC<IFormInputs> = ({
   origin,
   destination,
   setValue,
+  handleLocalitiesSearch,
+  clearDebounceInstance,
 }) => {
-  const localityVM = useViewModel("locality");
-
   useEffect(() => {
     origin && setValue("originId", origin?.id);
     destination && setValue("destinationId", destination?.id);
@@ -23,13 +22,17 @@ export const FormInputs: FC<IFormInputs> = ({
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
 
-  const searchLocalities = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = (event.target as HTMLInputElement).value;
-    localityVM.getList(searchValue);
+  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const search = event.target.value;
+    handleLocalitiesSearch(search);
   };
 
-  const getLocalities = () => {
-    localityVM.getList("");
+  const onSearchFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    handleLocalitiesSearch();
+  };
+
+  const onBlur = () => {
+    clearDebounceInstance();
   };
 
   return (
@@ -70,8 +73,9 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Откуда"
                 placeholder="Откуда"
                 variant="standard"
-                onChange={searchLocalities}
-                onFocus={getLocalities}
+                onChange={onSearchChange}
+                onFocus={onSearchFocus}
+                onBlur={onBlur}
               />
             )}
           />
@@ -113,8 +117,8 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Куда"
                 placeholder="Куда"
                 variant="standard"
-                onChange={searchLocalities}
-                onFocus={getLocalities}
+                onChange={onSearchChange}
+                onFocus={onSearchFocus}
               />
             )}
           />

@@ -29,6 +29,8 @@ export interface ISearchForm {
 export interface IForm extends ISearchForm {
   /** Обработчик клика по кнопке изменения маршрута в минифицированном виде. */
   onExpand: () => void;
+  handleLocalitiesSearch: (search?: string) => void;
+  clearDebounceInstance: () => void
 }
 
 /**
