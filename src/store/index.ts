@@ -10,9 +10,14 @@ import { OrderRepository, OrderService } from "../data/Order";
 import { OrderVM } from "../view/viewModels/Order";
 import { LocalityVM } from "../view/viewModels/Locality";
 import { LocalityRepository, LocalityService } from "../data/Locality";
+import { Analytics } from "../libs";
 
-const libs: ILibs = {
+export const libs: ILibs = {
   api: new Api(),
+  analytics: new Analytics({
+    trackingId: process.env.REACT_APP_TRACKING_ID,
+    testMode: process.env.NODE_ENV !== "production",
+  }),
 };
 
 const repositories: IStoreRepositories = {

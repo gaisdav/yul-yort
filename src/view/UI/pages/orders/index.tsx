@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { SearchForm } from "../../components/SearchForm";
 import { useRouteNode } from "react-router5";
-import { useViewModel } from "../../hooks/useViewModel";
+import { useViewModel } from "../../hooks";
 import { observer } from "mobx-react-lite";
 import Error from "./components/Error";
 import Loading from "./components/Loading/Loading";
@@ -11,6 +11,7 @@ import { IFormData } from "../../components/SearchForm/types";
 import css from "./styles.module.scss";
 import { ERouteNames } from "../../../../router/routes";
 import { AddAgencyChip } from "../../components/AddAgencyChip";
+import { ECategories } from "../../../../libs";
 
 const Orders: FC = observer(() => {
   const orderVM = useViewModel("order");
@@ -37,6 +38,7 @@ const Orders: FC = observer(() => {
       <div className={css.page}>
         <div className={css.searchForm}>
           <SearchForm
+            gaCategory={ECategories.ORDERS}
             minified
             localities={localityVM.localities}
             loading={orderVM.loading || localityVM.loading}
