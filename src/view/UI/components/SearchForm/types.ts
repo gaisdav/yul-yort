@@ -31,6 +31,7 @@ export interface IForm extends ISearchForm {
   onExpand: () => void;
   handleLocalitiesSearch: (search?: string) => void;
   clearDebounceInstance: () => void
+  getLocalities: () => void
 }
 
 /**

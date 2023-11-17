@@ -17,7 +17,8 @@ export const Form: FC<IForm> = ({
   localitiesLoading = false,
   onExpand,
   handleLocalitiesSearch,
-  clearDebounceInstance
+  clearDebounceInstance,
+  getLocalities,
 }) => {
   const { control, handleSubmit, setValue } = useForm<IFormData>();
 
@@ -35,6 +36,7 @@ export const Form: FC<IForm> = ({
           localities={localities}
           handleLocalitiesSearch={handleLocalitiesSearch}
           clearDebounceInstance={clearDebounceInstance}
+          getLocalities={getLocalities}
         />
       </Paper>
 

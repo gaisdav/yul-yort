@@ -13,6 +13,7 @@ export const FormInputs: FC<IFormInputs> = ({
   setValue,
   handleLocalitiesSearch,
   clearDebounceInstance,
+  getLocalities,
 }) => {
   useEffect(() => {
     origin && setValue("originId", origin?.id);
@@ -22,16 +23,16 @@ export const FormInputs: FC<IFormInputs> = ({
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
 
-  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
     handleLocalitiesSearch(search);
   };
 
-  const onSearchFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    handleLocalitiesSearch();
+  const onInputFocus = () => {
+    getLocalities();
   };
 
-  const onBlur = () => {
+  const onInputBlur = () => {
     clearDebounceInstance();
   };
 
@@ -73,9 +74,9 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Откуда"
                 placeholder="Откуда"
                 variant="standard"
-                onChange={onSearchChange}
-                onFocus={onSearchFocus}
-                onBlur={onBlur}
+                onChange={onInputChange}
+                onFocus={onInputFocus}
+                onBlur={onInputBlur}
               />
             )}
           />
@@ -117,8 +118,9 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Куда"
                 placeholder="Куда"
                 variant="standard"
-                onChange={onSearchChange}
-                onFocus={onSearchFocus}
+                onChange={onInputChange}
+                onFocus={onInputFocus}
+                onBlur={onInputBlur}
               />
             )}
           />

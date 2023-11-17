@@ -14,7 +14,8 @@ export interface IFormInputs {
   localities: ILocalityEntity[] | null;
   setValue: UseFormSetValue<IFormData>;
   handleLocalitiesSearch: (search?: string) => void;
-  clearDebounceInstance: () => void
+  clearDebounceInstance: () => void;
+  getLocalities: () => void;
 }
 
 export interface IFormActions {
