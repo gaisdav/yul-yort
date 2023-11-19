@@ -1,5 +1,6 @@
 import { SubmitHandler } from "react-hook-form";
 import { ILocalityEntity } from "../../../../data/Locality";
+import { DebouncedFunction } from "debounce";
 
 /**
  * Компонент поиска маршрутов.
@@ -30,8 +31,8 @@ export interface IForm extends ISearchForm {
   /** Обработчик клика по кнопке изменения маршрута в минифицированном виде. */
   onExpand: () => void;
   handleLocalitiesSearch: (search?: string) => void;
-  clearDebounceInstance: () => void
-  getLocalities: () => void
+  clearDebounceInstance: () => void;
+  getLocalities: () => void;
 }
 
 /**
@@ -47,3 +48,5 @@ export interface IFormData {
   originId: ID;
   destinationId: ID;
 }
+
+export type TDebounce = DebouncedFunction<() => Promise<void>> | null;

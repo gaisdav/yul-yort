@@ -1,12 +1,12 @@
 import { FC, useRef, useState } from "react";
-import { IFormData, ISearchForm } from "./types";
+import { IFormData, ISearchForm, TDebounce } from "./types";
 import { Form } from "./components/Form";
 import { MinifiedForm } from "./components/MinifiedForm";
 import { SubmitHandler } from "react-hook-form";
 import { useViewModel } from "../../hooks/useViewModel";
 import debounce from "debounce";
 
-const delayGetLocalities: number = 500
+const delayGetLocalities: number = 500;
 export const SearchForm: FC<ISearchForm> = ({
   loading = false,
   origin,
@@ -17,13 +17,9 @@ export const SearchForm: FC<ISearchForm> = ({
   localities,
   localitiesLoading = false,
 }) => {
-  const localityVM = useViewModel("locality");
-  const debounceInstance = useRef<any>(null);
-
-  //Функция для запроса locality по search
-  const getLocalities = (search?: string) => {
-    localityVM.getList(search);
-  };
+  const [isMinified, setMinified] = useState(minified);
+  const LocalityVM = useViewModel("locality");
+  const debounceInstance = useRef<TDebounce>(null);
 
   //Очистка таймера
   const clearDebounceInstance = () => {
@@ -34,16 +30,15 @@ export const SearchForm: FC<ISearchForm> = ({
 
   //Инициализация функции запроса
   const handleLocalitiesSearch = (search?: string) => {
-    localityVM.setLoading();
+    LocalityVM.setLoading();
     clearDebounceInstance();
-
-    debounceInstance.current = debounce(() => getLocalities(search), delayGetLocalities);
-
+    debounceInstance.current = debounce(
+      () => LocalityVM.getList(search),
+      delayGetLocalities
+    );
 
     debounceInstance.current();
   };
-
-  const [isMinified, setMinified] = useState(minified);
 
   const handleSetMinified = () => {
     setMinified(!isMinified);
@@ -79,7 +74,7 @@ export const SearchForm: FC<ISearchForm> = ({
       onExpand={handleSetMinified}
       handleLocalitiesSearch={handleLocalitiesSearch}
       clearDebounceInstance={clearDebounceInstance}
-      getLocalities={getLocalities}
+      getLocalities={LocalityVM.getList}
     />
   );
 };
