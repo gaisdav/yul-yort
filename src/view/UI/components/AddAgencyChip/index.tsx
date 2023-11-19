@@ -1,18 +1,10 @@
 import { Chip, Link } from "@mui/material";
 import css from "./styles.module.scss";
 import React from "react";
-import { useAnalytics } from "../../hooks";
-import { ECategories } from "../../../../libs";
+import { useChipAnalytics } from "./useChipAnalytics";
 
 export const AddAgencyChip = () => {
-  const analytics = useAnalytics();
-
-  const handleClick = () => {
-    analytics.click({
-      category: ECategories.ORDERS,
-      label: "add agency click",
-    });
-  };
+  const { event } = useChipAnalytics();
 
   return (
     <Chip
@@ -20,7 +12,7 @@ export const AddAgencyChip = () => {
       component={Link}
       target="_blank"
       clickable
-      onClick={handleClick}
+      onClick={event}
       href="https://forms.gle/H3Rouwa1PQVj1Mru7"
       label="Добавить агентство"
       className={css.addAgencyChip}

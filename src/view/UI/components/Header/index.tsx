@@ -5,25 +5,18 @@ import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 import css from "./styles.module.scss";
 import logo from "../../assets/logo.png";
-import { useAnalytics } from "../../hooks";
-import { ECategories } from "../../../../libs";
+import { useHeaderAnalytics } from "./useHeaderAnalytics";
 
 export const Header: FC<IAppBar> = ({ theme, onSetTheme, onGoHome }) => {
-  const analytics = useAnalytics();
+  const { changeThemeEvent, goHomeEvent } = useHeaderAnalytics();
 
   const handleChangeTheme = () => {
-    analytics.click({
-      category: ECategories.HEADER,
-      label: "change theme",
-    });
+    changeThemeEvent();
     onSetTheme(theme === "dark" ? "light" : "dark");
   };
 
   const handleGoHome = () => {
-    analytics.click({
-      category: ECategories.HEADER,
-      label: "click on logo",
-    });
+    goHomeEvent();
     onGoHome();
   };
 
