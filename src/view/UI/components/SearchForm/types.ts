@@ -1,5 +1,6 @@
 import { SubmitHandler } from "react-hook-form";
 import { ILocalityEntity } from "../../../../data/Locality";
+import { ECategories } from "../../../../libs";
 
 /**
  * Компонент поиска маршрутов.
@@ -21,6 +22,8 @@ export interface ISearchForm {
   onSearch: SubmitHandler<IFormData>;
   /** Метод получения списка населенных пунктов. */
   localities: ILocalityEntity[] | null;
+  /** Категория для ga */
+  gaCategory: ECategories;
 }
 
 /**
