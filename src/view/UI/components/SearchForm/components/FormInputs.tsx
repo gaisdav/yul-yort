@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { IFormInputs } from "./types";
@@ -11,8 +11,6 @@ export const FormInputs: FC<IFormInputs> = ({
   origin,
   destination,
   setValue,
-  handleLocalitiesSearch,
-  clearDebounceInstance,
   getLocalities,
 }) => {
   useEffect(() => {
@@ -25,15 +23,11 @@ export const FormInputs: FC<IFormInputs> = ({
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
-    handleLocalitiesSearch(search);
+    getLocalities(search);
   };
 
   const onInputFocus = () => {
     getLocalities();
-  };
-
-  const onInputBlur = () => {
-    clearDebounceInstance();
   };
 
   return (
@@ -76,7 +70,6 @@ export const FormInputs: FC<IFormInputs> = ({
                 variant="standard"
                 onChange={onInputChange}
                 onFocus={onInputFocus}
-                onBlur={onInputBlur}
               />
             )}
           />
@@ -120,7 +113,6 @@ export const FormInputs: FC<IFormInputs> = ({
                 variant="standard"
                 onChange={onInputChange}
                 onFocus={onInputFocus}
-                onBlur={onInputBlur}
               />
             )}
           />

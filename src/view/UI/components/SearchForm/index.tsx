@@ -1,12 +1,10 @@
-import { FC, useRef, useState } from "react";
-import { IFormData, ISearchForm, TDebounce } from "./types";
+import { FC, useState } from "react";
+import { IFormData, ISearchForm } from "./types";
 import { Form } from "./components/Form";
 import { MinifiedForm } from "./components/MinifiedForm";
 import { SubmitHandler } from "react-hook-form";
 import { useViewModel } from "../../hooks/useViewModel";
-import debounce from "debounce";
 
-const delayGetLocalities: number = 500;
 export const SearchForm: FC<ISearchForm> = ({
   loading = false,
   origin,
@@ -18,27 +16,7 @@ export const SearchForm: FC<ISearchForm> = ({
   localitiesLoading = false,
 }) => {
   const [isMinified, setMinified] = useState(minified);
-  const LocalityVM = useViewModel("locality");
-  const debounceInstance = useRef<TDebounce>(null);
-
-  //Очистка таймера
-  const clearDebounceInstance = () => {
-    if (debounceInstance.current) {
-      debounceInstance.current.clear();
-    }
-  };
-
-  //Инициализация функции запроса
-  const handleLocalitiesSearch = (search?: string) => {
-    LocalityVM.setLoading();
-    clearDebounceInstance();
-    debounceInstance.current = debounce(
-      () => LocalityVM.getList(search),
-      delayGetLocalities
-    );
-
-    debounceInstance.current();
-  };
+  const { getList } = useViewModel("locality");
 
   const handleSetMinified = () => {
     setMinified(!isMinified);
@@ -72,9 +50,7 @@ export const SearchForm: FC<ISearchForm> = ({
       destination={destination}
       onSearch={handleSearch}
       onExpand={handleSetMinified}
-      handleLocalitiesSearch={handleLocalitiesSearch}
-      clearDebounceInstance={clearDebounceInstance}
-      getLocalities={LocalityVM.getList}
+      getLocalities={getList}
     />
   );
 };
