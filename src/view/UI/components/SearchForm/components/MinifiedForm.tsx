@@ -32,7 +32,11 @@ export const MinifiedForm: FC<IMinifiedForm> = ({
           </div>
         )}
 
-        <div className={css.loader}>{loading && <LinearProgress />}</div>
+        {loading && (
+          <div className={css.loader}>
+            <LinearProgress />
+          </div>
+        )}
       </Paper>
 
       <Button

@@ -1,5 +1,5 @@
 import { DefaultDependencies, Route } from "router5/dist/types/router";
-import { IStoreViewModels } from "../store/types";
+import { ILibs, IStoreViewModels } from "../store/types";
 import { IOrderRequestParams } from "../data/Order";
 
 export type IRoutes = [IHomeRoute, IOrdersRoute<IOrderRequestParams>];
@@ -11,8 +11,9 @@ export interface IRoute<P = Record<string, string>>
 }
 
 export interface IDependencies extends DefaultDependencies {
-  store: IStoreViewModels;
-  routes: IRoutes;
+  readonly store: IStoreViewModels;
+  readonly routes: IRoutes;
+  readonly libs: ILibs;
 }
 
 interface IHomeRoute extends IRoute {}
