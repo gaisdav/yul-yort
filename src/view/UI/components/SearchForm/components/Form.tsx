@@ -16,6 +16,7 @@ export const Form: FC<IForm> = ({
   minified,
   localitiesLoading = false,
   onExpand,
+  getLocalities,
 }) => {
   const { control, handleSubmit, setValue } = useForm<IFormData>();
 
@@ -31,6 +32,7 @@ export const Form: FC<IForm> = ({
           localitiesLoading={localitiesLoading}
           control={control}
           localities={localities}
+          getLocalities={getLocalities}
         />
       </Paper>
 

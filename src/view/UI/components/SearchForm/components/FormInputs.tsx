@@ -1,8 +1,8 @@
-import { Autocomplete, TextField } from "@mui/material";
 import { FC, useEffect } from "react";
+import { Autocomplete, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { IFormInputs } from "./types";
-import styles from "./styles//inputs.module.scss";
+import styles from "./styles/inputs.module.scss";
 
 export const FormInputs: FC<IFormInputs> = ({
   control,
@@ -11,6 +11,7 @@ export const FormInputs: FC<IFormInputs> = ({
   origin,
   destination,
   setValue,
+  getLocalities,
 }) => {
   useEffect(() => {
     origin && setValue("originId", origin?.id);
@@ -19,6 +20,15 @@ export const FormInputs: FC<IFormInputs> = ({
 
   const noOptionsText = "Не найдено";
   const loadingText = "Загрузка...";
+
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const search = event.target.value;
+    getLocalities(search);
+  };
+
+  const onInputFocus = () => {
+    getLocalities();
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -58,6 +68,8 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Откуда"
                 placeholder="Откуда"
                 variant="standard"
+                onChange={onInputChange}
+                onFocus={onInputFocus}
               />
             )}
           />
@@ -99,6 +111,8 @@ export const FormInputs: FC<IFormInputs> = ({
                 label="Куда"
                 placeholder="Куда"
                 variant="standard"
+                onChange={onInputChange}
+                onFocus={onInputFocus}
               />
             )}
           />

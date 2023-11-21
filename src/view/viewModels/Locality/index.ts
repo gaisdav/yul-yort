@@ -1,10 +1,16 @@
 import { action, makeObservable, runInAction } from "mobx";
-import { ILocalityEntity, ILocalityService } from "../../../data/Locality";
+import {
+  ILocalityEntity,
+  ILocalityService,
+  IQueries,
+} from "../../../data/Locality";
 import { BaseVM } from "../BaseVM";
 import { ILocalityVM } from "./types";
+import debounce from "p-debounce";
 
 export class LocalityVM extends BaseVM implements ILocalityVM {
   private _localities: ILocalityEntity[] | null = null;
+  private readonly _debouncedGetList;
 
   get localities(): ILocalityEntity[] | null {
     return this._localities;
@@ -12,22 +18,22 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
 
   constructor(private service: ILocalityService) {
     super();
+    this._debouncedGetList = debounce<[IQueries], ILocalityEntity[]>(
+      this.service.getList,
+      500
+    );
 
     makeObservable(this, {
       getList: action,
     });
   }
 
-  getList = async (): Promise<void> => {
-    if (this.localities) {
-      return;
-    }
-
+  getList = async (search: string = ""): Promise<void> => {
     this.setLoading();
     this.unsetError();
 
     try {
-      const list = await this.service.getList();
+      const list = await this._debouncedGetList({ search });
 
       runInAction(() => {
         this._localities = list;

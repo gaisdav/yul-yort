@@ -3,6 +3,7 @@ import { IFormData, ISearchForm } from "./types";
 import { Form } from "./components/Form";
 import { MinifiedForm } from "./components/MinifiedForm";
 import { SubmitHandler } from "react-hook-form";
+import { useViewModel } from "../../hooks/useViewModel";
 import { useSearchAnalytics } from "./useHeaderAnalytics";
 
 export const SearchForm: FC<ISearchForm> = ({
@@ -17,6 +18,7 @@ export const SearchForm: FC<ISearchForm> = ({
   gaCategory,
 }) => {
   const [isMinified, setMinified] = useState(minified);
+  const { getList } = useViewModel("locality");
   const { searchEvent, setMinifiedEvent } = useSearchAnalytics(gaCategory);
 
   const handleSetMinified = () => {
@@ -55,6 +57,7 @@ export const SearchForm: FC<ISearchForm> = ({
       destination={destination}
       onSearch={handleSearch}
       onExpand={handleSetMinified}
+      getLocalities={getList}
     />
   );
 };
