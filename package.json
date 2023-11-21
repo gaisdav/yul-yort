@@ -4,6 +4,18 @@
   "type": "module",
   "homepage": "/",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "start:dev": "docker-compose up",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "testCoverage": "npm test -- --coverage",
+    "module": "node createModule.js",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "get-css-vars": "rm -rf ./public/styles/mui-variables.css && node getCSSVariablesFromTheme.js && prettier --write ./public/styles/mui-variables.css"
+  },
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -17,12 +29,14 @@
     "@types/node": "^12.20.25",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^16.9.14",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.29.2",
     "mobx": "^6.3.3",
     "mobx-react-lite": "^3.2.1",
     "p-debounce": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-ga4": "^2.1.0",
     "react-hook-form": "^7.17.2",
     "react-phone-number-input": "^3.3.7",
     "react-router5": "^8.0.1",
@@ -43,18 +57,6 @@
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "start:dev": "docker-compose up",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "testCoverage": "npm test -- --coverage",
-    "module": "node createModule.js",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "get-css-vars": "rm -rf ./public/styles/mui-variables.css && node getCSSVariablesFromTheme.js && prettier --write ./public/styles/mui-variables.css"
   },
   "eslintConfig": {
     "extends": [
