@@ -1,6 +1,8 @@
 .appWrapper {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  padding-top: var(--yy-header-height);
+  height: 100%;
 }
 
 .errorBoundary {
@@ -30,9 +32,13 @@
   position: relative;
   top: 0;
   left: 0;
-  width: 100%;
   height: 24px;
   text-align: center;
+  z-index: 1101;
+  width: 70%;
+  min-width: 280px;
+  margin: 0 auto;
+  border-radius: 0 0 8px 8px;
   color: var(--yy-common-white);
   background-color: var(--yy-error-main);
 }
