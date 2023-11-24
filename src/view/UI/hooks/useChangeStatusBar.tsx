@@ -13,7 +13,7 @@ export const useChangeStatusBar = ({ mode }: IChangeStatusBar) => {
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    headerRef.current = document.querySelector(".MuiAppBar-root");
+    headerRef.current = document.querySelector("#app-bar");
   }, []);
 
   useEffect(() => {
