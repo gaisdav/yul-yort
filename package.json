@@ -9,9 +9,6 @@
     "preview": "vite preview --host",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "module": "node createModule.js",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
     "get-css-vars": "rm -rf ./public/styles/mui-variables.css && node getCSSVariablesFromTheme.js && prettier --write ./public/styles/mui-variables.css"
   },
   "dependencies": {
