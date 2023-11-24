@@ -5,6 +5,10 @@ export interface IChangeStatusBar {
   mode: TTheme;
 }
 
+/**
+ * Изменение цвета статус бара в зависимости от темы
+ * @param mode - тема
+ */
 export const useChangeStatusBar = ({ mode }: IChangeStatusBar) => {
   const headerRef = useRef<HTMLElement | null>(null);
 
