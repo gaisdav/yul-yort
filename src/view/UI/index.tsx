@@ -14,7 +14,7 @@ import { IDependencies } from "../../router/types";
 import { Theme } from "@mui/material/styles/createTheme";
 import Body from "./components/Body";
 import { ErrorBoundary } from "./pages/errorBoundaryPage";
-import { useViewModel } from "./hooks/useViewModel";
+import { useViewModel, useChangeStatusBar } from "./hooks";
 import { observer } from "mobx-react-lite";
 import { Header } from "./components/Header";
 import { ERouteNames } from "../../router/routes";
@@ -25,9 +25,13 @@ type IAppInitConfig = {
 };
 
 const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
-  ({ themes: [lightTheme, darkTheme] }) => {
-    const appVM = useViewModel("app");
+  ({ themes }) => {
+    const [lightTheme, darkTheme] = themes;
     const { navigate } = useRouter();
+    const appVM = useViewModel("app");
+    useChangeStatusBar({
+      mode: appVM.theme,
+    });
 
     const handleGoHome = () => {
       navigate(ERouteNames.HOME);

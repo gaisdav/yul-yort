@@ -1,7 +1,20 @@
-.body {
-  position: absolute;
-  height: calc(100% - var(--yy-header-height));
+$gap: 16px;
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  background-color: var(--yy-background-paper);
   width: 100%;
-  padding: 16px;
+  padding: 0 $gap $gap;
   overflow: auto;
+}
+
+.toolbar {
+  margin-bottom: $gap;
+}
+
+.body{
+  flex: 1
 }
