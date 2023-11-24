@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import { FC, forwardRef } from "react";
 import { Link as RouterLink } from "react-router5";
 import { Link, Typography } from "@mui/material";
 import SentimentDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentDissatisfiedOutlined";
 import css from "./styles.module.scss";
 import { ERouteNames } from "../../../../router/routes";
 
-const LinkBehavior = React.forwardRef((props, ref) => {
+const LinkBehavior = forwardRef((props, ref) => {
   return <RouterLink {...props} ref={ref} routeName={ERouteNames.HOME} />;
 });
 

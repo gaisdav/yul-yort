@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import { Collapse, IconButton, Typography } from "@mui/material";
 import css from "./styles.module.scss";
 import SentimentVeryDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentVeryDissatisfiedOutlined";
@@ -7,7 +7,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
 // TODO вынести компоненты
-export class ErrorBoundary extends React.Component<IProps, IState> {
+export class ErrorBoundary extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {

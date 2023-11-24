@@ -14,6 +14,6 @@ export const initErrorApp = (error: any) => {
         </Suspense>
       </StyledEngineProvider>
     </StrictMode>,
-    document.getElementById("root")
+    document.getElementById("root"),
   );
 };

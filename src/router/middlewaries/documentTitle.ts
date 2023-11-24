@@ -11,11 +11,11 @@ import { setDocumentTitle } from "../../libs/utils";
  * @param dependencies: IDependencies
  */
 export const documentTitle: MiddlewareFactory<IDependencies> =
-  (router, dependencies) =>
+  (_, dependencies) =>
   (toState): boolean => {
     const route: IRoute | undefined = getRouteByToStateName(
       toState.name,
-      dependencies
+      dependencies,
     );
 
     setDocumentTitle(route?.title);
