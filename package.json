@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "@mui/x-date-pickers": "^6.18.2",
+    "@types/node": "^20.10.0",
     "date-fns": "^2.30.0",
     "mobx": "^6.11.0",
     "mobx-react-lite": "^4.0.5",
