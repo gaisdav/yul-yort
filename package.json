@@ -44,7 +44,8 @@
     "prettier": "3.1.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
-    "vite-plugin-html": "^3.2.0"
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-pwa": "^0.17.0"
   },
   "browserslist": {
     "production": [
