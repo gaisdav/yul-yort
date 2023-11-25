@@ -3,7 +3,7 @@ import { IViteConfigParams } from "./vite.config.types";
 
 export const vitePwaConfig = ({ isDev, outDir }: IViteConfigParams) =>
   VitePWA({
-    registerType: "autoUpdate",
+    registerType: "prompt",
     injectRegister: "auto",
     outDir,
     devOptions: {
@@ -11,6 +11,7 @@ export const vitePwaConfig = ({ isDev, outDir }: IViteConfigParams) =>
     },
     workbox: {
       globPatterns: ["**/*.{js,css,html,png,svg}"],
+      cleanupOutdatedCaches: true,
     },
     includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
     manifest: {
