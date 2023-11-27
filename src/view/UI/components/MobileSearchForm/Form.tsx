@@ -3,10 +3,16 @@ import css from "./styles.module.scss";
 
 import { Button } from "@mui/material";
 import SearchLocality from "./SearchLocality";
+import { IFormData } from "../SearchForm/types";
 
-export const MobileForm: FC<any> = ({ localities, getList, loading }) => {
+export const MobileForm: FC<any> = ({
+  localities,
+  getList,
+  loading,
+  onSearch,
+}) => {
   const [isOpen, setOpen] = useState(false);
-  const [from, setFrom] = useState<string | number>("");
+  const [from, setFrom] = useState<any>();
 
   const openInputLayer = () => {
     setOpen(true);
@@ -16,15 +22,23 @@ export const MobileForm: FC<any> = ({ localities, getList, loading }) => {
     setOpen(false);
   };
 
-  const setLocation = (id: any) => {
+  const setLocation = (locality: any) => {
     closeInputLayer();
-    setFrom(id);
+    // const { id } = locality;
+    setFrom(locality);
   };
 
   const searchLocality = (event: any) => {
-    console.log("value", event.target.value);
     const value = event.target.value;
     getList(value);
+  };
+
+  const handleSearch = () => {
+    const data = {
+      originId: 1,
+      destinationId: 3,
+    };
+    onSearch(data);
   };
 
   return (
@@ -32,12 +46,22 @@ export const MobileForm: FC<any> = ({ localities, getList, loading }) => {
       <div>
         <div className={css.mobileContainer}>
           <div onClick={openInputLayer} className={css.from}>
-            Откуда
+            {from ? (
+              <span className={css.formLocalityName}>{from.name}</span>
+            ) : (
+              <span>Откуда</span>
+            )}
           </div>
           <div className={css.to}>Куда</div>
         </div>
         <div className={css.button}>
-          <Button fullWidth type="submit" variant="contained">
+          <Button
+            onClick={handleSearch}
+            disabled={!from}
+            fullWidth
+            type="submit"
+            variant="contained"
+          >
             Найти
           </Button>
         </div>

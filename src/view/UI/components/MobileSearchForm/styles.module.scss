@@ -2,8 +2,23 @@
   width: 100%;
 }
 
-.test {
+.localities {
+  margin-top: 12px;
   overflow: scroll;
+}
+
+.localitiesDistrict {
+  color: #858585;
+  font-size: 10px;
+}
+
+.locality {
+  display: flex;
+  align-items: center;
+}
+
+.localityDescription {
+  margin-left: 12px;
 }
 
 .container {
@@ -32,6 +47,10 @@ ul {
   padding: 8px 0;
   border-bottom: 1px solid #e5e5e5;
   color: #858585;
+}
+
+.formLocalityName {
+  color: #000;
 }
 
 .to {

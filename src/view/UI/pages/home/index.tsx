@@ -30,7 +30,12 @@ const Home: FC = observer(() => {
           />
         </div>
         <div className={css.mobile}>
-          <MobileForm localities={localities} getList={getList} loading={loading} />
+          <MobileForm
+            onSearch={handleSearch}
+            localities={localities}
+            getList={getList}
+            loading={loading}
+          />
         </div>
       </div>
       <AddAgencyChip />

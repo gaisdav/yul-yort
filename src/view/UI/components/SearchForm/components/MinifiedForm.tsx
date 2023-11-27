@@ -31,12 +31,12 @@ export const MinifiedForm: FC<IMinifiedForm> = ({
             </div>
           </div>
         )}
-
         {loading && (
           <div className={css.loader}>
             <LinearProgress />
           </div>
         )}
+        Для мобильной версии этот вариант еще не сделан
       </Paper>
 
       <Button

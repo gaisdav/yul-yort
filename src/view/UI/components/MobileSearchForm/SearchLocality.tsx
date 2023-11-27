@@ -2,6 +2,7 @@ import Sheet from "react-modal-sheet";
 import { FC, Key, useEffect, useRef } from "react";
 import css from "./styles.module.scss";
 import { CircularProgress, TextField } from "@mui/material";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
 
 const SearchLocality: FC<any> = ({
   localities = [],
@@ -38,6 +39,7 @@ const SearchLocality: FC<any> = ({
     };
   }, []);
 
+  console.log("localities", localities);
   return (
     <>
       <Sheet
@@ -65,10 +67,20 @@ const SearchLocality: FC<any> = ({
                   <CircularProgress />
                 </div>
               ) : localities && localities.length > 0 ? (
-                <ul className={css.test}>
+                <ul className={css.localities}>
                   {localities.map((item: any, index: Key) => (
-                    <li onClick={() => setLocation(item.id)} key={index}>
-                      {item.name}
+                    <li
+                      className={css.locality}
+                      onClick={() => setLocation(item)}
+                      key={index}
+                    >
+                      <FmdGoodIcon color="secondary" />
+                      <div className={css.localityDescription}>
+                        <div className={css.localitiesName}>{item.name}</div>
+                        <div className={css.localitiesDistrict}>
+                          {item.district}
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
