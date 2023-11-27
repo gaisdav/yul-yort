@@ -1,0 +1,51 @@
+.mobile {
+  width: 100%;
+}
+
+.test {
+  overflow: scroll;
+}
+
+.container {
+  padding: 0 12px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style-type: none;
+    padding: 12px 0;
+    border-bottom: 1px solid #c0c0c0;
+  }
+}
+
+.mobileContainer {
+  background: #f4f4f4;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+}
+
+.from {
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
+  color: #858585;
+}
+
+.to {
+  padding: 8px 0;
+  color: #858585;
+}
+
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.button {
+  margin-top: 12px;
+}

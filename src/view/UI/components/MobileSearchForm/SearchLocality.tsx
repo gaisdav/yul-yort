@@ -1,22 +1,28 @@
 import Sheet from "react-modal-sheet";
-import { FC, useEffect, useRef } from "react";
+import { FC, Key, useEffect, useRef } from "react";
 import css from "./styles.module.scss";
-import { TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 
-const Example: FC<any> = ({ localities = [], isOpen, closeInputLayer }) => {
+const SearchLocality: FC<any> = ({
+  localities = [],
+  isOpen,
+  closeInputLayer,
+  setLocation,
+  from,
+  searchLocality,
+  loading,
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = () => {
-    // Вызывайте blur() для убирания фокуса
     if (inputRef.current) {
       inputRef.current.blur();
     }
   };
 
-  //FIXME: Touch вынести в глобал 
+  //FIXME: Touch вынести в глобал
   useEffect(() => {
     const handleBodyTouchStart = (event: TouchEvent) => {
-      // Проверка, было ли касание вне поля ввода
       if (
         inputRef.current &&
         !inputRef.current.contains(event.target as Node)
@@ -25,14 +31,12 @@ const Example: FC<any> = ({ localities = [], isOpen, closeInputLayer }) => {
       }
     };
 
-    // Добавление обработчика события к body
     document.body.addEventListener("touchstart", handleBodyTouchStart);
 
-    // Удаление обработчика события при размонтировании компонента
     return () => {
       document.body.removeEventListener("touchstart", handleBodyTouchStart);
     };
-  }, []); // Пустой массив зависимостей для вызова useEffect только при монтировании
+  }, []);
 
   return (
     <>
@@ -47,16 +51,30 @@ const Example: FC<any> = ({ localities = [], isOpen, closeInputLayer }) => {
           <Sheet.Content>
             <div className={css.container}>
               <TextField
+                defaultValue={from}
                 id="outlined-basic"
-                label="Outlined"
+                label="Откуда"
                 variant="outlined"
+                onChange={searchLocality}
                 inputRef={inputRef}
+                fullWidth
               />
-              <ul className={css.test}>
-                {localities?.map((item: any) => {
-                  return <li>{item.name}</li>;
-                })}
-              </ul>
+
+              {loading ? (
+                <div className={css.loaderContainer}>
+                  <CircularProgress />
+                </div>
+              ) : localities && localities.length > 0 ? (
+                <ul className={css.test}>
+                  {localities.map((item: any, index: Key) => (
+                    <li onClick={() => setLocation(item.id)} key={index}>
+                      {item.name}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>Ничего не найдено</p>
+              )}
             </div>
           </Sheet.Content>
         </Sheet.Container>
@@ -66,4 +84,4 @@ const Example: FC<any> = ({ localities = [], isOpen, closeInputLayer }) => {
   );
 };
 
-export default Example;
+export default SearchLocality;
