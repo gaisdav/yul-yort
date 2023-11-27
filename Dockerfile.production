@@ -4,6 +4,9 @@ WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
+# Очистка кэша npm
+RUN npm cache clean --force
+
 RUN npm install
 
 COPY . .
