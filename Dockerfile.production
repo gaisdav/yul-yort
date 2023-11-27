@@ -7,7 +7,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 # Очистка кэша npm
 RUN npm cache clean --force
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
