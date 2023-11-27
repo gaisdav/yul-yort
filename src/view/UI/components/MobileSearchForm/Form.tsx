@@ -3,7 +3,8 @@ import css from "./styles.module.scss";
 
 import { Button } from "@mui/material";
 import SearchLocality from "./SearchLocality";
-import { IFormData } from "../SearchForm/types";
+import { ILocalityEntity } from "../../../../data/Locality";
+import SearchLocalityTo from "./SearchLocalityTo";
 
 export const MobileForm: FC<any> = ({
   localities,
@@ -11,9 +12,14 @@ export const MobileForm: FC<any> = ({
   loading,
   onSearch,
 }) => {
+  //FIXME: test
   const [isOpen, setOpen] = useState(false);
-  const [from, setFrom] = useState<any>();
+  const [isLocationTo, setIsLocationTo] = useState(false);
+  //
+  const [from, setFrom] = useState<ILocalityEntity | null>();
+  const [to, setTo] = useState<ILocalityEntity | null>();
 
+  //
   const openInputLayer = () => {
     setOpen(true);
   };
@@ -21,11 +27,26 @@ export const MobileForm: FC<any> = ({
   const closeInputLayer = () => {
     setOpen(false);
   };
+  //
+
+  //
+  const openLocationToLayer = () => {
+    setIsLocationTo(true);
+  };
+
+  const closeLocationToLayer = () => {
+    setIsLocationTo(false);
+  };
+  ///
 
   const setLocation = (locality: any) => {
     closeInputLayer();
-    // const { id } = locality;
     setFrom(locality);
+  };
+
+  const setLocationTo = (locality: any) => {
+    closeLocationToLayer();
+    setTo(locality);
   };
 
   const searchLocality = (event: any) => {
@@ -34,9 +55,10 @@ export const MobileForm: FC<any> = ({
   };
 
   const handleSearch = () => {
+    if (!from || !to) return;
     const data = {
-      originId: 1,
-      destinationId: 3,
+      originId: from.id,
+      destinationId: to.id,
     };
     onSearch(data);
   };
@@ -52,12 +74,18 @@ export const MobileForm: FC<any> = ({
               <span>Откуда</span>
             )}
           </div>
-          <div className={css.to}>Куда</div>
+          <div onClick={openLocationToLayer} className={css.to}>
+            {to ? (
+              <span className={css.formLocalityName}>{to.name}</span>
+            ) : (
+              <span>Куда</span>
+            )}
+          </div>
         </div>
         <div className={css.button}>
           <Button
             onClick={handleSearch}
-            disabled={!from}
+            disabled={!from || !to}
             fullWidth
             type="submit"
             variant="contained"
@@ -67,12 +95,22 @@ export const MobileForm: FC<any> = ({
         </div>
       </div>
 
+      {/* FIXME: объединить  */}
       <SearchLocality
-        from={from}
+        from={from?.name}
+        setLocation={setLocation}
         localities={localities}
         isOpen={isOpen}
         closeInputLayer={closeInputLayer}
-        setLocation={setLocation}
+        searchLocality={searchLocality}
+        loading={loading}
+      />
+      <SearchLocalityTo
+        from={to?.name}
+        setLocation={setLocationTo}
+        isOpen={isLocationTo}
+        closeInputLayer={closeLocationToLayer}
+        localities={localities}
         searchLocality={searchLocality}
         loading={loading}
       />
