@@ -42,7 +42,7 @@ const MobileForm: FC<MobileFormProps> = ({
     }
   };
 
-  //TODO: 
+  //TODO: устанавливаем состояние
   const setLocation = (locality: any, type: "from" | "to") => {
     toggleLocationLayer(type);
     if (type === "from") {
@@ -52,6 +52,7 @@ const MobileForm: FC<MobileFormProps> = ({
     }
   };
 
+  //TODO: поиск города
   const searchLocality = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     getList(value);
