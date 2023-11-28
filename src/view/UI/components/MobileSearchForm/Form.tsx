@@ -27,15 +27,16 @@ const MobileForm: FC<MobileFormProps> = ({
   const {
     register,
     handleSubmit,
+    getValues,
     setValue,
-    formState: { errors },
   } = useForm<IFormData>();
   const [isOpen, setOpen] = useState(false);
   const [isLocationTo, setIsLocationTo] = useState(false);
 
   //TODO: поиск маршрута
   const onSubmit = (data: any) => {
-    console.log("data", data);
+    //FIXME: прописать через required
+    if (!data?.originId || !data?.destinationId) return;
     onSearch(data);
   };
 
@@ -71,23 +72,25 @@ const MobileForm: FC<MobileFormProps> = ({
             onClick={() => toggleLocationLayer("originId")}
             className={css.from}
           >
-            {/* {from ? (
-              <span className={css.formLocalityName}>{from.name}</span>
+            {getValues("originId") ? (
+              <span className={css.formLocalityName}>
+                {getValues("originId")}
+              </span>
             ) : (
               <span>Откуда</span>
-            )} */}
-            <span>Откуда</span>
+            )}
           </div>
           <div
             onClick={() => toggleLocationLayer("destinationId")}
             className={css.to}
           >
-            {/* {to ? (
-              <span className={css.formLocalityName}>{to.name}</span>
+            {getValues("destinationId") ? (
+              <span className={css.formLocalityName}>
+                {getValues("destinationId")}
+              </span>
             ) : (
-              <span>Куда</span>
-            )} */}
-            <span>Куда</span>
+              <span>Откуда</span>
+            )}
           </div>
         </div>
       </Paper>
@@ -104,8 +107,8 @@ const MobileForm: FC<MobileFormProps> = ({
         </Button>
       </div>
 
+      {/* TODO: popup слои (можно ли объединить в один) */}
       <SearchLocality
-        register={register}
         label="Откуда"
         from={"Откуда то"}
         setLocation={(locality) => setLocation(locality, "originId")}
@@ -117,7 +120,6 @@ const MobileForm: FC<MobileFormProps> = ({
       />
 
       <SearchLocality
-        register={register}
         label="Куда"
         from={"Куда то"}
         setLocation={(locality) => setLocation(locality, "destinationId")}

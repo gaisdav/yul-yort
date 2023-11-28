@@ -1,4 +1,3 @@
-// SearchLocality.tsx
 import Sheet from "react-modal-sheet";
 import { FC, Key, useEffect, useRef } from "react";
 import css from "./styles.module.scss";
@@ -15,7 +14,6 @@ interface SearchLocalityProps {
   searchLocality: (event: React.ChangeEvent<HTMLInputElement>) => void;
   localities: ILocalityEntity[] | null;
   loading: boolean;
-  register: any;
 }
 
 const SearchLocality: FC<SearchLocalityProps> = ({
@@ -27,7 +25,6 @@ const SearchLocality: FC<SearchLocalityProps> = ({
   searchLocality,
   localities,
   loading,
-  register,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,6 +34,7 @@ const SearchLocality: FC<SearchLocalityProps> = ({
     }
   };
 
+  //TODO: вынести
   useEffect(() => {
     const handleBodyTouchStart = (event: TouchEvent) => {
       if (
