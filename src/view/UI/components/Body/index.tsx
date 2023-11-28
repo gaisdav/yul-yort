@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import css from "./styles.module.scss";
 import { useViewModel } from "../../hooks";
 import { Toolbar } from "@mui/material";
 
-const Body: FC = ({ children }) => {
+const Body: FC<PropsWithChildren> = ({ children }) => {
   const appVM = useViewModel("app");
 
   return (

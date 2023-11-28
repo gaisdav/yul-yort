@@ -2,77 +2,49 @@
   "name": "yul-yort",
   "version": "0.1.0",
   "type": "module",
-  "homepage": "/",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "start:dev": "docker-compose up",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "testCoverage": "npm test -- --coverage",
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "module": "node createModule.js",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
     "get-css-vars": "rm -rf ./public/styles/mui-variables.css && node getCSSVariablesFromTheme.js && prettier --write ./public/styles/mui-variables.css"
   },
   "dependencies": {
-    "@emotion/react": "^11.4.1",
-    "@emotion/styled": "^11.3.0",
-    "@mui/icons-material": "^5.0.0",
-    "@mui/material": "^5.0.0",
-    "@mui/x-date-pickers": "^5.0.0-beta.7",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.25",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^16.9.14",
-    "cross-env": "^7.0.3",
-    "date-fns": "^2.29.2",
-    "mobx": "^6.3.3",
-    "mobx-react-lite": "^3.2.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.18",
+    "@mui/material": "^5.14.18",
+    "@mui/x-date-pickers": "^6.18.2",
+    "@types/node": "^20.10.0",
+    "date-fns": "^2.30.0",
+    "mobx": "^6.11.0",
+    "mobx-react-lite": "^4.0.5",
     "p-debounce": "^4.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
-    "react-hook-form": "^7.17.2",
+    "react-hook-form": "^7.48.2",
     "react-phone-number-input": "^3.3.7",
     "react-router5": "^8.0.1",
-    "react-scripts": "5.0.1",
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1",
-    "sass": "^1.52.2",
-    "web-vitals": "^0.2.4",
-    "workbox-background-sync": "^5.1.4",
-    "workbox-broadcast-update": "^5.1.4",
-    "workbox-cacheable-response": "^5.1.4",
-    "workbox-core": "^5.1.4",
-    "workbox-expiration": "^5.1.4",
-    "workbox-google-analytics": "^5.1.4",
-    "workbox-navigation-preload": "^5.1.4",
-    "workbox-precaching": "^5.1.4",
-    "workbox-range-requests": "^5.1.4",
-    "workbox-routing": "^5.1.4",
-    "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4"
+    "sass": "^1.69.5"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "prettier": "3.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-plugin-html": "^3.2.0"
   },
   "browserslist": {
     "production": [
@@ -85,21 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "^6.3.12",
-    "@storybook/addon-essentials": "^6.3.12",
-    "@storybook/addon-links": "^6.3.12",
-    "@storybook/node-logger": "^6.3.12",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.3.12",
-    "classnames": "^2.3.2",
-    "msw": "^0.35.0",
-    "prettier": "2.4.1",
-    "storybook-addon-material-ui": "^0.9.0-alpha.24",
-    "typescript": "^4.8.3"
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }

@@ -16,7 +16,7 @@ export class Analytics implements IAnalytics {
       this.lib.initialize(trackingId, { testMode });
     } else {
       console.error(
-        "Analytics library is not initialized. Require trackingId."
+        "Analytics library is not initialized. Require trackingId.",
       );
     }
   }
@@ -32,7 +32,7 @@ export class Analytics implements IAnalytics {
   click = ({ label, action = "click", category, ...params }: IClickParams) => {
     this.lib?.event({
       category,
-      action: "click",
+      action,
       label,
       ...params,
     });

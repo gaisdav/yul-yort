@@ -7,15 +7,15 @@ import { setDocumentTitle } from "../../libs/utils";
  * Плагин синхронно меняет заголовок документа.
  * Для асинхронной или отложенной замены используйте onActivate в src/router/routes.ts.
  *
- * @param router: Router
- * @param dependencies: IDependencies
+ * @param _
+ * @param dependencies
  */
 export const documentTitle: MiddlewareFactory<IDependencies> =
-  (router, dependencies) =>
+  (_, dependencies) =>
   (toState): boolean => {
     const route: IRoute | undefined = getRouteByToStateName(
       toState.name,
-      dependencies
+      dependencies,
     );
 
     setDocumentTitle(route?.title);

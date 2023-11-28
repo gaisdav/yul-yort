@@ -7,7 +7,7 @@ const cache: Record<string, IRoute> = {};
 
 export const getRouteByToStateName = (
   toStateName: string,
-  dependencies: IDependencies
+  dependencies: IDependencies,
 ): IRoute | undefined => {
   // роут не найдет в кэше
   if (!(toStateName in cache)) {

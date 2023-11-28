@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { SearchForm } from "../../components/SearchForm";
 import { useRouteNode } from "react-router5";
 import { useViewModel } from "../../hooks";
@@ -26,11 +26,11 @@ const Orders: FC = observer(() => {
   };
 
   const originEntity = localityVM.localities?.find(
-    (item) => item.id === Number(params.originId)
+    (item) => item.id === Number(params.originId),
   );
 
   const destinationEntity = localityVM.localities?.find(
-    (item) => item.id === Number(params.destinationId)
+    (item) => item.id === Number(params.destinationId),
   );
 
   return (

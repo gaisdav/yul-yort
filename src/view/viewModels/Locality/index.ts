@@ -20,7 +20,7 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
     super();
     this._debouncedGetList = debounce<[IQueries], ILocalityEntity[]>(
       this.service.getList,
-      500
+      500,
     );
 
     makeObservable(this, {

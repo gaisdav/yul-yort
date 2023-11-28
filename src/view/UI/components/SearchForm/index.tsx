@@ -3,7 +3,7 @@ import { IFormData, ISearchForm } from "./types";
 import { Form } from "./components/Form";
 import { MinifiedForm } from "./components/MinifiedForm";
 import { SubmitHandler } from "react-hook-form";
-import { useViewModel } from "../../hooks/useViewModel";
+import { useViewModel } from "../../hooks";
 import { useSearchAnalytics } from "./useHeaderAnalytics";
 
 export const SearchForm: FC<ISearchForm> = ({

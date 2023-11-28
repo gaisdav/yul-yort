@@ -1,4 +1,4 @@
-import { FieldErrors } from "react-hook-form/dist/types/errors";
+import { FieldErrors } from "react-hook-form";
 
 const ErrorsDictionary: Record<string, string> = {
   required: "Обязательное поле",
@@ -12,7 +12,7 @@ const ErrorsDictionary: Record<string, string> = {
 export const getErrorText = (
   errors: FieldErrors = {},
   valuePath: string,
-  index?: number
+  index?: number,
 ): string | undefined => {
   if (!errors || Object.keys(errors).length === 0) {
     return void 0;

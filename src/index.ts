@@ -19,5 +19,9 @@ try {
     themes: [lightTheme, darkTheme],
   });
 } catch (err) {
-  initErrorApp(err);
+  if (err instanceof Error) {
+    initErrorApp(err);
+  } else {
+    initErrorApp(new Error("Unknown error"));
+  }
 }
