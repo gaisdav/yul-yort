@@ -4,6 +4,7 @@ import css from "./styles.module.scss";
 import { Button, Paper } from "@mui/material";
 import SearchLocality from "./SearchLocality";
 import { ILocalityEntity } from "../../../../data/Locality";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 interface MobileFormProps {
   localities: ILocalityEntity[] | null;
@@ -12,43 +13,38 @@ interface MobileFormProps {
   onSearch: (data: { originId: string; destinationId: string }) => void;
 }
 
+interface IFormData {
+  originId: ID;
+  destinationId: ID;
+}
+
 const MobileForm: FC<MobileFormProps> = ({
   localities = [],
   getList,
   loading,
   onSearch,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<IFormData>();
   const [isOpen, setOpen] = useState(false);
   const [isLocationTo, setIsLocationTo] = useState(false);
-  const [from, setFrom] = useState<ILocalityEntity | null>();
-  const [to, setTo] = useState<ILocalityEntity | null>();
 
   //TODO: поиск маршрута
-  const handleSearch = () => {
-    if (!from || !to) return;
-    const data: any = {
-      originId: from.id,
-      destinationId: to.id,
-    };
+  const onSubmit = (data: any) => {
+    console.log("data", data);
     onSearch(data);
   };
 
-  //TODO: отвечает за открытие и за закрытие слоя 
-  const toggleLocationLayer = (type: "from" | "to") => {
-    if (type === "from") {
+  //TODO: отвечает за открытие и за закрытие слоя
+  const toggleLocationLayer = (type: "originId" | "destinationId") => {
+    if (type === "originId") {
       setOpen(!isOpen);
     } else {
       setIsLocationTo(!isLocationTo);
-    }
-  };
-
-  //TODO: устанавливаем состояние
-  const setLocation = (locality: any, type: "from" | "to") => {
-    toggleLocationLayer(type);
-    if (type === "from") {
-      setFrom(locality);
-    } else {
-      setTo(locality);
     }
   };
 
@@ -58,30 +54,47 @@ const MobileForm: FC<MobileFormProps> = ({
     getList(value);
   };
 
+  //TODO: Устанавливаем состояние
+  const setLocation = (
+    locality: ILocalityEntity,
+    type: "originId" | "destinationId"
+  ) => {
+    toggleLocationLayer(type);
+    setValue(type, locality.id);
+  };
+
   return (
     <>
       <Paper elevation={3}>
         <div className={css.mobileContainer}>
-          <div onClick={() => toggleLocationLayer("from")} className={css.from}>
-            {from ? (
+          <div
+            onClick={() => toggleLocationLayer("originId")}
+            className={css.from}
+          >
+            {/* {from ? (
               <span className={css.formLocalityName}>{from.name}</span>
             ) : (
               <span>Откуда</span>
-            )}
+            )} */}
+            <span>Откуда</span>
           </div>
-          <div onClick={() => toggleLocationLayer("to")} className={css.to}>
-            {to ? (
+          <div
+            onClick={() => toggleLocationLayer("destinationId")}
+            className={css.to}
+          >
+            {/* {to ? (
               <span className={css.formLocalityName}>{to.name}</span>
             ) : (
               <span>Куда</span>
-            )}
+            )} */}
+            <span>Куда</span>
           </div>
         </div>
       </Paper>
 
       <div className={css.button}>
         <Button
-          onClick={handleSearch}
+          onClick={handleSubmit(onSubmit)}
           fullWidth
           type="submit"
           variant="contained"
@@ -92,22 +105,24 @@ const MobileForm: FC<MobileFormProps> = ({
       </div>
 
       <SearchLocality
+        register={register}
         label="Откуда"
-        from={from?.name}
-        setLocation={(locality) => setLocation(locality, "from")}
+        from={"Откуда то"}
+        setLocation={(locality) => setLocation(locality, "originId")}
         localities={localities}
         isOpen={isOpen}
-        closeInputLayer={() => toggleLocationLayer("from")}
+        closeInputLayer={() => toggleLocationLayer("originId")}
         searchLocality={searchLocality}
         loading={loading}
       />
 
       <SearchLocality
+        register={register}
         label="Куда"
-        from={to?.name}
-        setLocation={(locality) => setLocation(locality, "to")}
+        from={"Куда то"}
+        setLocation={(locality) => setLocation(locality, "destinationId")}
         isOpen={isLocationTo}
-        closeInputLayer={() => toggleLocationLayer("to")}
+        closeInputLayer={() => toggleLocationLayer("destinationId")}
         localities={localities}
         searchLocality={searchLocality}
         loading={loading}

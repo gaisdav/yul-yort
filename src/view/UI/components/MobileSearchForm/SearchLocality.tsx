@@ -15,6 +15,7 @@ interface SearchLocalityProps {
   searchLocality: (event: React.ChangeEvent<HTMLInputElement>) => void;
   localities: ILocalityEntity[] | null;
   loading: boolean;
+  register: any;
 }
 
 const SearchLocality: FC<SearchLocalityProps> = ({
@@ -26,6 +27,7 @@ const SearchLocality: FC<SearchLocalityProps> = ({
   searchLocality,
   localities,
   loading,
+  register,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -51,8 +53,6 @@ const SearchLocality: FC<SearchLocalityProps> = ({
       document.body.removeEventListener("touchstart", handleBodyTouchStart);
     };
   }, []);
-
-  console.log("localities", localities);
 
   return (
     <>
