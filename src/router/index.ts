@@ -6,7 +6,7 @@ import { IDependencies } from "./types";
 import { Router } from "router5/dist/types/router";
 
 export default function createAppRouter(
-  dependencies: IDependencies
+  dependencies: IDependencies,
 ): Router<IDependencies> {
   const router = createRouter<IDependencies>(
     routes,
@@ -15,7 +15,7 @@ export default function createAppRouter(
       queryParamsMode: "loose",
       autoCleanUp: true,
     },
-    dependencies
+    dependencies,
   );
 
   router.usePlugin(browserPlugin());

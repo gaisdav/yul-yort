@@ -1,6 +1,5 @@
 import { Chip, Link } from "@mui/material";
 import css from "./styles.module.scss";
-import React from "react";
 import { useChipAnalytics } from "./useChipAnalytics";
 
 export const AddAgencyChip = () => {

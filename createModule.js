@@ -172,7 +172,7 @@ types.forEach((type) => {
   fs.writeFile(
     builder[type].getClassFilePath(moduleName),
     builder[type].getClassTemplate(moduleName),
-    errorCallback
+    errorCallback,
   );
 
   /**
@@ -181,7 +181,7 @@ types.forEach((type) => {
   fs.writeFile(
     builder[type].getTypeFilePath(moduleName),
     builder[type].getTypeTemplate(moduleName),
-    errorCallback
+    errorCallback,
   );
 
   /**
@@ -190,7 +190,7 @@ types.forEach((type) => {
   fs.writeFile(
     builder.getIndexPath(moduleName),
     builder.indexTemplate,
-    errorCallback
+    errorCallback,
   );
 });
 

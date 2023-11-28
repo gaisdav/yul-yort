@@ -18,7 +18,7 @@ export const useChangeStatusBar = ({ mode }: IChangeStatusBar) => {
 
   useEffect(() => {
     const themeColorMetaTag = document.querySelector(
-      "meta[name='theme-color']"
+      "meta[name='theme-color']",
     );
     const bodyTag = document.querySelector("body");
 

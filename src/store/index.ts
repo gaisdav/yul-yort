@@ -15,8 +15,8 @@ import { Analytics } from "../libs";
 export const libs: ILibs = {
   api: new Api(),
   analytics: new Analytics({
-    trackingId: process.env.REACT_APP_TRACKING_ID,
-    testMode: process.env.NODE_ENV !== "production",
+    trackingId: import.meta.env.VITE_TRACKING_ID,
+    testMode: import.meta.env.NODE_ENV !== "production",
   }),
 };
 

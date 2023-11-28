@@ -1,4 +1,4 @@
-import React from "react";
+import { Component, ErrorInfo } from "react";
 import { Collapse, IconButton, Typography } from "@mui/material";
 import css from "./styles.module.scss";
 import SentimentVeryDissatisfiedOutlinedIcon from "@mui/icons-material/SentimentVeryDissatisfiedOutlined";
@@ -7,8 +7,8 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 
 // TODO вынести компоненты
-export class ErrorBoundary extends React.Component<IProps, IState> {
-  constructor(props: any) {
+export class ErrorBoundary extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       error: null,
@@ -37,7 +37,7 @@ export class ErrorBoundary extends React.Component<IProps, IState> {
     this.state.timerID && clearInterval(this.state.timerID);
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({
       error: error,
       errorInfo: errorInfo,

@@ -1,6 +1,5 @@
 import { IRoutes } from "./types";
 import { setDocumentTitle } from "../libs/utils";
-import { CONSTANTS } from "../constants";
 
 export enum ERouteNames {
   ORDERS = "orders",
@@ -10,14 +9,14 @@ export enum ERouteNames {
 const routes: IRoutes = [
   {
     name: ERouteNames.HOME,
-    path: CONSTANTS.publicUrl || "/",
+    path: "/",
     onActivate: async (store) => {
       store.locality.getList();
     },
   },
   {
     name: ERouteNames.ORDERS,
-    path: `${CONSTANTS.publicUrl}/orders`,
+    path: "/orders",
     onActivate: async (store, params) => {
       if (!params) {
         return;
@@ -33,11 +32,11 @@ const routes: IRoutes = [
       await store.locality.getList();
 
       const origin = store.locality.localities?.find(
-        (locality) => locality.id === Number(originId)
+        (locality) => locality.id === Number(originId),
       );
 
       const destination = store.locality.localities?.find(
-        (locality) => locality.id === Number(destinationId)
+        (locality) => locality.id === Number(destinationId),
       );
 
       if (origin && destination) {
