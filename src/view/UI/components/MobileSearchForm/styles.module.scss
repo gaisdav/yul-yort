@@ -2,6 +2,12 @@
   width: 100%;
 }
 
+.mobileContainer {
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+}
+
 .localities {
   margin-top: 12px;
   overflow: scroll;
@@ -36,15 +42,8 @@ ul {
   }
 }
 
-.mobileContainer {
-  background: #f4f4f4;
-  border-radius: 8px;
-  padding: 12px;
-  width: 100%;
-}
-
 .from {
-  padding: 8px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #e5e5e5;
   color: #858585;
 }
@@ -54,7 +53,7 @@ ul {
 }
 
 .to {
-  padding: 8px 0;
+  padding: 12px 0;
   color: #858585;
 }
 

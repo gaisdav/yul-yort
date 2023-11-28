@@ -1,16 +1,30 @@
+// SearchLocality.tsx
 import Sheet from "react-modal-sheet";
 import { FC, Key, useEffect, useRef } from "react";
 import css from "./styles.module.scss";
 import { CircularProgress, TextField } from "@mui/material";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import { ILocalityEntity } from "../../../../data/Locality";
 
-const SearchLocality: FC<any> = ({
-  localities = [],
+interface SearchLocalityProps {
+  label: string;
+  isOpen: boolean;
+  closeInputLayer: () => void;
+  setLocation: (locality: any) => void;
+  from: string | undefined;
+  searchLocality: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  localities: ILocalityEntity[] | null;
+  loading: boolean;
+}
+
+const SearchLocality: FC<SearchLocalityProps> = ({
+  label,
   isOpen,
   closeInputLayer,
   setLocation,
   from,
   searchLocality,
+  localities,
   loading,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -21,7 +35,6 @@ const SearchLocality: FC<any> = ({
     }
   };
 
-  //FIXME: Touch вынести в глобал
   useEffect(() => {
     const handleBodyTouchStart = (event: TouchEvent) => {
       if (
@@ -40,6 +53,7 @@ const SearchLocality: FC<any> = ({
   }, []);
 
   console.log("localities", localities);
+
   return (
     <>
       <Sheet
@@ -55,7 +69,7 @@ const SearchLocality: FC<any> = ({
               <TextField
                 defaultValue={from}
                 id="outlined-basic"
-                label="Откуда"
+                label={label}
                 variant="outlined"
                 onChange={searchLocality}
                 inputRef={inputRef}

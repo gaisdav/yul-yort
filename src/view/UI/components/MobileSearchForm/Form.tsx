@@ -1,80 +1,74 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import css from "./styles.module.scss";
 
-import { Button } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import SearchLocality from "./SearchLocality";
 import { ILocalityEntity } from "../../../../data/Locality";
-import SearchLocalityTo from "./SearchLocalityTo";
 
-export const MobileForm: FC<any> = ({
-  localities,
+interface MobileFormProps {
+  localities: ILocalityEntity[] | null;
+  getList: (value: string) => void;
+  loading: boolean;
+  onSearch: (data: { originId: string; destinationId: string }) => void;
+}
+
+const MobileForm: FC<MobileFormProps> = ({
+  localities = [],
   getList,
   loading,
   onSearch,
 }) => {
-  //FIXME: test
   const [isOpen, setOpen] = useState(false);
   const [isLocationTo, setIsLocationTo] = useState(false);
-  //
   const [from, setFrom] = useState<ILocalityEntity | null>();
   const [to, setTo] = useState<ILocalityEntity | null>();
 
-  //
-  const openInputLayer = () => {
-    setOpen(true);
-  };
-
-  const closeInputLayer = () => {
-    setOpen(false);
-  };
-  //
-
-  //
-  const openLocationToLayer = () => {
-    setIsLocationTo(true);
-  };
-
-  const closeLocationToLayer = () => {
-    setIsLocationTo(false);
-  };
-  ///
-
-  const setLocation = (locality: any) => {
-    closeInputLayer();
-    setFrom(locality);
-  };
-
-  const setLocationTo = (locality: any) => {
-    closeLocationToLayer();
-    setTo(locality);
-  };
-
-  const searchLocality = (event: any) => {
-    const value = event.target.value;
-    getList(value);
-  };
-
+  //TODO: поиск маршрута
   const handleSearch = () => {
     if (!from || !to) return;
-    const data = {
+    const data: any = {
       originId: from.id,
       destinationId: to.id,
     };
     onSearch(data);
   };
 
+  //TODO: отвечает за открытие и за закрытие слоя 
+  const toggleLocationLayer = (type: "from" | "to") => {
+    if (type === "from") {
+      setOpen(!isOpen);
+    } else {
+      setIsLocationTo(!isLocationTo);
+    }
+  };
+
+  //TODO: 
+  const setLocation = (locality: any, type: "from" | "to") => {
+    toggleLocationLayer(type);
+    if (type === "from") {
+      setFrom(locality);
+    } else {
+      setTo(locality);
+    }
+  };
+
+  const searchLocality = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    getList(value);
+  };
+
   return (
     <>
-      <div>
+      <Paper elevation={3}>
         <div className={css.mobileContainer}>
-          <div onClick={openInputLayer} className={css.from}>
+          <div onClick={() => toggleLocationLayer("from")} className={css.from}>
             {from ? (
               <span className={css.formLocalityName}>{from.name}</span>
             ) : (
               <span>Откуда</span>
             )}
           </div>
-          <div onClick={openLocationToLayer} className={css.to}>
+          <div onClick={() => toggleLocationLayer("to")} className={css.to}>
             {to ? (
               <span className={css.formLocalityName}>{to.name}</span>
             ) : (
@@ -82,34 +76,37 @@ export const MobileForm: FC<any> = ({
             )}
           </div>
         </div>
-        <div className={css.button}>
-          <Button
-            onClick={handleSearch}
-            disabled={!from || !to}
-            fullWidth
-            type="submit"
-            variant="contained"
-          >
-            Найти
-          </Button>
-        </div>
+      </Paper>
+
+      <div className={css.button}>
+        <Button
+          onClick={handleSearch}
+          fullWidth
+          type="submit"
+          variant="contained"
+          size="large"
+        >
+          Найти
+        </Button>
       </div>
 
-      {/* FIXME: объединить  */}
       <SearchLocality
+        label="Откуда"
         from={from?.name}
-        setLocation={setLocation}
+        setLocation={(locality) => setLocation(locality, "from")}
         localities={localities}
         isOpen={isOpen}
-        closeInputLayer={closeInputLayer}
+        closeInputLayer={() => toggleLocationLayer("from")}
         searchLocality={searchLocality}
         loading={loading}
       />
-      <SearchLocalityTo
+
+      <SearchLocality
+        label="Куда"
         from={to?.name}
-        setLocation={setLocationTo}
+        setLocation={(locality) => setLocation(locality, "to")}
         isOpen={isLocationTo}
-        closeInputLayer={closeLocationToLayer}
+        closeInputLayer={() => toggleLocationLayer("to")}
         localities={localities}
         searchLocality={searchLocality}
         loading={loading}
@@ -117,3 +114,5 @@ export const MobileForm: FC<any> = ({
     </>
   );
 };
+
+export { MobileForm };
