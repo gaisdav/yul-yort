@@ -5,63 +5,49 @@ import { Button, Paper } from "@mui/material";
 import SearchLocality from "./SearchLocality";
 import { ILocalityEntity } from "../../../../data/Locality";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { IFormData, IMobileFormProps, TPoint, TYPE_POINT } from "./types";
 
-interface MobileFormProps {
-  localities: ILocalityEntity[] | null;
-  getList: (value: string) => void;
-  loading: boolean;
-  onSearch: (data: { originId: string; destinationId: string }) => void;
-}
-
-interface IFormData {
-  originId: ID;
-  destinationId: ID;
-}
-
-const MobileForm: FC<MobileFormProps> = ({
+const MobileForm: FC<IMobileFormProps> = ({
   localities = [],
   getList,
   loading,
   onSearch,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    setValue,
-  } = useForm<IFormData>();
-  const [isOpen, setOpen] = useState(false);
-  const [isLocationTo, setIsLocationTo] = useState(false);
+  const { handleSubmit, setValue } = useForm<IFormData>();
+  const [isOriginModalOpen, setIsOriginModalOpen] = useState(false);
+  const [isToModalOpen, setIsToModalOpen] = useState(false);
+  const [pointName, setPointName] = useState({
+    origin: "",
+    destination: "",
+  });
 
-  //TODO: поиск маршрута
-  const onSubmit = (data: any) => {
-    //FIXME: прописать через required
-    if (!data?.originId || !data?.destinationId) return;
+  const onSubmit: SubmitHandler<IFormData> = (data) => {
     onSearch(data);
   };
 
-  //TODO: отвечает за открытие и за закрытие слоя
-  const toggleLocationLayer = (type: "originId" | "destinationId") => {
-    if (type === "originId") {
-      setOpen(!isOpen);
-    } else {
-      setIsLocationTo(!isLocationTo);
-    }
-  };
-
-  //TODO: поиск города
   const searchLocality = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     getList(value);
   };
 
-  //TODO: Устанавливаем состояние
-  const setLocation = (
-    locality: ILocalityEntity,
-    type: "originId" | "destinationId"
-  ) => {
+  //отвечает за открытие/закрытие слоя
+  const toggleLocationLayer = (type: TPoint) => {
+    if (type === TYPE_POINT.Origin) {
+      setIsOriginModalOpen(!isOriginModalOpen);
+    } else {
+      setIsToModalOpen(!isToModalOpen);
+    }
+  };
+
+  const setLocation = (locality: ILocalityEntity, type: TPoint) => {
     toggleLocationLayer(type);
-    setValue(type, locality.id);
+    const updatedPointName = { ...pointName, [type]: locality.name };
+    setPointName(updatedPointName);
+    if (type === TYPE_POINT.Origin) {
+      setValue("originId", locality.id);
+    } else {
+      setValue("destinationId", locality.id);
+    }
   };
 
   return (
@@ -69,27 +55,25 @@ const MobileForm: FC<MobileFormProps> = ({
       <Paper elevation={3}>
         <div className={css.mobileContainer}>
           <div
-            onClick={() => toggleLocationLayer("originId")}
+            onClick={() => toggleLocationLayer(TYPE_POINT.Origin)}
             className={css.from}
           >
-            {getValues("originId") ? (
-              <span className={css.formLocalityName}>
-                {getValues("originId")}
-              </span>
+            {pointName.origin ? (
+              <span className={css.formLocalityName}>{pointName.origin}</span>
             ) : (
               <span>Откуда</span>
             )}
           </div>
           <div
-            onClick={() => toggleLocationLayer("destinationId")}
+            onClick={() => toggleLocationLayer(TYPE_POINT.Destination)}
             className={css.to}
           >
-            {getValues("destinationId") ? (
+            {pointName.destination ? (
               <span className={css.formLocalityName}>
-                {getValues("destinationId")}
+                {pointName.destination}
               </span>
             ) : (
-              <span>Откуда</span>
+              <span>Куда</span>
             )}
           </div>
         </div>
@@ -107,24 +91,26 @@ const MobileForm: FC<MobileFormProps> = ({
         </Button>
       </div>
 
-      {/* TODO: popup слои (можно ли объединить в один) */}
+      {/* TODO: подумать возможно можно объединить  */}
       <SearchLocality
+        isOpen={isOriginModalOpen}
         label="Откуда"
-        from={"Откуда то"}
-        setLocation={(locality) => setLocation(locality, "originId")}
+        from={pointName.origin}
+        setLocation={(locality) => setLocation(locality, TYPE_POINT.Origin)}
         localities={localities}
-        isOpen={isOpen}
-        closeInputLayer={() => toggleLocationLayer("originId")}
+        closeInputLayer={() => toggleLocationLayer(TYPE_POINT.Origin)}
         searchLocality={searchLocality}
         loading={loading}
       />
 
       <SearchLocality
+        isOpen={isToModalOpen}
         label="Куда"
-        from={"Куда то"}
-        setLocation={(locality) => setLocation(locality, "destinationId")}
-        isOpen={isLocationTo}
-        closeInputLayer={() => toggleLocationLayer("destinationId")}
+        from={pointName.destination}
+        setLocation={(locality) =>
+          setLocation(locality, TYPE_POINT.Destination)
+        }
+        closeInputLayer={() => toggleLocationLayer(TYPE_POINT.Destination)}
         localities={localities}
         searchLocality={searchLocality}
         loading={loading}

@@ -1,22 +1,12 @@
 import Sheet from "react-modal-sheet";
-import { FC, Key, useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import css from "./styles.module.scss";
 import { CircularProgress, TextField } from "@mui/material";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import { ISearchLocality } from "./types";
 import { ILocalityEntity } from "../../../../data/Locality";
 
-interface SearchLocalityProps {
-  label: string;
-  isOpen: boolean;
-  closeInputLayer: () => void;
-  setLocation: (locality: any) => void;
-  from: string | undefined;
-  searchLocality: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  localities: ILocalityEntity[] | null;
-  loading: boolean;
-}
-
-const SearchLocality: FC<SearchLocalityProps> = ({
+const SearchLocality: FC<ISearchLocality> = ({
   label,
   isOpen,
   closeInputLayer,
@@ -80,11 +70,11 @@ const SearchLocality: FC<SearchLocalityProps> = ({
                 </div>
               ) : localities && localities.length > 0 ? (
                 <ul className={css.localities}>
-                  {localities.map((item: any, index: Key) => (
+                  {localities.map((item: ILocalityEntity) => (
                     <li
                       className={css.locality}
                       onClick={() => setLocation(item)}
-                      key={index}
+                      key={item.id}
                     >
                       <FmdGoodIcon color="secondary" />
                       <div className={css.localityDescription}>
