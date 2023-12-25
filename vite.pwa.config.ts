@@ -1,10 +1,17 @@
 import { VitePWA } from "vite-plugin-pwa";
 import { IViteConfigParams } from "./vite.config.types";
 
+//TODO Errors and warnings
+// A Richer PWA Install Ul won't be available on desktop. Please add at least one screenshot with the "form_factor" set to "wide".
+// A Richer PWA Install Ul won't be available on mobile. Please add at least one screenshot for which "form_factor" is not set or set to a value other than "wide".
+
+// TODO https://vite-pwa-org.netlify.app/frameworks/react
+
 export const vitePwaConfig = ({ isDev, outDir }: IViteConfigParams) =>
   VitePWA({
-    registerType: "prompt",
+    registerType: "autoUpdate",
     injectRegister: "auto",
+    minify: true,
     outDir,
     devOptions: {
       enabled: isDev,
@@ -12,13 +19,17 @@ export const vitePwaConfig = ({ isDev, outDir }: IViteConfigParams) =>
     workbox: {
       globPatterns: ["**/*.{js,css,html,png,svg}"],
       cleanupOutdatedCaches: true,
+      skipWaiting: true,
     },
-    includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
     manifest: {
       name: "Yul Yort",
       short_name: "Yul Yort",
       description: "Yul Yort",
       lang: "ru",
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+      display: "standalone",
+      start_url: ".",
       icons: [
         {
           src: "/android-chrome-192x192.png",

@@ -27,5 +27,8 @@ export default ({ mode }) => {
       port: params.port,
       open: "http://localhost:" + params.port,
     },
+    preview: {
+      open: true,
+    },
   });
 };
