@@ -30,7 +30,6 @@ const MobileForm: FC<IMobileFormProps> = ({
     getList(value);
   };
 
-  //отвечает за открытие/закрытие слоя
   const toggleLocationLayer = (type: TPoint) => {
     if (type === TYPE_POINT.Origin) {
       setIsOriginModalOpen(!isOriginModalOpen);
@@ -91,7 +90,6 @@ const MobileForm: FC<IMobileFormProps> = ({
         </Button>
       </div>
 
-      {/* TODO: подумать возможно можно объединить  */}
       <SearchLocality
         isOpen={isOriginModalOpen}
         label="Откуда"

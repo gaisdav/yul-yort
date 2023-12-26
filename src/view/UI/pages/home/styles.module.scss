@@ -15,7 +15,9 @@
 /* Стили для десктопа (ширина экрана больше 1024 пикселей) */
 @media screen and (min-width: 1025px) {
   .desktop {
-    display: block;
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 
   .mobile {
