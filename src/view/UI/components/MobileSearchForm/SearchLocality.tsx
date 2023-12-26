@@ -24,7 +24,7 @@ const SearchLocality: FC<ISearchLocality> = ({
     }
   };
 
-  //TODO: вынести
+  //FIXME: подумать куда можно вынести функцию
   useEffect(() => {
     const handleBodyTouchStart = (event: TouchEvent) => {
       if (

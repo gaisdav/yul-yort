@@ -13,7 +13,10 @@ const MobileForm: FC<IMobileFormProps> = ({
   loading,
   onSearch,
 }) => {
+  // FORM
   const { handleSubmit, setValue } = useForm<IFormData>();
+
+  // STATES
   const [isOriginModalOpen, setIsOriginModalOpen] = useState(false);
   const [isToModalOpen, setIsToModalOpen] = useState(false);
   const [pointName, setPointName] = useState({
