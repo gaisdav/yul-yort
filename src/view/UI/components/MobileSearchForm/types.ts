@@ -14,7 +14,7 @@ export interface IFormData {
 
 export interface IMobileFormProps {
   localities: ILocalityEntity[] | null;
-  getList: (value: string) => void;
+  getList: (value?: string) => void;
   loading: boolean;
   onSearch: (data: IFormData) => void;
 }

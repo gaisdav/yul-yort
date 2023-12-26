@@ -34,6 +34,7 @@ const MobileForm: FC<IMobileFormProps> = ({
   };
 
   const toggleLocationLayer = (type: TPoint) => {
+    getList();
     if (type === TYPE_POINT.Origin) {
       setIsOriginModalOpen(!isOriginModalOpen);
     } else {

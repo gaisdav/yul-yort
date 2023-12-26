@@ -24,6 +24,10 @@ const SearchLocality: FC<ISearchLocality> = ({
     }
   };
 
+  useEffect(() => {
+    console.log("super");
+  }, []);
+
   //FIXME: подумать куда можно вынести функцию
   useEffect(() => {
     const handleBodyTouchStart = (event: TouchEvent) => {
