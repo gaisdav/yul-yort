@@ -7,6 +7,8 @@ COPY ["package.json", "package-lock.json*", "./"]
 # Очистка кэша npm
 RUN npm cache clean --force
 
+RUN chown root.root .
+
 RUN npm install 
 
 COPY . .
