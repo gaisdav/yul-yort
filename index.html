@@ -41,7 +41,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>Yul-Yort</title>
-    <!-- FIXME: отмена масштабирование, актуально для мобилок -->
+    <!-- TODO: отмена масштабирование, актуально для мобилок, возможно нужно вынести -->
     <script>
       // Отмена масштабирования с помощью JavaScript
       document.addEventListener("gesturestart", function (e) {
@@ -54,7 +54,7 @@
         function (e) {
           e.preventDefault();
         },
-        { passive: false }
+        { passive: false },
       );
     </script>
   </head>
