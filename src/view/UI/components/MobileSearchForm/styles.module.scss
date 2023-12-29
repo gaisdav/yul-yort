@@ -1,26 +1,25 @@
-.mobile {
-  width: 100%;
-}
-
 .mobileContainer {
   border-radius: 8px;
   padding: 12px;
   width: 100%;
 }
 
+// localities
 .localities {
   margin-top: 12px;
   overflow: scroll;
 }
 
 .localitiesDistrict {
-  color: #858585;
+  color: var(--yy-grey-500);
   font-size: 10px;
 }
 
 .locality {
   display: flex;
   align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #c0c0c0;
 }
 
 .localityDescription {
@@ -31,30 +30,28 @@
   padding: 0 12px;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+//
 
-  li {
-    list-style-type: none;
-    padding: 12px 0;
-    border-bottom: 1px solid #c0c0c0;
-  }
+//НЕТ переменной
+.darkThemeContainer {
+  background: #272727 !important;
 }
+
+//
 
 .from {
   padding: 12px 0;
-  border-bottom: 1px solid #e5e5e5;
-  color: #858585;
+  border-bottom: 1px solid var(--yy-grey-400);
+  color: var(--yy-grey-500);
 }
 
 .formLocalityName {
-  color: #000;
+  color: var(--yy-text-primary);
 }
 
 .to {
   padding: 12px 0;
-  color: #858585;
+  color: var(--yy-grey-500);
 }
 
 .loaderContainer {

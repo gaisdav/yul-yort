@@ -24,8 +24,12 @@ const MobileForm: FC<IMobileFormProps> = ({
     destination: "",
   });
 
-  const onSubmit: SubmitHandler<IFormData> = (data) => {
-    onSearch(data);
+  //TODO: добавить задачу, если города не заполнены как будем показывать ошибку
+  const onSubmit: SubmitHandler<IFormData> = ({ originId, destinationId }: IFormData) => {
+  
+    if (!originId || !destinationId) return
+
+    onSearch({ originId, destinationId });
   };
 
   const searchLocality = (event: React.ChangeEvent<HTMLInputElement>) => {

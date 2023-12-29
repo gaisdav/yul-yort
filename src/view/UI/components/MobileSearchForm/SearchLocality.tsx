@@ -5,6 +5,7 @@ import { CircularProgress, TextField } from "@mui/material";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { ISearchLocality } from "./types";
 import { ILocalityEntity } from "../../../../data/Locality";
+import { useViewModel } from "../../hooks";
 
 const SearchLocality: FC<ISearchLocality> = ({
   label,
@@ -17,6 +18,7 @@ const SearchLocality: FC<ISearchLocality> = ({
   loading,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const appVM = useViewModel("app");
 
   const handleButtonClick = () => {
     if (inputRef.current) {
@@ -46,6 +48,7 @@ const SearchLocality: FC<ISearchLocality> = ({
     };
   }, []);
 
+  console.log("appVM", appVM);
   return (
     <>
       <Sheet
@@ -54,7 +57,9 @@ const SearchLocality: FC<ISearchLocality> = ({
         onClose={closeInputLayer}
         className={css.container}
       >
-        <Sheet.Container>
+        <Sheet.Container
+          className={appVM.theme === "dark" ? css.darkThemeContainer : ""}
+        >
           <Sheet.Header />
           <Sheet.Content>
             <div className={css.container}>
@@ -80,7 +85,7 @@ const SearchLocality: FC<ISearchLocality> = ({
                       onClick={() => setLocation(item)}
                       key={item.id}
                     >
-                      <FmdGoodIcon color="secondary" />
+                      <FmdGoodIcon color="primary" />
                       <div className={css.localityDescription}>
                         <div className={css.localitiesName}>{item.name}</div>
                         <div className={css.localitiesDistrict}>
