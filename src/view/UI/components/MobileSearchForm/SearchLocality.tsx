@@ -1,11 +1,32 @@
 import Sheet from "react-modal-sheet";
 import { FC, useEffect, useRef } from "react";
-import css from "./styles.module.scss";
 import { CircularProgress, TextField } from "@mui/material";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-import { ISearchLocality } from "./types";
+import { ILocalities, ISearchLocality } from "./types";
 import { ILocalityEntity } from "../../../../data/Locality";
 import { useViewModel } from "../../hooks";
+
+import css from "./styles.module.scss";
+
+const Localities: FC<ILocalities> = ({ localities, setLocation }) => {
+  return (
+    <ul className={css.localities}>
+      {localities.map((item: ILocalityEntity) => (
+        <li
+          className={css.locality}
+          onClick={() => setLocation(item)}
+          key={item.id}
+        >
+          <FmdGoodIcon color="primary" />
+          <div className={css.localityDescription}>
+            <div className={css.localitiesName}>{item.name}</div>
+            <div className={css.localitiesDistrict}>{item.district}</div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const SearchLocality: FC<ISearchLocality> = ({
   label,
@@ -25,10 +46,6 @@ const SearchLocality: FC<ISearchLocality> = ({
       inputRef.current.blur();
     }
   };
-
-  useEffect(() => {
-    console.log("super");
-  }, []);
 
   //FIXME: подумать куда можно вынести функцию
   useEffect(() => {
@@ -77,23 +94,7 @@ const SearchLocality: FC<ISearchLocality> = ({
                   <CircularProgress />
                 </div>
               ) : localities && localities.length > 0 ? (
-                <ul className={css.localities}>
-                  {localities.map((item: ILocalityEntity) => (
-                    <li
-                      className={css.locality}
-                      onClick={() => setLocation(item)}
-                      key={item.id}
-                    >
-                      <FmdGoodIcon color="primary" />
-                      <div className={css.localityDescription}>
-                        <div className={css.localitiesName}>{item.name}</div>
-                        <div className={css.localitiesDistrict}>
-                          {item.district}
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <Localities localities={localities} setLocation={setLocation} />
               ) : (
                 <p>Ничего не найдено</p>
               )}

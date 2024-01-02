@@ -14,6 +14,7 @@ import {
   TYPE_POINT_PlACEHOLDER,
 } from "./types";
 
+// КОМПОНЕНТ выбранного города
 const FormLocalityName: FC<IFormLocalityName> = ({
   toggleLocationLayer,
   typePoint,
@@ -122,7 +123,7 @@ const MobileForm: FC<IMobileFormProps> = ({
 
       <SearchLocality
         isOpen={isOriginModalOpen}
-        label="Откуда"
+        label={TYPE_POINT_PlACEHOLDER.Origin}
         from={pointName.origin}
         setLocation={(locality) => setLocation(locality, TYPE_POINT.Origin)}
         localities={localities}
@@ -133,7 +134,7 @@ const MobileForm: FC<IMobileFormProps> = ({
 
       <SearchLocality
         isOpen={isToModalOpen}
-        label="Куда"
+        label={TYPE_POINT_PlACEHOLDER.Destination}
         from={pointName.destination}
         setLocation={(locality) =>
           setLocation(locality, TYPE_POINT.Destination)

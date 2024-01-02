@@ -7,7 +7,7 @@ export enum TYPE_POINT {
 
 export enum TYPE_POINT_PlACEHOLDER {
   Origin = "Откуда",
-  Destination = "Куда"
+  Destination = "Куда",
 }
 
 export type TPoint = TYPE_POINT.Destination | TYPE_POINT.Origin;
@@ -40,5 +40,10 @@ export interface IFormLocalityName {
   typePoint: TYPE_POINT;
   pointName: string;
   ID: ID;
-  placeholderHTML: TYPE_POINT_PlACEHOLDER
+  placeholderHTML: TYPE_POINT_PlACEHOLDER;
+}
+
+export interface ILocalities {
+  localities: ILocalityEntity[];
+  setLocation: (locality: ILocalityEntity) => void;
 }
