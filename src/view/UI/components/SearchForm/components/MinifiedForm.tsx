@@ -1,3 +1,4 @@
+{/*FIXME:  Для мобильной версии этот вариант еще не сделан */}
 import { FC } from "react";
 import { Button, LinearProgress, Paper, Typography } from "@mui/material";
 import { IMinifiedForm } from "../types";
@@ -36,7 +37,6 @@ export const MinifiedForm: FC<IMinifiedForm> = ({
             <LinearProgress />
           </div>
         )}
-        Для мобильной версии этот вариант еще не сделан
       </Paper>
 
       <Button

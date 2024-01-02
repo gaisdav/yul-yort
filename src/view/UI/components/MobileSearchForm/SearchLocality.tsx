@@ -66,44 +66,42 @@ const SearchLocality: FC<ISearchLocality> = ({
   }, []);
 
   return (
-    <>
-      <Sheet
-        rootId="root"
-        isOpen={isOpen}
-        onClose={closeInputLayer}
-        className={css.container}
+    <Sheet
+      rootId="root"
+      isOpen={isOpen}
+      onClose={closeInputLayer}
+      className={css.container}
+    >
+      <Sheet.Container
+        className={appVM.theme === "dark" ? css.darkThemeContainer : ""}
       >
-        <Sheet.Container
-          className={appVM.theme === "dark" ? css.darkThemeContainer : ""}
-        >
-          <Sheet.Header />
-          <Sheet.Content>
-            <div className={css.localitiesContainer}>
-              <TextField
-                defaultValue={from}
-                id="outlined-basic"
-                label={label}
-                variant="outlined"
-                onChange={searchLocality}
-                inputRef={inputRef}
-                fullWidth
-              />
+        <Sheet.Header />
+        <Sheet.Content>
+          <div className={css.localitiesContainer}>
+            <TextField
+              defaultValue={from}
+              id="outlined-basic"
+              label={label}
+              variant="outlined"
+              onChange={searchLocality}
+              inputRef={inputRef}
+              fullWidth
+            />
 
-              {loading ? (
-                <div className={css.loaderContainer}>
-                  <CircularProgress />
-                </div>
-              ) : localities && localities.length > 0 ? (
-                <Localities localities={localities} setLocation={setLocation} />
-              ) : (
-                <p>Ничего не найдено</p>
-              )}
-            </div>
-          </Sheet.Content>
-        </Sheet.Container>
-        <Sheet.Backdrop />
-      </Sheet>
-    </>
+            {loading ? (
+              <div className={css.loaderContainer}>
+                <CircularProgress />
+              </div>
+            ) : localities && localities.length > 0 ? (
+              <Localities localities={localities} setLocation={setLocation} />
+            ) : (
+              <p>Ничего не найдено</p>
+            )}
+          </div>
+        </Sheet.Content>
+      </Sheet.Container>
+      <Sheet.Backdrop />
+    </Sheet>
   );
 };
 
