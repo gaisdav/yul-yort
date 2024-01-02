@@ -48,7 +48,6 @@ const SearchLocality: FC<ISearchLocality> = ({
     };
   }, []);
 
-  console.log("appVM", appVM);
   return (
     <>
       <Sheet
@@ -62,7 +61,7 @@ const SearchLocality: FC<ISearchLocality> = ({
         >
           <Sheet.Header />
           <Sheet.Content>
-            <div className={css.container}>
+            <div className={css.localitiesContainer}>
               <TextField
                 defaultValue={from}
                 id="outlined-basic"

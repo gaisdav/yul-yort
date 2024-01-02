@@ -5,7 +5,33 @@ import { Button, Paper } from "@mui/material";
 import SearchLocality from "./SearchLocality";
 import { ILocalityEntity } from "../../../../data/Locality";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { IFormData, IMobileFormProps, TPoint, TYPE_POINT } from "./types";
+import {
+  IFormData,
+  IFormLocalityName,
+  IMobileFormProps,
+  TPoint,
+  TYPE_POINT,
+  TYPE_POINT_PlACEHOLDER,
+} from "./types";
+
+const FormLocalityName: FC<IFormLocalityName> = ({
+  toggleLocationLayer,
+  typePoint,
+  pointName,
+  ID,
+  placeholderHTML,
+}) => {
+  return (
+    <div
+      onClick={() => toggleLocationLayer(typePoint)}
+      className={css.localityWrap}
+    >
+      <span className={(ID && css.localityName) || ""}>
+        {(ID && pointName) || placeholderHTML}
+      </span>
+    </div>
+  );
+};
 
 const MobileForm: FC<IMobileFormProps> = ({
   localities = [],
@@ -14,7 +40,9 @@ const MobileForm: FC<IMobileFormProps> = ({
   onSearch,
 }) => {
   // FORM
-  const { handleSubmit, setValue } = useForm<IFormData>();
+  const { handleSubmit, setValue, getValues } = useForm<IFormData>();
+  const originId = getValues("originId");
+  const destinationId = getValues("destinationId");
 
   // STATES
   const [isOriginModalOpen, setIsOriginModalOpen] = useState(false);
@@ -25,9 +53,11 @@ const MobileForm: FC<IMobileFormProps> = ({
   });
 
   //TODO: добавить задачу, если города не заполнены как будем показывать ошибку
-  const onSubmit: SubmitHandler<IFormData> = ({ originId, destinationId }: IFormData) => {
-  
-    if (!originId || !destinationId) return
+  const onSubmit: SubmitHandler<IFormData> = ({
+    originId,
+    destinationId,
+  }: IFormData) => {
+    if (!originId || !destinationId) return;
 
     onSearch({ originId, destinationId });
   };
@@ -61,28 +91,20 @@ const MobileForm: FC<IMobileFormProps> = ({
     <>
       <Paper elevation={3}>
         <div className={css.mobileContainer}>
-          <div
-            onClick={() => toggleLocationLayer(TYPE_POINT.Origin)}
-            className={css.from}
-          >
-            {pointName.origin ? (
-              <span className={css.formLocalityName}>{pointName.origin}</span>
-            ) : (
-              <span>Откуда</span>
-            )}
-          </div>
-          <div
-            onClick={() => toggleLocationLayer(TYPE_POINT.Destination)}
-            className={css.to}
-          >
-            {pointName.destination ? (
-              <span className={css.formLocalityName}>
-                {pointName.destination}
-              </span>
-            ) : (
-              <span>Куда</span>
-            )}
-          </div>
+          <FormLocalityName
+            toggleLocationLayer={toggleLocationLayer}
+            typePoint={TYPE_POINT.Origin}
+            ID={originId}
+            pointName={pointName.origin}
+            placeholderHTML={TYPE_POINT_PlACEHOLDER.Origin}
+          />
+          <FormLocalityName
+            toggleLocationLayer={toggleLocationLayer}
+            typePoint={TYPE_POINT.Destination}
+            ID={destinationId}
+            pointName={pointName.destination}
+            placeholderHTML={TYPE_POINT_PlACEHOLDER.Destination}
+          />
         </div>
       </Paper>
 

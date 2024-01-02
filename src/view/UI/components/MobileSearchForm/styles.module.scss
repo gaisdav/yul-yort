@@ -5,6 +5,10 @@
 }
 
 // localities
+.localitiesContainer {
+  padding: 0 12px;
+}
+
 .localities {
   margin-top: 12px;
   overflow: scroll;
@@ -26,34 +30,26 @@
   margin-left: 12px;
 }
 
-.container {
-  padding: 0 12px;
-}
-
-//
-
 //НЕТ переменной
 .darkThemeContainer {
   background: #272727 !important;
 }
 
-//
-
-.from {
-  padding: 12px 0;
+//Locality
+.localityWrap:first-child {
   border-bottom: 1px solid var(--yy-grey-400);
+}
+
+.localityWrap {
+  padding: 12px 0;
   color: var(--yy-grey-500);
 }
 
-.formLocalityName {
+.localityName {
   color: var(--yy-text-primary);
 }
 
-.to {
-  padding: 12px 0;
-  color: var(--yy-grey-500);
-}
-
+//**//
 .loaderContainer {
   display: flex;
   align-items: center;

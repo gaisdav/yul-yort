@@ -5,6 +5,11 @@ export enum TYPE_POINT {
   Destination = "destination",
 }
 
+export enum TYPE_POINT_PlACEHOLDER {
+  Origin = "Откуда",
+  Destination = "Куда"
+}
+
 export type TPoint = TYPE_POINT.Destination | TYPE_POINT.Origin;
 
 export interface IFormData {
@@ -28,4 +33,12 @@ export interface ISearchLocality {
   searchLocality: (event: React.ChangeEvent<HTMLInputElement>) => void;
   localities: ILocalityEntity[] | null;
   loading: boolean;
+}
+
+export interface IFormLocalityName {
+  toggleLocationLayer: (a: TPoint) => void;
+  typePoint: TYPE_POINT;
+  pointName: string;
+  ID: ID;
+  placeholderHTML: TYPE_POINT_PlACEHOLDER
 }
