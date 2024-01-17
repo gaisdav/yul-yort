@@ -9,3 +9,7 @@ const CurrenciesDictionary: Record<ECurrencyISO, string> = {
 export const getCurrency = (currency: ECurrencyISO): string => {
   return CurrenciesDictionary[currency] || currency;
 };
+
+export const Testq = () => {
+  return false;
+};
