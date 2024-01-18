@@ -1,4 +1,8 @@
-import { ECurrencyISO, getCurrency, CurrenciesDictionary } from "../getCurrency";
+import {
+  ECurrencyISO,
+  getCurrency,
+  CurrenciesDictionary,
+} from "../getCurrency";
 
 describe("getCurrency", () => {
   test("возвращает правильный знак валюты, если он присутствует в словаре", () => {
@@ -9,6 +13,3 @@ describe("getCurrency", () => {
     expect(getCurrency("EUR" as ECurrencyISO)).toBe("EUR");
   });
 });
-
-//МОЖЕТ импорты не работают
-// https://dev.to/hannahadora/jest-testing-with-vite-and-react-typescript-4bap
