@@ -20,7 +20,7 @@
     "@mui/x-date-pickers": "^6.18.2",
     "@types/node": "^20.10.0",
     "date-fns": "^2.30.0",
-    "jest-environment-jsdom": "^29.7.0",
+    
     "mobx": "^6.11.0",
     "mobx-react-lite": "^4.0.5",
     "p-debounce": "^4.0.0",
@@ -38,6 +38,7 @@
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
+    "jest-environment-jsdom": "^29.7.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",

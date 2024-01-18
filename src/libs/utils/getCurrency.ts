@@ -1,15 +1,13 @@
 export enum ECurrencyISO {
   RUB = "RUB",
+  USD = 'USD'
 }
 
-const CurrenciesDictionary: Record<ECurrencyISO, string> = {
+export const CurrenciesDictionary: Record<ECurrencyISO, string> = {
   [ECurrencyISO.RUB]: "₽",
+  [ECurrencyISO.USD]: "$",
 };
 
 export const getCurrency = (currency: ECurrencyISO): string => {
   return CurrenciesDictionary[currency] || currency;
-};
-
-export const Testq = () => {
-  return false;
 };
