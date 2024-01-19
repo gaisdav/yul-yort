@@ -1,16 +1,16 @@
 import { ILocalityEntity } from "../../../../data/Locality";
 
 export enum TYPE_POINT {
-  Origin = "origin",
-  Destination = "destination",
+  origin = "origin",
+  destination = "destination",
 }
 
-export enum TYPE_POINT_PlACEHOLDER {
-  Origin = "Откуда",
-  Destination = "Куда",
+export enum POINT_PLACEHOLDER {
+  origin = "Откуда",
+  destination = "Куда",
 }
 
-export type TPoint = TYPE_POINT.Destination | TYPE_POINT.Origin;
+export type TPoint = TYPE_POINT.destination | TYPE_POINT.origin;
 
 export interface IFormData {
   originId: ID;
@@ -29,7 +29,7 @@ export interface ISearchLocality {
   isOpen: boolean;
   closeInputLayer: () => void;
   setLocation: (locality: ILocalityEntity) => void;
-  from: string | undefined;
+  from: string | null;
   searchLocality: (event: React.ChangeEvent<HTMLInputElement>) => void;
   localities: ILocalityEntity[] | null;
   loading: boolean;
@@ -38,9 +38,10 @@ export interface ISearchLocality {
 export interface IFormLocalityName {
   toggleLocationLayer: (a: TPoint) => void;
   typePoint: TYPE_POINT;
-  pointName: string;
+  pointName: string | null;
   ID: ID;
-  placeholderHTML: TYPE_POINT_PlACEHOLDER;
+  placeholderHTML: POINT_PLACEHOLDER;
+  error: unknown;
 }
 
 export interface ILocalities {

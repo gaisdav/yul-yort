@@ -1,35 +1,35 @@
 import React, { FC, useState } from "react";
-import css from "./styles.module.scss";
-
 import { Button, Paper } from "@mui/material";
+import { useForm, SubmitHandler } from "react-hook-form";
+import css from "./styles.module.scss";
 import SearchLocality from "./SearchLocality";
 import { ILocalityEntity } from "../../../../data/Locality";
-import { SubmitHandler, useForm } from "react-hook-form";
 import {
   IFormData,
   IFormLocalityName,
   IMobileFormProps,
   TPoint,
   TYPE_POINT,
-  TYPE_POINT_PlACEHOLDER,
+  POINT_PLACEHOLDER,
 } from "./types";
 
-// КОМПОНЕНТ выбранного города
 const FormLocalityName: FC<IFormLocalityName> = ({
   toggleLocationLayer,
   typePoint,
   pointName,
   ID,
   placeholderHTML,
+  error,
 }) => {
+  const wrapperClassName = `${css.localityWrap} ${error ? css.error : ""}`;
+
   return (
     <div
       onClick={() => toggleLocationLayer(typePoint)}
-      className={css.localityWrap}
+      className={wrapperClassName}
     >
-      <span className={(ID && css.localityName) || ""}>
-        {(ID && pointName) || placeholderHTML}
-      </span>
+      <span className={(ID && css.localityName) || ""}>{ID && pointName}</span>
+      {!ID && <span>{placeholderHTML}</span>}
     </div>
   );
 };
@@ -40,80 +40,77 @@ const MobileForm: FC<IMobileFormProps> = ({
   loading,
   onSearch,
 }) => {
-  // FORM
   const { handleSubmit, setValue, getValues } = useForm<IFormData>();
   const originId = getValues("originId");
   const destinationId = getValues("destinationId");
-
-  // STATES
+  const [originError, setOriginError] = useState(false);
+  const [destinationError, setDestinationError] = useState(false);
   const [isOriginModalOpen, setIsOriginModalOpen] = useState(false);
   const [isToModalOpen, setIsToModalOpen] = useState(false);
   const [pointName, setPointName] = useState({
-    origin: "",
-    destination: "",
+    origin: null,
+    destination: null,
   });
 
-  //TODO: добавить задачу, если города не заполнены как будем показывать ошибку
   const onSubmit: SubmitHandler<IFormData> = ({
     originId,
     destinationId,
   }: IFormData) => {
-    if (!originId || !destinationId) return;
+    if (!originId || !destinationId) {
+      setOriginError(!originId);
+      setDestinationError(!destinationId);
+      return;
+    }
 
     onSearch({ originId, destinationId });
   };
 
   const searchLocality = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    getList(value);
+    getList(event.target.value);
   };
 
   const toggleLocationLayer = (type: TPoint) => {
     getList();
-    if (type === TYPE_POINT.Origin) {
-      setIsOriginModalOpen(!isOriginModalOpen);
-    } else {
-      setIsToModalOpen(!isToModalOpen);
-    }
+    type === TYPE_POINT.origin
+      ? setIsOriginModalOpen(!isOriginModalOpen)
+      : setIsToModalOpen(!isToModalOpen);
   };
 
   const setLocation = (locality: ILocalityEntity, type: TPoint) => {
     toggleLocationLayer(type);
     const updatedPointName = { ...pointName, [type]: locality.name };
     setPointName(updatedPointName);
-    if (type === TYPE_POINT.Origin) {
-      setValue("originId", locality.id);
-    } else {
-      setValue("destinationId", locality.id);
-    }
+    type === TYPE_POINT.origin
+      ? (setValue("originId", locality.id), setOriginError(false))
+      : (setValue("destinationId", locality.id), setDestinationError(false));
   };
 
   return (
     <>
-      <Paper elevation={3}>
-        <div className={css.mobileContainer}>
-          <FormLocalityName
-            toggleLocationLayer={toggleLocationLayer}
-            typePoint={TYPE_POINT.Origin}
-            ID={originId}
-            pointName={pointName.origin}
-            placeholderHTML={TYPE_POINT_PlACEHOLDER.Origin}
-          />
-          <FormLocalityName
-            toggleLocationLayer={toggleLocationLayer}
-            typePoint={TYPE_POINT.Destination}
-            ID={destinationId}
-            pointName={pointName.destination}
-            placeholderHTML={TYPE_POINT_PlACEHOLDER.Destination}
-          />
-        </div>
+      <Paper elevation={3} className={css.mobileContainer}>
+        <FormLocalityName
+          toggleLocationLayer={toggleLocationLayer}
+          typePoint={TYPE_POINT.origin}
+          ID={originId}
+          pointName={pointName.origin}
+          placeholderHTML={POINT_PLACEHOLDER.origin}
+          error={originError}
+        />
+        <hr className="line" />
+        <FormLocalityName
+          toggleLocationLayer={toggleLocationLayer}
+          typePoint={TYPE_POINT.destination}
+          ID={destinationId}
+          pointName={pointName.destination}
+          placeholderHTML={POINT_PLACEHOLDER.destination}
+          error={destinationError}
+        />
       </Paper>
 
       <div className={css.button}>
         <Button
           onClick={handleSubmit(onSubmit)}
           fullWidth
-          type="submit"
           variant="contained"
           size="large"
         >
@@ -121,29 +118,19 @@ const MobileForm: FC<IMobileFormProps> = ({
         </Button>
       </div>
 
-      <SearchLocality
-        isOpen={isOriginModalOpen}
-        label={TYPE_POINT_PlACEHOLDER.Origin}
-        from={pointName.origin}
-        setLocation={(locality) => setLocation(locality, TYPE_POINT.Origin)}
-        localities={localities}
-        closeInputLayer={() => toggleLocationLayer(TYPE_POINT.Origin)}
-        searchLocality={searchLocality}
-        loading={loading}
-      />
-
-      <SearchLocality
-        isOpen={isToModalOpen}
-        label={TYPE_POINT_PlACEHOLDER.Destination}
-        from={pointName.destination}
-        setLocation={(locality) =>
-          setLocation(locality, TYPE_POINT.Destination)
-        }
-        closeInputLayer={() => toggleLocationLayer(TYPE_POINT.Destination)}
-        localities={localities}
-        searchLocality={searchLocality}
-        loading={loading}
-      />
+      {[TYPE_POINT.origin, TYPE_POINT.destination].map((type) => (
+        <SearchLocality
+          key={type}
+          isOpen={type === "origin" ? isOriginModalOpen : isToModalOpen}
+          label={POINT_PLACEHOLDER[type]}
+          from={pointName[type]}
+          setLocation={(locality) => setLocation(locality, type)}
+          localities={localities}
+          closeInputLayer={() => toggleLocationLayer(type)}
+          searchLocality={searchLocality}
+          loading={loading}
+        />
+      ))}
     </>
   );
 };
