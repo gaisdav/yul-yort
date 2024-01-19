@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, runInAction } from "mobx";
+import { action, makeObservable, runInAction } from "mobx";
 import {
   ILocalityEntity,
   ILocalityService,
@@ -8,7 +8,6 @@ import { BaseVM } from "../BaseVM";
 import { ILocalityVM } from "./types";
 import debounce from "p-debounce";
 
-//FIXME:  private observable
 export class LocalityVM extends BaseVM implements ILocalityVM {
   _localities: ILocalityEntity[] | null = null;
   private readonly _debouncedGetList;
@@ -26,7 +25,6 @@ export class LocalityVM extends BaseVM implements ILocalityVM {
 
     makeObservable(this, {
       getList: action,
-      _localities: observable,
     });
   }
 
