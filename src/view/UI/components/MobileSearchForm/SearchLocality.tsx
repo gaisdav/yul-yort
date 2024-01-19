@@ -4,7 +4,6 @@ import { CircularProgress, TextField } from "@mui/material";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { ILocalities, ISearchLocality } from "./types";
 import { ILocalityEntity } from "../../../../data/Locality";
-import { useViewModel } from "../../hooks";
 
 import css from "./styles.module.scss";
 
@@ -39,7 +38,6 @@ const SearchLocality: FC<ISearchLocality> = ({
   loading,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const appVM = useViewModel("app");
 
   const handleButtonClick = () => {
     if (inputRef.current) {
@@ -73,7 +71,7 @@ const SearchLocality: FC<ISearchLocality> = ({
       className={css.container}
     >
       <Sheet.Container
-        className={appVM.theme === "dark" ? css.darkThemeContainer : ""}
+        className={css.darkThemeContainer}
       >
         <Sheet.Header />
         <Sheet.Content>

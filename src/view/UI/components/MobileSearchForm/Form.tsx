@@ -21,7 +21,7 @@ const FormLocalityName: FC<IFormLocalityName> = ({
   placeholderHTML,
   error,
 }) => {
-  const wrapperClassName = `${css.localityWrap} ${error ? css.error : ""}`;
+  const wrapperClassName = `${css.localityWrap} ${error ? css.localityWrapError : ""}`;
 
   return (
     <div
