@@ -1,3 +1,5 @@
+@import "../../assets/styles/variables.scss";
+
 .page {
   position: relative;
   display: flex;
@@ -13,7 +15,7 @@
 }
 
 /* Стили для десктопа (ширина экрана больше 1024 пикселей) */
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: #{$desktop-breakpoint}) {
   .desktop {
     display: flex;
     width: 100%;
@@ -26,7 +28,7 @@
 }
 
 /* Стили для мобильных устройств (ширина экрана 1024 пикселя и меньше) */
-@media screen and (max-width: 1024px) {
+@media (max-width: #{$desktop-breakpoint}) {
   .desktop {
     display: none;
   }
