@@ -8,10 +8,11 @@ import { useViewModel } from "../../hooks";
 import { observer } from "mobx-react-lite";
 import { AddAgencyChip } from "../../components/AddAgencyChip";
 import { ECategories } from "../../../../libs";
+import { MobileForm } from "../../components/MobileSearchForm";
 
 const Home: FC = observer(() => {
   const { navigate } = useRouter();
-  const localityVM = useViewModel("locality");
+  const { localities, loading, getList } = useViewModel("locality");
 
   const handleSearch: SubmitHandler<IFormData> = (data) => {
     navigate("orders", data);
@@ -20,14 +21,23 @@ const Home: FC = observer(() => {
   return (
     <>
       <div className={css.page}>
-        <SearchForm
-          gaCategory={ECategories.ORDERS}
-          localitiesLoading={localityVM.loading}
-          onSearch={handleSearch}
-          localities={localityVM.localities}
-        />
+        <div className={css.desktop}>
+          <SearchForm
+            gaCategory={ECategories.ORDERS}
+            localitiesLoading={loading}
+            onSearch={handleSearch}
+            localities={localities}
+          />
+        </div>
+        <div className={css.mobile}>
+          <MobileForm
+            onSearch={handleSearch}
+            localities={localities}
+            getList={getList}
+            loading={loading}
+          />
+        </div>
       </div>
-
       <AddAgencyChip />
     </>
   );

@@ -32,7 +32,9 @@
     "react-router5": "^8.0.1",
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "react-modal-sheet": "^2.2.0",
+    "framer-motion": "^10.16.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.2.0",

@@ -9,7 +9,7 @@ import { ILocalityVM } from "./types";
 import debounce from "p-debounce";
 
 export class LocalityVM extends BaseVM implements ILocalityVM {
-  private _localities: ILocalityEntity[] | null = null;
+  _localities: ILocalityEntity[] | null = null;
   private readonly _debouncedGetList;
 
   get localities(): ILocalityEntity[] | null {
