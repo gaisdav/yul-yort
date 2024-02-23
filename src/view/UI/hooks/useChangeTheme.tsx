@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useViewModel } from "./useViewModel.tsx";
 import { IAppVM, TTheme } from "../../viewModels/App/types.ts";
+import { AppBarID } from "../components/Header";
 
 export interface IChangeTheme {
   theme: TTheme;
@@ -19,8 +20,8 @@ export const useChangeTheme = (): IChangeTheme => {
   const bodyRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    // #app-bar это id элемента <AppBar />
-    headerRef.current = document.querySelector("#app-bar");
+    // AppBarID это id элемента приложения <AppBar />
+    headerRef.current = document.querySelector(AppBarID);
     htmlRef.current = document.querySelector("html");
     bodyRef.current = document.querySelector("body");
     themeColorMetaRef.current = document.querySelector(

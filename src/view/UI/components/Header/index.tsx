@@ -8,6 +8,8 @@ import logo from "../../assets/logo.svg";
 import { useHeaderAnalytics } from "./useHeaderAnalytics";
 import { useChangeTheme } from "../../hooks";
 
+export const AppBarID = "app-bar";
+
 export const Header: FC<IAppBar> = ({ onGoHome }) => {
   const { changeThemeEvent, goHomeEvent } = useHeaderAnalytics();
   const { theme, setTheme } = useChangeTheme();
@@ -23,7 +25,7 @@ export const Header: FC<IAppBar> = ({ onGoHome }) => {
   };
 
   return (
-    <AppBar id="app-bar">
+    <AppBar id={AppBarID}>
       <Toolbar className={css.toolbar}>
         <IconButton onClick={handleGoHome} className={css.logoButton}>
           <img height={40} width={40} src={logo} alt="logo" />
