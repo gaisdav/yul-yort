@@ -6,13 +6,15 @@ import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
 import css from "./styles.module.scss";
 import logo from "../../assets/logo.svg";
 import { useHeaderAnalytics } from "./useHeaderAnalytics";
+import { useChangeTheme } from "../../hooks";
 
-export const Header: FC<IAppBar> = ({ theme, onSetTheme, onGoHome }) => {
+export const Header: FC<IAppBar> = ({ onGoHome }) => {
   const { changeThemeEvent, goHomeEvent } = useHeaderAnalytics();
+  const { theme, setTheme } = useChangeTheme();
 
   const handleChangeTheme = () => {
     changeThemeEvent();
-    onSetTheme(theme === "dark" ? "light" : "dark");
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const handleGoHome = () => {
