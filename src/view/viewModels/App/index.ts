@@ -12,18 +12,16 @@ export class AppVM extends BaseVM implements IAppVM {
       theme: observable,
       setTheme: action,
     });
-    // TODO получать через сервис?
-    this.theme =
-      localStorage.getItem(CONSTANTS.themeKey) === "dark" ? "dark" : "light";
+    const systemThemeIsDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const theme = localStorage.getItem(CONSTANTS.themeKey) as TTheme | null;
+
+    this.theme = theme || (systemThemeIsDark ? "dark" : "light");
   }
 
   setTheme = (theme: TTheme) => {
-    try {
-      // TODO сохранять через сервис?
-      localStorage.setItem(CONSTANTS.themeKey, theme);
-      this.theme = theme;
-    } catch (err) {
-      throw err;
-    }
+    localStorage.setItem(CONSTANTS.themeKey, theme);
+    this.theme = theme;
   };
 }
