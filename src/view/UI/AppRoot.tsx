@@ -1,7 +1,7 @@
 import { FC, StrictMode } from "react";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "react-router5";
-import { useChangeStatusBar, useViewModel } from "./hooks";
+import { useChangeTheme } from "./hooks";
 import { ERouteNames } from "../../router/routes.ts";
 import {
   CssBaseline,
@@ -18,10 +18,7 @@ export const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
   ({ themes }) => {
     const [lightTheme, darkTheme] = themes;
     const { navigate } = useRouter();
-    const appVM = useViewModel("app");
-    useChangeStatusBar({
-      mode: appVM.theme,
-    });
+    const { theme } = useChangeTheme();
 
     const handleGoHome = () => {
       navigate(ERouteNames.HOME);
@@ -29,15 +26,11 @@ export const AppRoot: FC<{ themes: IAppInitConfig["themes"] }> = observer(
 
     return (
       <StrictMode>
-        <ThemeProvider theme={appVM.theme === "light" ? lightTheme : darkTheme}>
+        <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
           <CssBaseline />
           <StyledEngineProvider injectFirst>
             <ErrorBoundary>
-              <Header
-                theme={appVM.theme}
-                onSetTheme={appVM.setTheme}
-                onGoHome={handleGoHome}
-              />
+              <Header onGoHome={handleGoHome} />
               <Body>
                 <App />
               </Body>
