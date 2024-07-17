@@ -47,15 +47,6 @@
       document.addEventListener("gesturestart", function (e) {
         e.preventDefault();
       });
-
-      // Отмена масштабирования с помощью дополнительных событий
-      document.addEventListener(
-        "touchmove",
-        function (e) {
-          e.preventDefault();
-        },
-        { passive: false },
-      );
     </script>
   </head>
   <body>
